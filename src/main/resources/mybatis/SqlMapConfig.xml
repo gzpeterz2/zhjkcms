@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="java.lang.String" alias="String" />
 
 		<!-- 批量定义别名， 自动在包下面 扫描 pojo， 别名 默认为 类名， 首字母 大写或小写 -->
-		<package name="com.hc.web.po"/> 
+		<package name="com.hc.cms.po"/> 
 	</typeAliases>
 	
 	<mappers>
