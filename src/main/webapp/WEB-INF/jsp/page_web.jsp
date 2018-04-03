@@ -185,7 +185,9 @@
 							<li class="hidden">
 								<div>
 									<h2>轮播标题：</h2>
-									<input type="text" placeholder="请输入标题"/>
+									<input name="name" type="text" placeholder="请输入标题"/>
+									<h2>对应的链接地址：</h2>
+									<input name="url" type="text" placeholder="java.action"/>
 									<h2>配图：</h2>
 									<div class="picload">
 										<!--修改上传input样式 图片只读jpg、png、gif-->
