@@ -1,0 +1,158 @@
+.section {
+  width: 100%;
+  background: #f4f4f4;
+  font-size: 0.0625rem; }
+  .section .container {
+    width: 10rem;
+    min-width: 10rem;
+    min-height: 8.1354166667rem;
+    margin: 0 auto;
+    overflow: hidden; }
+    .section .container .select-list {
+      width: 1.5104166667rem;
+      height: 8.1354166667rem;
+      background: #373d45;
+      float: left;
+      list-style: none;
+      box-sizing: border-box;
+      padding-top: 0.15625rem;
+      /*
+      forbidden user select
+      */
+      -moz-user-select: -moz-none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      /*
+       Introduced in IE 10.
+       See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+      */
+      -ms-user-select: none;
+      user-select: none; }
+      .section .container .select-list > li {
+        width: 100%;
+        margin-bottom: 0.0520833333rem; }
+        .section .container .select-list > li p {
+          color: #d8e2eb;
+          box-sizing: border-box;
+          padding-left: 0.3645833333rem;
+          height: 0.25rem;
+          font-size: 0.0833333333rem;
+          line-height: 0.25rem;
+          cursor: pointer; }
+          .section .container .select-list > li p span {
+            display: inline-block;
+            width: 0.0208333333rem;
+            height: 0.0208333333rem;
+            border-radius: 50%;
+            background: #D8E2EB;
+            position: absolute;
+            top: 0.1145833333rem;
+            left: 0.28125rem; }
+          .section .container .select-list > li p > b {
+            display: inline-block;
+            position: absolute;
+            top: 0.09375rem;
+            right: 0.21875rem;
+            height: 0.0729166667rem;
+            width: 0.0729166667rem;
+            font: 0.0000271267 simsun;
+            transition: all .2s;
+            text-align: center; }
+          .section .container .select-list > li p:hover {
+            color: #fff; }
+        .section .container .select-list > li:hover {
+          background: #30353b; }
+        .section .container .select-list > li:hover > p {
+          color: #fff; }
+        .section .container .select-list > li > p {
+          position: relative;
+          border-left: 0.0208333333rem solid transparent; }
+        .section .container .select-list > li > ol {
+          list-style: none;
+          overflow: hidden;
+          padding-left: 0.1302083333rem; }
+          .section .container .select-list > li > ol li p {
+            height: 0rem;
+            font-size: 0.0729166667rem;
+            line-height: 0.1875rem;
+            transition: height .2s; }
+      .section .container .select-list .choosen {
+        background: #2a2e33 !important; }
+        .section .container .select-list .choosen > p {
+          border-left-color: #2E96F8;
+          color: #fff; }
+          .section .container .select-list .choosen > p span {
+            background: #fff; }
+          .section .container .select-list .choosen > p b {
+            transform: rotate(90deg); }
+        .section .container .select-list .choosen > ol li p {
+          height: 0.1875rem; }
+    .section .container .main-list {
+      height: 8.1354166667rem;
+      width: 8.3333333333rem;
+      float: right;
+      list-style: none;
+      box-sizing: border-box;
+      overflow: hidden; }
+      .section .container .main-list > li {
+        box-sizing: border-box;
+        width: 8.3333333333rem;
+        height: 8.1354166667rem;
+        padding-top: 0.15625rem;
+        display: none;
+        overflow: hidden; }
+        .section .container .main-list > li > p {
+          height: 0.15625rem;
+          line-height: 0.15625rem;
+          font-size: 0.0729166667rem;
+          color: #999;
+          margin-bottom: 0.078125rem; }
+          .section .container .main-list > li > p > i {
+            font-family: simsun;
+            margin: 0 0.0260416667rem;
+            font-style: normal; }
+          .section .container .main-list > li > p > span {
+            color: #2E96F8; }
+          .section .container .main-list > li > p > b {
+            display: inline-block;
+            font-size: 0.0729166667rem;
+            ling-height: 0.0729166667rem;
+            padding: 0 0.046875rem;
+            height: 0.15625rem;
+            background-color: #2E96F8;
+            border-radius: 0.0208333333rem;
+            color: white;
+            font-weight: normal;
+            margin-left: 0.1041666667rem;
+            cursor: pointer; }
+        .section .container .main-list > li .main-content {
+          width: 16.6666666667rem;
+          height: 8.1354166667rem;
+          list-style: none;
+          position: relative;
+          top: 0;
+          left: 0; }
+          .section .container .main-list > li .main-content > li {
+            width: 8.3333333333rem;
+            height: 8.1354166667rem;
+            float: left;
+            box-sizing: border-box; }
+            .section .container .main-list > li .main-content > li > div {
+              background: #fff;
+              min-height: 4.4791666667rem;
+              width: 8.1666666667rem;
+              padding: 0.0005208333rem 0.1041666667rem 0.2083333333rem;
+              box-sizing: border-box; }
+          .section .container .main-list > li .main-content .hidden {
+            position: relative; }
+            .section .container .main-list > li .main-content .hidden .return_show {
+              width: 0.2604166667rem;
+              height: 0.2604166667rem;
+              position: absolute;
+              top: 0.1041666667rem;
+              right: 0.2604166667rem;
+              z-index: 400; }
+      .section .container .main-list > .select {
+        display: block; }
+
+/*# sourceMappingURL=section.css.map */

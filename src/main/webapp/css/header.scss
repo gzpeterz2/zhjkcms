@@ -1,0 +1,78 @@
+$rem:192;
+*{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    width: 100%;
+    background: #fff;
+    box-shadow: 0rem/$rem 3rem/$rem 8rem/$rem 0rem/$rem rgba(34, 79, 110, 0.1);
+    .container{
+        width: 1920rem/$rem;
+        min-width: 1200rem/$rem;
+        margin: 0 auto;
+        height: 88rem/$rem;
+        padding-top: .1rem/$rem;
+        img{
+            width: 148rem/$rem;
+            height: 55rem/$rem;
+            float: left;
+            margin-left: 51rem/$rem;
+            margin-top: 18rem/$rem;
+            margin-right: 139rem/$rem;
+        }
+        ul{
+            float: left;
+            height: 88rem/$rem;
+            padding-top: 36rem/$rem;
+            list-style: none;
+            overflow: hidden;
+            li{
+                float: left;
+                width: 120rem/$rem;
+                height: 88rem/$rem;
+                text-align: center;
+                line-height: 0;
+                a{
+                    display: block;
+                    width: 100%;
+                    color: #333;
+                    height: 40rem/$rem;
+                    text-decoration: none;
+                    position: relative;
+                    p{
+                        font-size: 20rem/$rem;
+                        line-height: 20rem/$rem;
+                    }
+                    span{
+                        display: none;
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        transform: translate(-50%);
+                        width: 42rem/$rem;
+                        height: 4rem/$rem;
+                        border-radius: 2rem/$rem;
+                        background: #2e96f8;
+                    }
+                }
+            }
+        }
+        ol{
+            float: right;
+    //      height: 88rem/$rem;
+            list-style: none;
+            overflow: hidden;
+            li{
+                float: left;
+                text-align: center;
+                font-size: 16rem/$rem;
+                margin-top: 39rem/$rem;
+                padding: 0 23rem/$rem;
+                &:first-child{
+                    border-right: 1rem/$rem solid #999;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,103 @@
+$rem:192;
+.section{
+    .container{
+        .main-list{
+            >li{
+                .main-content{
+                    .hidden{
+                        >div{
+                            .content-list{
+                                width: 1500rem/$rem;
+                                height: 200rem/$rem;
+                                list-style: none;
+                                >li{
+                                    float: left;
+                                    height: 100rem/$rem;
+                                    margin-right: 80rem/$rem;
+                                }
+                            }
+                            h2{
+                                font-size: 16rem/$rem;
+                                margin-bottom: 15rem/$rem;
+                                margin-top: 29rem/$rem;
+                            }
+                            input{
+                                border: 1rem/$rem solid #d9d9d9;
+                                background: #fff;
+                                border-radius: 4rem/$rem;
+                                box-sizing: border-box;
+                                outline: none;
+//                              width: 400rem/$rem;
+                            }
+                            input[type="text"]{
+                                width: 400rem/$rem;
+                                height: 30rem/$rem;
+                                padding-left: 8rem/$rem;
+                                margin-bottom:20rem/$rem;
+                            }
+                            .picload{
+                                position: relative;
+                                input[type="button"]{
+                                    padding: 4rem/$rem 16rem/$rem;
+                                    outline: none;
+                                    font-size: 14rem/$rem;
+                                    cursor: pointer;
+                                    &:hover{
+                                        background: #2E96F8;
+                                        color: #fff;
+                                    }
+                                }
+                                span{
+                                    font-size: 13rem/$rem;
+                                    color: #2E96F8;
+                                    margin-left: 20rem/$rem;
+                                    >.size{
+                                        color:#d9d9d9;
+                                        margin-left: 20rem/$rem;
+                                        font-style: normal;
+                                    }
+                                }
+                                div{
+                                    width: 600rem/$rem;
+                                    height: 350rem/$rem;
+                                    margin: 16rem/$rem 0 45rem/$rem;
+                                    border-radius: 4rem/$rem;
+                                    border: 1rem/$rem solid #D9D9D9;
+                                    overflow: hidden;
+        //                          text-align: center;
+        //                          img{
+        //                              width: 100%;
+        //                              height: 100%;
+        //                          }
+                                }
+                                input[type="file"]{
+                                    visibility: hidden;
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    z-index: -1;
+                                }
+                            }
+                            button{
+                                padding: 10rem/$rem 35rem/$rem;
+                                box-sizing: border-box;
+                                margin-right: 14rem/$rem;
+                                border-radius: 4rem/$rem;
+                                border: none;
+                                outline: none;
+                                cursor: pointer;
+                                background: #fff;
+                                border: 1rem/$rem solid #D9D9D9;
+                                color: #2E96F8;
+                                &:hover{
+                                    background: #2E96F8;
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+        }
+    }
+}

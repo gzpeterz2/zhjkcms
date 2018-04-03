@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:mvc="http://www.springframework.org/schema/mvc" 
+  xmlns="http://www.springframework.org/schema/beans" 
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:context="http://www.springframework.org/schema/context" 
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:cache="http://www.springframework.org/schema/cache" 
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+  	 http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop.xsd
+  	 http://www.springframework.org/schema/mvc
+     http://www.springframework.org/schema/mvc/spring-mvc.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx.xsd
+     http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+     
+      
+      <mvc:resources location="/js/" mapping="/js/**"/>
+      <mvc:resources location="/pic/" mapping="/pic/**"/>
+
+
+     <context:component-scan base-package="com.hc.cms.controller"/>
+     
+<!-- <mvc:default-servlet-handler/> -->
+     
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传文件的最大尺寸为5MB -->
+		<property name="maxUploadSize">
+			<value>5242880</value>
+		</property>
+	</bean>
+	
+	<!-- <bean class="com.hc.ssm.exception.MyExceptionHandler"/> -->
+	
+	<!-- 自定义webBinder -->
+	<!-- <bean id="customBinder"
+		class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+		<property name="propertyEditorRegistrars">
+			<list>
+				<ref bean="customPropertyEditor"/>
+			</list>
+		</property>
+		<property name="conversionService" ref="conversionService2" />
+	</bean> -->
+
+     
+     <!-- <mvc:annotation-driven /> -->
+     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+	<!--注解适配器 -->
+     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<!--  <property name="webBindingInitializer" ref="customBinder"></property>  -->
+		  <property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+			</list>
+		 </property>
+		 
+	 </bean>
+
+     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+     	<property name="prefix" value="/WEB-INF/jsp/"/>
+     	<property name="suffix" value=".jsp"/>
+     </bean>
+     
+    
+</beans>

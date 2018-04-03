@@ -1,0 +1,56 @@
+$rem:192;
+.section{
+    .container{
+        .main-list{
+            >li{
+                .main-content{
+                    .show{
+                        >div{
+                            table{
+                                width:100%;
+                                border-color: transparent;
+                                tr{
+                                    border-bottom: 1rem/$rem solid #e6e6e6;
+                                    font-size: 14rem/$rem;
+                                    &:first-of-type{
+                                        height: 68rem/$rem;
+                                        font-size: 16rem/$rem;
+                                    }
+                                    th:last-of-type{
+                                        text-align: right;
+                                        padding-right: 120rem/$rem;
+                                    }
+                                    td{
+                                        padding: 15rem/$rem 50rem/$rem 15rem/$rem 0;
+                                        max-width: 380rem/$rem;
+                                        min-width: 150rem/$rem;
+                                        overflow: hidden;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                        &:last-of-type{
+                                            text-align: right;
+                                        }
+                                        img{
+                                            width: 175rem/$rem;
+                                            height: 100rem/$rem;
+                                            border-radius: 4rem/$rem;
+                                        }
+                                        span{
+                                            color: #2E96F8;
+                                            padding-right: 10rem/$rem;
+                                            margin-right:10rem/$rem; 
+                                            cursor: pointer;
+                                            &:first-of-type{
+                                                border-right: 1rem/$rem solid #999;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

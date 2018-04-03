@@ -1,0 +1,70 @@
+.section .container .main-list > li .main-content .hidden > div .content-list {
+  width: 7.8125rem;
+  height: 1.0416666667rem;
+  list-style: none; }
+  .section .container .main-list > li .main-content .hidden > div .content-list > li {
+    float: left;
+    height: 0.5208333333rem;
+    margin-right: 0.4166666667rem; }
+.section .container .main-list > li .main-content .hidden > div h2 {
+  font-size: 0.0833333333rem;
+  margin-bottom: 0.078125rem;
+  margin-top: 0.1510416667rem; }
+.section .container .main-list > li .main-content .hidden > div input {
+  border: 0.0052083333rem solid #d9d9d9;
+  background: #fff;
+  border-radius: 0.0208333333rem;
+  box-sizing: border-box;
+  outline: none; }
+.section .container .main-list > li .main-content .hidden > div input[type="text"] {
+  width: 2.0833333333rem;
+  height: 0.15625rem;
+  padding-left: 0.0416666667rem;
+  margin-bottom: 0.1041666667rem; }
+.section .container .main-list > li .main-content .hidden > div .picload {
+  position: relative; }
+  .section .container .main-list > li .main-content .hidden > div .picload input[type="button"] {
+    padding: 0.0208333333rem 0.0833333333rem;
+    outline: none;
+    font-size: 0.0729166667rem;
+    cursor: pointer; }
+    .section .container .main-list > li .main-content .hidden > div .picload input[type="button"]:hover {
+      background: #2E96F8;
+      color: #fff; }
+  .section .container .main-list > li .main-content .hidden > div .picload span {
+    font-size: 0.0677083333rem;
+    color: #2E96F8;
+    margin-left: 0.1041666667rem; }
+    .section .container .main-list > li .main-content .hidden > div .picload span > .size {
+      color: #d9d9d9;
+      margin-left: 0.1041666667rem;
+      font-style: normal; }
+  .section .container .main-list > li .main-content .hidden > div .picload div {
+    width: 3.125rem;
+    height: 1.8229166667rem;
+    margin: 0.0833333333rem 0 0.234375rem;
+    border-radius: 0.0208333333rem;
+    border: 0.0052083333rem solid #D9D9D9;
+    overflow: hidden; }
+  .section .container .main-list > li .main-content .hidden > div .picload input[type="file"] {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; }
+.section .container .main-list > li .main-content .hidden > div button {
+  padding: 0.0520833333rem 0.1822916667rem;
+  box-sizing: border-box;
+  margin-right: 0.0729166667rem;
+  border-radius: 0.0208333333rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #fff;
+  border: 0.0052083333rem solid #D9D9D9;
+  color: #2E96F8; }
+  .section .container .main-list > li .main-content .hidden > div button:hover {
+    background: #2E96F8;
+    color: #fff; }
+
+/*# sourceMappingURL=pageWeb.css.map */

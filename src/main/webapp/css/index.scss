@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+.bg-container{
+    width: 100%;
+    min-width: 1920px;
+    height: 1080px;
+    background: linear-gradient(to bottom,#0f63c1,#2091e4);
+    .bg-wrap{
+        width: 100%;
+        height: 100%;
+        background: url(../img/index/bg.png) no-repeat;
+        background-position: center 0;
+        .bg-icon{
+            width: 100%;
+            height: 100%;
+            background: url(../img/index/bg2.png) no-repeat;
+            background-position: center 45%;
+            padding-top: .1px;
+            .container{
+                width: 370px;
+                margin: 180px auto 0;
+                text-align: center;
+                img{
+                    margin-bottom: 64px;
+                }
+                >div{
+                    width: 370px;
+//                  height: 350px;
+                    background: #fff;
+                    border-radius: 6px;
+                    padding: 37px 28px;
+                    box-sizing: border-box;
+                    p{
+                        margin-bottom:27px;
+                        color: #2478ce;
+                        font-size: 24px;
+                    }
+                    input{
+                        width: 315px;
+                        height: 45px;
+                        border: 1px solid #ccc;
+                        border-radius: 6px;
+                        margin-bottom: 20px;
+                        box-sizing: border-box;
+                        padding: 15px;
+                        outline: none;
+//                      text-spacing: 25px;
+//                      box-shadow: 0 0 0 1px red;
+                    }
+                    div{
+                        height: 20px;
+                        line-height: 20px;
+                        font-size: 14px;
+                        text-align: left;
+                        span{
+                            display: inline-block;
+                            width: 18px;
+                            height: 18px;
+                            text-align: center;
+                            border-radius: 50%;
+                            background: #07c144;
+                            color: #fff;
+                            margin-right: 8px;
+                            font: 12px/18px "黑体";
+                            vertical-align: middle;
+                            margin-top:-1px;
+                        }
+                    }
+                    a{
+                        display: block;
+                        width: 315px;
+                        height: 45px;
+                        line-height: 45px;
+                        font-size: 18px;
+                        color: white;
+                        background: #2478ce;
+                        border-radius: 6px;
+                        font-weight: normal;
+                        margin-top: 27px;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+

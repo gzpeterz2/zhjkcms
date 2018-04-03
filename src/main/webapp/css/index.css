@@ -1,0 +1,78 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  color: #333; }
+
+.bg-container {
+  width: 100%;
+  min-width: 1920px;
+  height: 1080px;
+  background: linear-gradient(to bottom, #0f63c1, #2091e4); }
+  .bg-container .bg-wrap {
+    width: 100%;
+    height: 100%;
+    background: url(../img/index/bg.png) no-repeat;
+    background-position: center 0; }
+    .bg-container .bg-wrap .bg-icon {
+      width: 100%;
+      height: 100%;
+      background: url(../img/index/bg2.png) no-repeat;
+      background-position: center 45%;
+      padding-top: .1px; }
+      .bg-container .bg-wrap .bg-icon .container {
+        width: 370px;
+        margin: 180px auto 0;
+        text-align: center; }
+        .bg-container .bg-wrap .bg-icon .container img {
+          margin-bottom: 64px; }
+        .bg-container .bg-wrap .bg-icon .container > div {
+          width: 370px;
+          background: #fff;
+          border-radius: 6px;
+          padding: 37px 28px;
+          box-sizing: border-box; }
+          .bg-container .bg-wrap .bg-icon .container > div p {
+            margin-bottom: 27px;
+            color: #2478ce;
+            font-size: 24px; }
+          .bg-container .bg-wrap .bg-icon .container > div input {
+            width: 315px;
+            height: 45px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            padding: 15px;
+            outline: none; }
+          .bg-container .bg-wrap .bg-icon .container > div div {
+            height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+            text-align: left; }
+            .bg-container .bg-wrap .bg-icon .container > div div span {
+              display: inline-block;
+              width: 18px;
+              height: 18px;
+              text-align: center;
+              border-radius: 50%;
+              background: #07c144;
+              color: #fff;
+              margin-right: 8px;
+              font: 12px/18px "黑体";
+              vertical-align: middle;
+              margin-top: -1px; }
+          .bg-container .bg-wrap .bg-icon .container > div a {
+            display: block;
+            width: 315px;
+            height: 45px;
+            line-height: 45px;
+            font-size: 18px;
+            color: white;
+            background: #2478ce;
+            border-radius: 6px;
+            font-weight: normal;
+            margin-top: 27px;
+            text-decoration: none; }
+
+/*# sourceMappingURL=index.css.map */
