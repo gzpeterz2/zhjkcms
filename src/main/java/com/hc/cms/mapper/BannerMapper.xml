@@ -8,5 +8,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectByLocation" parameterType="String" resultType="banner">
 		select * from banner  where location = #{location} order by name
 	</select>
+	
+	<insert id="insert" parameterType="banner">
+		insert into banner values(null, #{name}, #{src} , #{location}, #{url} )
+	</insert>
+	
+	<update id="update" parameterType="banner">
+		update banner set name = #{name} , src = ${src}, location = #{location},
+			url = #{url} where id = #{id} 
+	</update>
+	
+	
 
 </mapper>

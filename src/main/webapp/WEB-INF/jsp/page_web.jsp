@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -184,20 +186,28 @@
 							</li>
 							<li class="hidden">
 								<div>
+									<form action="${pageContext.request.contextPath }/home/addBanner.action" method="post" 
+										enctype="multipart/form-data">
 									<h2>轮播标题：</h2>
 									<input name="name" type="text" placeholder="请输入标题"/>
 									<h2>对应的链接地址：</h2>
 									<input name="url" type="text" placeholder="java.action"/>
 									<h2>配图：</h2>
-									<div class="picload">
-										<!--修改上传input样式 图片只读jpg、png、gif-->
-										<input type="file" />
+							<c:if test="${itemsCustom.pic !=null}">
+								<img src="/img/${banner.src}" width=100 height=100/>
+							<br/>
+		</c:if>
+										<input type="file" name="pictureFile" />
+									<!-- <div class="picload">
+										修改上传input样式 图片只读jpg、png、gif
+										<input type="file" name="pictureFile" />
 										<input type="button" value="选择文件"/>
 										<span>未选择任何文件</span>
 										<div></div>
-									</div>
+									</div> -->
 									<button class="submit">提交</button>
 									<button class="cancel">取消</button>
+									</form>
 								</div>
 								<img class="return_show" src="img/index/return_pic.jpg" alt="" />
 							</li>
