@@ -28,10 +28,10 @@ $(function(){
 	})
 	
 //	右侧主体    编辑和删除 按钮
-	$(".table_edit").click(function(){
+	$(".submit").click(function(){
 		$(this).parent().parent().parent().parent().parent().parent().parent().animate({"left":"-"+slider_width },500);
 	})
-	$(".table_delete").click(function(){
+	$(".cancel").click(function(){
 		$(this).parent().parent().remove();
 	})
 	
@@ -51,4 +51,7 @@ $(function(){
 	}).blur(function(){
 		$(this).css("box-shadow","none");
 	})
+	
+	
+	console.log(3);
 })

@@ -22,7 +22,6 @@
 		</style>
 		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="js/rem.js" ></script>
-		<!--<script type="text/javascript" src="js/link-header.js" ></script>-->
 		<script type="text/javascript" src="js/section.js" ></script>
 		<script type="text/javascript" src="js/pageWeb.js"></script>
 		<script type="text/javascript" src="js/picload.js"></script>
@@ -139,29 +138,10 @@
 										<tr>
 											<th>轮播标题</th>
 											<th>轮播图</th>
+											<th>轮播图链接</th>
 											<th>操作</th>
 										</tr>
-										<tr>
-											<td>公司简介</td>
-											<td>
-												<img src="img/index/fail_pic.jpg"/>
-											</td>
-											<td>
-												<span class="table_edit">编辑</span>
-												<span class="table_delete">删除</span>
-											</td>
-										</tr>
-										<tr>
-											<td>名企合作</td>
-											<td>
-												<img src="img/index/fail_pic.jpg"/>
-											</td>
-											<td>
-												<span class="table_edit">编辑</span>
-												<span class="table_delete">删除</span>
-											</td>
-										</tr>
-										<tr>
+										<!--<tr>
 											<td>大咖简介</td>
 											<td>
 												<img src="img/index/fail_pic.jpg"/>
@@ -170,34 +150,23 @@
 												<span class="table_edit">编辑</span>
 												<span class="table_delete">删除</span>
 											</td>
-										</tr>
-										<tr>
-											<td>大咖简介</td>
-											<td>
-												<img src="img/index/fail_pic.jpg"/>
-											</td>
-											<td>
-												<span class="table_edit">编辑</span>
-												<span class="table_delete">删除</span>
-											</td>
-										</tr>
+										</tr>-->
 									</table>
 								</div>
 							</li>
 							<li class="hidden">
 								<div>
-									<form action="${pageContext.request.contextPath }/home/addBanner.action" method="post" 
-										enctype="multipart/form-data">
+									<form action="${pageContext.request.contextPath }/home/addBanner.action" method="post" enctype="multipart/form-data">
 									<h2>轮播标题：</h2>
 									<input name="name" type="text" placeholder="请输入标题"/>
 									<h2>对应的链接地址：</h2>
 									<input name="url" type="text" placeholder="java.action"/>
 									<h2>配图：</h2>
-							<c:if test="${itemsCustom.pic !=null}">
-								<img src="/${banner.src}" width=100 height=100/>
-							<br/>
-		</c:if>
-										<input type="file" name="pictureFile" />
+									<c:if test="${itemsCustom.pic !=null}">
+										<img src="/${banner.src}" width=100 height=100/>
+										<br/>
+									</c:if>
+									<!--<input type="file" name="pictureFile" />-->
 									<!-- <div class="picload">
 										修改上传input样式 图片只读jpg、png、gif
 										<input type="file" name="pictureFile" />
@@ -205,6 +174,13 @@
 										<span>未选择任何文件</span>
 										<div></div>
 									</div> -->
+									<div class="picload">
+										<!--修改上传input样式 图片只读jpg、png、gif-->
+										<input name="pictureFile" type="file" />
+										<input name="clickfile" type="button" value="选择文件"/>
+										<span>未选择任何文件</span>
+										<div></div>
+									</div>
 									<button class="submit">提交</button>
 									<button class="cancel">取消</button>
 									</form>

@@ -1,40 +1,13 @@
 $(function(){
 //	banner
-	var banner_return = picload(".banner");
+	var banner_list_info=$.ajax({url:"http://localhost/zhjkcms/json/homeBanner.action",type:"GET",async:false})
+	console.log(banner_list_info.responseJSON);
 	
-//	按钮点击清除
-	banner_return.siblings("button").click(function(){
-		var result = 0;
-		if($(this).attr("class")=="submit"){
-			if(banner_return.siblings("input[type='text']").val()){
-				if(banner_return.children("input[type='file']").val()){
-					banner_return.children("span").html("提交完成");
-					result=1;
-				}else{
-					alert("请选择上传文件");
-				}
-			}else{
-				alert("请填写轮播简介");
-			}
-		}else{
-			banner_return.children("span").html("未选择任何文件");
-			result=1;
-		}
-		if(result){
-			banner_return.siblings("input[type='text']").val("");
-			banner_return.children("span").css("color","#2E96F8");		
-			banner_return.children("input[type='file']").val("");
-			banner_return.children("div").html("");
-			result=0;
-		}
-	})
+	for(var k in banner_list_info.responseJSON){
+		$(".banner .main-content .show div table").append("<tr><td>"+banner_list_info.responseJSON[k].name+"</td><td><img src='"+banner_list_info.responseJSON[k].src+"'/></td><td>"+banner_list_info.responseJSON[k].url+"</td><td><span class='table_edit'>编辑</span><span class='table_delete'>删除</span></td></tr>")
+	}
 	
-	
-	
-	
-	
-	
-	
+	picload(".banner");
 })
 
 
