@@ -33,12 +33,11 @@ public class BannerMapperTest {
 		banner.setLocation("HomePage");
 		banner.setName("aaa");
 		banner.setSrc("aaa.action");
-		mapper.insert(banner);
+		// mapper.insert(banner);
 	}
 
 	@Test
 	public void testUpdate() {
-		fail("Not yet implemented");
 	}
 
 }

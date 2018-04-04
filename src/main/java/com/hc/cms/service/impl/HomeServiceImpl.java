@@ -24,4 +24,13 @@ public class HomeServiceImpl implements HomeService {
 		homePage.setBigBanner3(list.get(2));
 		return homePage;
 	}
+
+	@Override
+	public void addHomeBanner(Banner banner) throws Exception {
+		if(banner != null) {
+			banner.setLocation("HomePage");
+			System.out.println(banner);
+			bannerMapper.insert(banner);
+		}
+	}
 }

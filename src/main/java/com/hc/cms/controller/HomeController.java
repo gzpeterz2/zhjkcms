@@ -3,23 +3,28 @@ package com.hc.cms.controller;
 import java.io.File;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hc.cms.po.Banner;
+import com.hc.cms.service.HomeService;
 
 @Controller
 @RequestMapping("/home")
 public class HomeController {
 	
+	@Autowired
+	private HomeService homeService;
+	
 	@RequestMapping("/addBanner")
-	public ModelAndView addBanner(Banner banner, MultipartFile pictureFile) throws Exception {
+	public String addBanner(Model model, Banner banner, MultipartFile pictureFile) throws Exception {
 		System.out.println(banner);
 		System.out.println(pictureFile);
 		System.out.println(pictureFile.getOriginalFilename());
-		ModelAndView mv = new ModelAndView();
 
 		String fileName = pictureFile.getOriginalFilename();
 		if (fileName != null) {
@@ -34,11 +39,11 @@ public class HomeController {
 					uploadPic.mkdirs();
 				}
 				pictureFile.transferTo(uploadPic);
-				mv.setViewName("success");
-				return mv;
+				banner.setSrc("pic/" + newFileName);
+				homeService.addHomeBanner(banner);
+				return "redirect:/pageweb.action";
 			}
 		}
-		mv.setViewName("error");
-		return mv;
+		return "error";
 	}
 }

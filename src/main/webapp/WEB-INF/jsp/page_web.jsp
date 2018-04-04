@@ -194,7 +194,7 @@
 									<input name="url" type="text" placeholder="java.action"/>
 									<h2>配图：</h2>
 							<c:if test="${itemsCustom.pic !=null}">
-								<img src="/img/${banner.src}" width=100 height=100/>
+								<img src="/${banner.src}" width=100 height=100/>
 							<br/>
 		</c:if>
 										<input type="file" name="pictureFile" />
