@@ -1,3 +1,4 @@
+$rem:192;
 *{
     margin: 0;
     padding: 0;
@@ -5,8 +6,8 @@
 }
 .bg-container{
     width: 100%;
-    min-width: 1920px;
-    height: 1080px;
+//  max-width: 1920rem/$rem;
+    height: 1080rem/$rem;
     background: linear-gradient(to bottom,#0f63c1,#2091e4);
     .bg-wrap{
         width: 100%;
@@ -18,68 +19,78 @@
             height: 100%;
             background: url(../img/index/bg2.png) no-repeat;
             background-position: center 45%;
-            padding-top: .1px;
+            padding-top: .1rem/$rem;
+            font-size: 12rem/$rem;
             .container{
-                width: 370px;
-                margin: 180px auto 0;
+                width: 370rem/$rem;
+                margin: 180rem/$rem auto 0;
                 text-align: center;
                 img{
-                    margin-bottom: 64px;
+                    margin-bottom: 64rem/$rem;
                 }
                 >div{
-                    width: 370px;
-//                  height: 350px;
+                    width: 370rem/$rem;
+//                  height: 350rem/$rem;
                     background: #fff;
-                    border-radius: 6px;
-                    padding: 37px 28px;
+                    border-radius: 6rem/$rem;
+                    padding: 37rem/$rem 28rem/$rem;
                     box-sizing: border-box;
                     p{
-                        margin-bottom:27px;
+                        margin-bottom:27rem/$rem;
                         color: #2478ce;
-                        font-size: 24px;
+                        font-size: 24rem/$rem;
                     }
-                    input{
-                        width: 315px;
-                        height: 45px;
-                        border: 1px solid #ccc;
-                        border-radius: 6px;
-                        margin-bottom: 20px;
-                        box-sizing: border-box;
-                        padding: 15px;
-                        outline: none;
-//                      text-spacing: 25px;
-//                      box-shadow: 0 0 0 1px red;
-                    }
-                    div{
-                        height: 20px;
-                        line-height: 20px;
-                        font-size: 14px;
-                        text-align: left;
+                    .input-box{
+                        position: relative;
+                        input{
+                            width: 315rem/$rem;
+                            height: 45rem/$rem;
+                            border: 1rem/$rem solid #ccc;
+                            border-radius: 6rem/$rem;
+                            margin-bottom: 20rem/$rem;
+                            box-sizing: border-box;
+                            padding: 15rem/$rem;
+                            outline: none;
+    //                      text-spacing: 25rem/$rem;
+    //                      box-shadow: 0 0 0 1rem/$rem red;
+                            
+                        }
                         span{
+                            position: absolute;
+                            top:0;
+                            left: 0;
+                        }
+                    }
+                    .remember{
+                        height: 20rem/$rem;
+                        line-height: 20rem/$rem;
+                        font-size: 14rem/$rem;
+                        text-align: left;
+                        >span{
                             display: inline-block;
-                            width: 18px;
-                            height: 18px;
+                            width: 18rem/$rem;
+                            height: 18rem/$rem;
                             text-align: center;
                             border-radius: 50%;
                             background: #07c144;
                             color: #fff;
-                            margin-right: 8px;
-                            font: 12px/18px "黑体";
+                            margin-right: 8rem/$rem;
+                            font: 12rem/$rem/18rem/$rem "黑体";
                             vertical-align: middle;
-                            margin-top:-1px;
+                            margin-top:-1rem/$rem;
                         }
                     }
                     a{
                         display: block;
-                        width: 315px;
-                        height: 45px;
-                        line-height: 45px;
-                        font-size: 18px;
+                        width: 315rem/$rem;
+                        height: 45rem/$rem;
+                        line-height: 45rem/$rem;
+                        font-size: 18rem/$rem;
                         color: white;
                         background: #2478ce;
-                        border-radius: 6px;
+                        border-radius: 6rem/$rem;
                         font-weight: normal;
-                        margin-top: 27px;
+                        margin-top: 27rem/$rem;
                         text-decoration: none;
                     }
                 }

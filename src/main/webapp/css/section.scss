@@ -4,8 +4,8 @@ $rem:192;
     background: #f4f4f4;
     font-size: 12rem/$rem;
     .container{
-        width: 1920rem/$rem;
-        min-width: 1920rem/$rem;
+        width: 100%;
+        max-width: 1920px;
         min-height: 1562rem/$rem;
         margin: 0 auto;
         overflow: hidden;
@@ -57,7 +57,9 @@ $rem:192;
                         right: 42rem/$rem;
                         height: 14rem/$rem;
                         width: 14rem/$rem;
-                        font: 14rem/$rem/14rem/$rem simsun;
+                        font-size: 14rem/$rem;
+                        line-height: 14rem/$rem;
+                        font-family: simsun;
                         transition: all .2s;
                         text-align: center;
                     }
@@ -113,14 +115,14 @@ $rem:192;
         }
         .main-list{
             height: 1562rem/$rem;
-            width: 1600rem/$rem;
+            width: 1580rem/$rem;
             float: right;
             list-style: none;
             box-sizing: border-box;
             overflow: hidden;
             >li{
                 box-sizing: border-box;
-                width: 1600rem/$rem;
+                width: 100%;
                 height: 1562rem/$rem;
 //              background: rgba(0,0,0,.2);
                 padding-top: 30rem/$rem;
@@ -131,7 +133,7 @@ $rem:192;
                     line-height: 30rem/$rem;
                     font-size: 14rem/$rem;
                     color: #999;
-                    margin-bottom: 15rem/$rem;
+                    margin: 10rem/$rem 0 15rem/$rem;
                     >i{
                         font-family: simsun;
                         margin: 0 5rem/$rem;
@@ -155,14 +157,14 @@ $rem:192;
                     }
                 }
                 .main-content{
-                    width: 3200rem/$rem;
+                    width: 200%;
                     height: 1562rem/$rem;
                     list-style: none;
                     position: relative;
                     top: 0;
                     left: 0;
                     >li{
-                        width: 1600rem/$rem;
+                        width: 50%;
                         height: 1562rem/$rem;
                         float: left;
                         box-sizing: border-box;
@@ -185,7 +187,7 @@ $rem:192;
                             height: 50rem/$rem;
                             position: absolute;
                             top: 20rem/$rem;
-                            right: 50rem/$rem;
+                            right: 35rem/$rem;
                             z-index: 400;
                         }
                     }

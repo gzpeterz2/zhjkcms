@@ -33,10 +33,11 @@ $rem:192;
                                 width: 400rem/$rem;
                                 height: 30rem/$rem;
                                 padding-left: 8rem/$rem;
-                                margin-bottom:20rem/$rem;
+//                              margin-bottom:20rem/$rem;
                             }
                             .picload{
                                 position: relative;
+//                              height: 200px;
                                 input[type="button"]{
                                     padding: 4rem/$rem 16rem/$rem;
                                     outline: none;
@@ -75,7 +76,7 @@ $rem:192;
                                     position: absolute;
                                     top: 0;
                                     left: 0;
-                                    z-index: -1;
+                                    z-index: -100;
                                 }
                             }
                             button{

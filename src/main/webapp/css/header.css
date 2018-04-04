@@ -5,9 +5,11 @@
 .header {
   width: 100%;
   background: #fff;
-  box-shadow: 0rem 0.015625rem 0.0416666667rem 0rem rgba(34, 79, 110, 0.1); }
+  box-shadow: 0rem 0.015625rem 0.0416666667rem 0rem rgba(34, 79, 110, 0.1);
+  position: relative;
+  z-index: 30; }
   .header .container {
-    width: 10rem;
+    width: 100%;
     min-width: 6.25rem;
     margin: 0 auto;
     height: 0.4583333333rem;
@@ -24,11 +26,11 @@
       height: 0.4583333333rem;
       padding-top: 0.1875rem;
       list-style: none;
-      overflow: hidden; }
+      overflow: hidden;
+      box-sizing: border-box; }
       .header .container ul li {
         float: left;
         width: 0.625rem;
-        height: 0.4583333333rem;
         text-align: center;
         line-height: 0; }
         .header .container ul li a {

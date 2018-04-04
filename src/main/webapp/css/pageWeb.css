@@ -19,8 +19,7 @@
 .section .container .main-list > li .main-content .hidden > div input[type="text"] {
   width: 2.0833333333rem;
   height: 0.15625rem;
-  padding-left: 0.0416666667rem;
-  margin-bottom: 0.1041666667rem; }
+  padding-left: 0.0416666667rem; }
 .section .container .main-list > li .main-content .hidden > div .picload {
   position: relative; }
   .section .container .main-list > li .main-content .hidden > div .picload input[type="button"] {
@@ -51,7 +50,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1; }
+    z-index: -100; }
 .section .container .main-list > li .main-content .hidden > div button {
   padding: 0.0520833333rem 0.1822916667rem;
   box-sizing: border-box;

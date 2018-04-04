@@ -3,8 +3,8 @@
   background: #f4f4f4;
   font-size: 0.0625rem; }
   .section .container {
-    width: 10rem;
-    min-width: 10rem;
+    width: 100%;
+    max-width: 1920px;
     min-height: 8.1354166667rem;
     margin: 0 auto;
     overflow: hidden; }
@@ -55,7 +55,9 @@
             right: 0.21875rem;
             height: 0.0729166667rem;
             width: 0.0729166667rem;
-            font: 0.0000271267 simsun;
+            font-size: 0.0729166667rem;
+            line-height: 0.0729166667rem;
+            font-family: simsun;
             transition: all .2s;
             text-align: center; }
           .section .container .select-list > li p:hover {
@@ -89,14 +91,14 @@
           height: 0.1875rem; }
     .section .container .main-list {
       height: 8.1354166667rem;
-      width: 8.3333333333rem;
+      width: 8.2291666667rem;
       float: right;
       list-style: none;
       box-sizing: border-box;
       overflow: hidden; }
       .section .container .main-list > li {
         box-sizing: border-box;
-        width: 8.3333333333rem;
+        width: 100%;
         height: 8.1354166667rem;
         padding-top: 0.15625rem;
         display: none;
@@ -106,7 +108,7 @@
           line-height: 0.15625rem;
           font-size: 0.0729166667rem;
           color: #999;
-          margin-bottom: 0.078125rem; }
+          margin: 0.0520833333rem 0 0.078125rem; }
           .section .container .main-list > li > p > i {
             font-family: simsun;
             margin: 0 0.0260416667rem;
@@ -126,14 +128,14 @@
             margin-left: 0.1041666667rem;
             cursor: pointer; }
         .section .container .main-list > li .main-content {
-          width: 16.6666666667rem;
+          width: 200%;
           height: 8.1354166667rem;
           list-style: none;
           position: relative;
           top: 0;
           left: 0; }
           .section .container .main-list > li .main-content > li {
-            width: 8.3333333333rem;
+            width: 50%;
             height: 8.1354166667rem;
             float: left;
             box-sizing: border-box; }
@@ -150,7 +152,7 @@
               height: 0.2604166667rem;
               position: absolute;
               top: 0.1041666667rem;
-              right: 0.2604166667rem;
+              right: 0.1822916667rem;
               z-index: 400; }
       .section .container .main-list > .select {
         display: block; }

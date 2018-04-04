@@ -7,8 +7,10 @@ $rem:192;
     width: 100%;
     background: #fff;
     box-shadow: 0rem/$rem 3rem/$rem 8rem/$rem 0rem/$rem rgba(34, 79, 110, 0.1);
+    position: relative;
+    z-index: 30;
     .container{
-        width: 1920rem/$rem;
+        width: 100%;
         min-width: 1200rem/$rem;
         margin: 0 auto;
         height: 88rem/$rem;
@@ -27,10 +29,11 @@ $rem:192;
             padding-top: 36rem/$rem;
             list-style: none;
             overflow: hidden;
+            box-sizing: border-box;
             li{
                 float: left;
                 width: 120rem/$rem;
-                height: 88rem/$rem;
+//              height: 88rem/$rem;
                 text-align: center;
                 line-height: 0;
                 a{
