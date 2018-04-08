@@ -7,6 +7,10 @@
     .section .container .main-list > li .main-content .show > div table tr:first-of-type {
       height: 0.3541666667rem;
       font-size: 0.0833333333rem; }
+    .section .container .main-list > li .main-content .show > div table tr th {
+      border-top: none;
+      border-left: none;
+      border-right: none; }
     .section .container .main-list > li .main-content .show > div table tr th:last-of-type {
       text-align: right;
       padding-right: 0.625rem; }
@@ -14,6 +18,9 @@
       padding: 0.078125rem 0.2604166667rem 0.078125rem 0;
       max-width: 1.9791666667rem;
       min-width: 0.78125rem;
+      border-top: none;
+      border-left: none;
+      border-right: none;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis; }

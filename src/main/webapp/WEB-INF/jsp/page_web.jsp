@@ -25,6 +25,7 @@
 		<script type="text/javascript" src="js/section.js" ></script>
 		<script type="text/javascript" src="js/pageWeb.js"></script>
 		<script type="text/javascript" src="js/picload.js"></script>
+		<script type="text/javascript" src="js/description.js" ></script>
 	</head>
 	<body>
 		<!--<div id="header">
@@ -246,44 +247,58 @@
 									<ul class="content-list">
 										<li>
 											<h2>视频标题：</h2>
-											<input type="text" placeholder="请输入视频标题"/>
+											<input type="text" name="#" placeholder="请输入视频标题"/>
 										</li>
 										<li>
 											<h2>视频类型：</h2>
-											<input type="text" placeholder="请输入视频类型"/>
+											<input type="text" name="#" placeholder="请输入视频类型"/>
 										</li>
 										<li>
 											<h2>视频讲师：</h2>
-											<input type="text" placeholder="请输入视频讲师"/>
+											<input type="text" name="#" placeholder="请输入视频讲师"/>
 										</li>
 										<li>
 											<h2>视频连接：</h2>
-											<input type="text" placeholder="请输入视频链接"/>
+											<input type="text" name="#" placeholder="请输入视频链接"/>
 										</li>
 										<li>
 											<h2>日期：</h2>
-											<input type="text" placeholder="请输入日期"/>
+											<input type="text" name="#" placeholder="请输入日期"/>
 										</li>
 										<li>
 											<h2>目前更新：</h2>
-											<input type="text" placeholder="请输入更新"/>
+											<input type="text" name="#" placeholder="请输入更新"/>
 										</li>
 									</ul>
-									<h2>轮播标题：</h2>
-									<input type="text" placeholder="请输入标题"/>
-									<h2>轮播标题：</h2>
-									<input type="text" placeholder="请输入标题"/>
-									<h2>配图：</h2>
+									<h2>是否首页推荐：</h2>
+									<input type="radio" name="recommend"/>是
+									<input type="radio" name="recommend"/>否
+									<h2>课程目录：</h2>
+									<input type="text" name="#" placeholder="请输入标题"/>
+									<span class="add-content">
+										<i>+</i>
+										可添加目录
+									</span>
+									<!--<h2>轮播标题：</h2>
+									<input type="text" placeholder="请输入标题"/>-->
+									<h2>视频封面：</h2>
 									<div class="picload">
 										<!--修改上传input样式 图片只读jpg、png、gif-->
-										<input type="file" />
-										<input type="button" value="选择文件"/>
+										<input type="file" name="#"/>
+										<input type="button" name="#" value="选择文件"/>
 										<span>未选择任何文件</span>
 										<div></div>
+									</div>
+									<div class="desciption">
+										<h2>视频描述：</h2>
+										<textarea name="description" id="" cols="" rows="">
+											<span>限50字</span>
+										</textarea>
 									</div>
 									<button class="submit">提交</button>
 									<button class="cancel">取消</button>
 								</div>
+								
 								<img class="return_show" src="img/index/return_pic.jpg" alt="" />
 							</li>
 						</ul>

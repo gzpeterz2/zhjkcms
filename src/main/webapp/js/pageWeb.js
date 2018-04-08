@@ -8,6 +8,7 @@ $(function(){
 	}
 	
 	picload(".banner");
+	description(".banner",50);
 })
 
 

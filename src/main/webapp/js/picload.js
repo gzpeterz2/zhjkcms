@@ -25,8 +25,6 @@ function picload(listname){
 			span.html("暂时仅支持jpg/png/gif格式图片上传");
 			span.css("color","red");
 		}
-		
-		
 	})
 }
 

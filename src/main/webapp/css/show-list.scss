@@ -16,6 +16,11 @@ $rem:192;
                                         height: 68rem/$rem;
                                         font-size: 16rem/$rem;
                                     }
+                                    th{
+                                        border-top: none;
+                                        border-left: none;
+                                        border-right: none;
+                                    }
                                     th:last-of-type{
                                         text-align: right;
                                         padding-right: 120rem/$rem;
@@ -24,6 +29,9 @@ $rem:192;
                                         padding: 15rem/$rem 50rem/$rem 15rem/$rem 0;
                                         max-width: 380rem/$rem;
                                         min-width: 150rem/$rem;
+                                        border-top: none;
+                                        border-left: none;
+                                        border-right: none;
                                         overflow: hidden;
                                         white-space: nowrap;
                                         text-overflow: ellipsis;
