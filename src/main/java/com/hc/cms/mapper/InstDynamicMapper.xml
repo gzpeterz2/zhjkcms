@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hc.cms.mapper.InstDynamicMapper" >
+  <resultMap id="BaseResultMap" type="com.hc.cms.po.InstDynamic" >
+    <id column="art_id" property="artId" jdbcType="INTEGER" />
+    <result column="post_time" property="postTime" jdbcType="VARCHAR" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hc.cms.po.InstDynamic" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    art_id, post_time, views
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from inst_dynamic
+    where art_id = #{artId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from inst_dynamic
+    where art_id = #{artId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hc.cms.po.InstDynamic" >
+    insert into inst_dynamic (art_id, post_time, views, 
+      content)
+    values (#{artId,jdbcType=INTEGER}, #{postTime,jdbcType=VARCHAR}, #{views,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hc.cms.po.InstDynamic" >
+    insert into inst_dynamic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="artId != null" >
+        art_id,
+      </if>
+      <if test="postTime != null" >
+        post_time,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="artId != null" >
+        #{artId,jdbcType=INTEGER},
+      </if>
+      <if test="postTime != null" >
+        #{postTime,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hc.cms.po.InstDynamic" >
+    update inst_dynamic
+    <set >
+      <if test="postTime != null" >
+        post_time = #{postTime,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where art_id = #{artId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hc.cms.po.InstDynamic" >
+    update inst_dynamic
+    set post_time = #{postTime,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where art_id = #{artId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hc.cms.po.InstDynamic" >
+    update inst_dynamic
+    set post_time = #{postTime,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER}
+    where art_id = #{artId,jdbcType=INTEGER}
+  </update>
+</mapper>
