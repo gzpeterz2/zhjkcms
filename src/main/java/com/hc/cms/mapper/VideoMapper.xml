@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hc.cms.mapper.VideoMapper">
+	
+	<select id="selectAll"  resultType="video">
+		select * from video  order by v_id;
+	</select>
+	
+	<insert id="insert" parameterType="video">
+		insert into video values(null, #{v_title}, #{v_type} , #{v_teacher}, #{v_link},#{v_date},#{v_update},#{v_isrecommend},#{v_catelog},#{v_cover},#{v_describe} );
+	</insert>
+	
+	<insert id="delete" parameterType="video">
+		delete from video where v_id=#{v_id};
+	</insert>
+	
+</mapper>

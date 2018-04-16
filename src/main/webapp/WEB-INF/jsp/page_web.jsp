@@ -206,7 +206,7 @@
 											<th>日期</th>
 											<th>操作</th>
 										</tr>
-										<tr>
+										<!-- <tr>
 											<td>快速提升UI能力</td>
 											<td>UI设计</td>
 											<td>王老师</td>
@@ -238,66 +238,70 @@
 												<span class="table_edit">编辑</span>
 												<span class="table_delete">删除</span>
 											</td>
-										</tr>
+										</tr> -->
 									</table>
 								</div>
 							</li>
 							<li class="hidden">
-								<div>
-									<ul class="content-list">
-										<li>
-											<h2>视频标题：</h2>
-											<input type="text" name="#" placeholder="请输入视频标题"/>
-										</li>
-										<li>
-											<h2>视频类型：</h2>
-											<input type="text" name="#" placeholder="请输入视频类型"/>
-										</li>
-										<li>
-											<h2>视频讲师：</h2>
-											<input type="text" name="#" placeholder="请输入视频讲师"/>
-										</li>
-										<li>
-											<h2>视频连接：</h2>
-											<input type="text" name="#" placeholder="请输入视频链接"/>
-										</li>
-										<li>
-											<h2>日期：</h2>
-											<input type="text" name="#" placeholder="请输入日期"/>
-										</li>
-										<li>
-											<h2>目前更新：</h2>
-											<input type="text" name="#" placeholder="请输入更新"/>
-										</li>
-									</ul>
-									<h2>是否首页推荐：</h2>
-									<input type="radio" name="recommend"/>是
-									<input type="radio" name="recommend"/>否
-									<h2>课程目录：</h2>
-									<input type="text" name="#" placeholder="请输入标题"/>
-									<span class="add-content">
-										<i>+</i>
-										可添加目录
-									</span>
-									<!--<h2>轮播标题：</h2>
-									<input type="text" placeholder="请输入标题"/>-->
-									<h2>视频封面：</h2>
-									<div class="picload">
-										<!--修改上传input样式 图片只读jpg、png、gif-->
-										<input type="file" name="#"/>
-										<input type="button" name="#" value="选择文件"/>
-										<span>未选择任何文件</span>
-										<div></div>
+								
+									<div>
+										<form action="${pageContext.request.contextPath }/addVideo.action" method="post" method="post" enctype="multipart/form-data">
+											<ul class="content-list">
+												<li>
+													<h2>视频标题：</h2>
+													<input type="text" name="v_title" placeholder="请输入视频标题"/>
+												</li>
+												<li>
+													<h2>视频类型：</h2>
+													<input type="text" name="v_type" placeholder="请输入视频类型"/>
+												</li>
+												<li>
+													<h2>视频讲师：</h2>
+													<input type="text" name="v_teacher" placeholder="请输入视频讲师"/>
+												</li>
+												<li>
+													<h2>视频连接：</h2>
+													<input type="text" name="v_link" placeholder="请输入视频链接"/>
+												</li>
+												<li>
+													<h2>日期：</h2>
+													<input type="text" name="v_date" placeholder="请输入日期"/>
+												</li>
+												<li>
+													<h2>目前更新：</h2>
+													<input type="text" name="v_update" placeholder="请输入更新"/>
+												</li>
+											</ul>
+											<h2>是否首页推荐：</h2>
+											<input type="radio" name="v_isrecommend" value="1"/>是
+											<input type="radio" name="v_isrecommend" value="2"/>否
+											<h2>课程目录：</h2>
+											<input type="text" name="v_catelog" placeholder="请输入标题"/>
+											<span class="add-content">
+												<i>+</i>
+												可添加目录
+											</span>
+											<!--<h2>轮播标题：</h2>
+											<input type="text" placeholder="请输入标题"/>-->
+											<h2>视频封面：</h2>
+											<div class="picload">
+												<!--修改上传input样式 图片只读jpg、png、gif-->
+												<input type="file" name="videopictrue"/>
+												<input type="button" name="clickvideofile" value="选择文件"/>
+												<span>未选择任何文件</span>
+												<div></div>
+											</div>
+											<div class="desciption">
+												<h2>视频描述：</h2>
+												
+												<textarea name="v_describe" id="" cols="" rows=""> 
+													<span>限50字</span>
+												</textarea>
+											</div>
+											<button class="submit">提交</button>
+											<button class="cancel">取消</button>
+										</form>
 									</div>
-									<div class="desciption">
-										<h2>视频描述：</h2>
-										<textarea name="description" id="" cols="" rows="">
-											<span>限50字</span>
-										</textarea>
-									</div>
-									<button class="submit">提交</button>
-									<button class="cancel">取消</button>
-								</div>
 								
 								<img class="return_show" src="img/index/return_pic.jpg" alt="" />
 							</li>
@@ -356,12 +360,13 @@
 									<input type="text" placeholder="请输入标题"/>
 									<h2>配图：</h2>
 									<div>
-										<!--修改上传input样式 图片只读jpg、png、gif-->
+										修改上传input样式 图片只读jpg、png、gif
 										<input type="file" />
 										<input type="button" value="选择文件"/>
 										<span>未选择任何文件</span>
 										<div></div>
 									</div>
+								
 									<button class="submit">提交</button>
 									<button class="cancel">取消</button>
 								</div>

@@ -18,6 +18,7 @@
      </bean>
      
      <bean id="jsonService" class="com.hc.cms.service.impl.JsonServiceImpl"></bean>
-
+	
+	<bean id="videoService" class="com.hc.cms.service.impl.VideoServiceImpl"></bean>
     
 </beans>
