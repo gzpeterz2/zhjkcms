@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>官网设置</title>
 		<link rel="stylesheet" type="text/css" href="css/header.css"/>
 		<link rel="stylesheet" type="text/css" href="css/section.css"/>
 		<link rel="stylesheet" type="text/css" href="css/pageWeb.css"/>
@@ -36,27 +36,27 @@
 				<img src="img/index/logo2.png"/>
 				<ul>
 					<li>
-						<a href="page_first.html">
+						<a href="pagefirst.action">
 							<p>首页</p>
 							<span></span>
 						</a>
 					</li>
 					<li>
-						<a href="page_web.html">
+						<a href="pageweb.action">
 							<p>官网设置</p>
 							<span></span>
 						</a>
 					</li>
 					<li>
-						<a href="page_forums.html">
+						<a href="pageforums.action">
 							<p>论坛设置</p>
 							<span></span>
 						</a>
 					</li>
 				</ul>
 				<ol>
-					<li>欢迎你 : <span class="username">admin</span></li>
-					<li class="logoff">退出</li>
+					<li>欢迎你 : <span class="username">${existUser.name }</span></li>
+					<li class="logoff"><a href="user/exit.action">退出</a></li>
 				</ol>
 			</div>
 		</div>
