@@ -7,9 +7,17 @@ public class InstDynamic {
 
     private Integer views;
 
+    private String title;
+
     private String content;
 
-    public Integer getArtId() {
+    @Override
+	public String toString() {
+		return "InstDynamic [artId=" + artId + ", postTime=" + postTime + ", views=" + views + ", title=" + title
+				+ ", content=" + content + "]";
+	}
+
+	public Integer getArtId() {
         return artId;
     }
 
@@ -31,6 +39,14 @@ public class InstDynamic {
 
     public void setViews(Integer views) {
         this.views = views;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public String getContent() {

@@ -18,6 +18,6 @@
      </bean>
      
      <bean id="jsonService" class="com.hc.cms.service.impl.JsonServiceImpl"></bean>
-
+	 <bean id="instDynamicService" class="com.hc.cms.service.impl.InstDynamicServiceImpl"></bean>
     
 </beans>
