@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hc.cms.po.Banner;
+import com.hc.cms.po.InstDynamic;
 import com.hc.cms.po.Succstudent;
 import com.hc.cms.service.JsonService;
 
@@ -27,6 +28,11 @@ public class JsonController {
 	@RequestMapping("/homeBanner.action")
 	public @ResponseBody List<Banner> getHomeBanner() throws Exception {
 		List<Banner> list = jsonService.getHomeBanner();
+		return list;
+	}
+	@RequestMapping("/instDynamic.action")
+	public @ResponseBody List<InstDynamic> getDynamic() throws Exception {
+		List<InstDynamic> list = jsonService.getInstDynamic();
 		return list;
 	}
 }

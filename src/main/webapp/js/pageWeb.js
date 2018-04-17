@@ -11,13 +11,13 @@ $(function(){
 	description(".banner",50);
 	
 //dynamic
-	var url = "http://localhost:8080/zhjkcms/instDynamic/findByPage.action";
+	var url = "http://localhost:8080/zhjkcms/json/instDynamic.action";
 	
 	$.get(url,function(data){				
 		//i 索引 n对象
 		$(data).each(function(i,n){
-			alert(n);
-			$(".info .main-content .show div table").append("<tr><td>"+"${n.title}"+"</td><td><img src='"+"${n.postTime}"+"</td><td><span class='table_edit'>编辑</span><span class='table_delete'>删除</span></td></tr>");
+			
+			$(".info .main-content .show div table").append("<tr><td>"+n.title+"</td><td>"+n.postTime+"</td><td><span class='table_edit'>编辑</span><span class='table_delete'>删除</span></td></tr>");
 		});
 	});
 })
