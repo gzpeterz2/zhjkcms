@@ -36,26 +36,26 @@
 				<img src="img/index/logo2.png"/>
 				<ul>
 					<li>
-						<a href="page_first.html">
+						<a href="pagefirst.action">
 							<p>首页</p>
 							<span></span>
 						</a>
 					</li>
 					<li>
-						<a href="page_web.html">
+						<a href="pageweb.action">
 							<p>官网设置</p>
 							<span></span>
 						</a>
 					</li>
 					<li>
-						<a href="page_forums.html">
+						<a href="pageforums.action">
 							<p>论坛设置</p>
 							<span></span>
 						</a>
 					</li>
 				</ul>
 				<ol>
-					<li>欢迎你 : <span class="username">admin</span></li>
+					<li>欢迎你 : <span class="username">${existUser.name }</span></li>
 					<li class="logoff">退出</li>
 				</ol>
 			</div>

@@ -1,84 +1,101 @@
 @charset "UTF-8";
+
 * {
-  margin: 0;
-  padding: 0;
-  color: #333; }
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
 
 .bg-container {
-  width: 100%;
-  height: 5.625rem;
-  background: linear-gradient(to bottom, #0f63c1, #2091e4); }
-  .bg-container .bg-wrap {
-    width: 100%;
-    height: 100%;
-    background: url(../img/index/bg.png) no-repeat;
-    background-position: center 0; }
-    .bg-container .bg-wrap .bg-icon {
-      width: 100%;
-      height: 100%;
-      background: url(../img/index/bg2.png) no-repeat;
-      background-position: center 45%;
-      padding-top: 0.0005208333rem;
-      font-size: 0.0625rem; }
-      .bg-container .bg-wrap .bg-icon .container {
-        width: 1.9270833333rem;
-        margin: 0.9375rem auto 0;
-        text-align: center; }
-        .bg-container .bg-wrap .bg-icon .container img {
-          margin-bottom: 0.3333333333rem; }
-        .bg-container .bg-wrap .bg-icon .container > div {
-          width: 1.9270833333rem;
-          background: #fff;
-          border-radius: 0.03125rem;
-          padding: 0.1927083333rem 0.1458333333rem;
-          box-sizing: border-box; }
-          .bg-container .bg-wrap .bg-icon .container > div p {
-            margin-bottom: 0.140625rem;
-            color: #2478ce;
-            font-size: 0.125rem; }
-          .bg-container .bg-wrap .bg-icon .container > div .input-box {
-            position: relative; }
-            .bg-container .bg-wrap .bg-icon .container > div .input-box input {
-              width: 1.640625rem;
-              height: 0.234375rem;
-              border: 0.0052083333rem solid #ccc;
-              border-radius: 0.03125rem;
-              margin-bottom: 0.1041666667rem;
-              box-sizing: border-box;
-              padding: 0.078125rem;
-              outline: none; }
-            .bg-container .bg-wrap .bg-icon .container > div .input-box span {
-              position: absolute;
-              top: 0;
-              left: 0; }
-          .bg-container .bg-wrap .bg-icon .container > div .remember {
-            height: 0.1041666667rem;
-            line-height: 0.1041666667rem;
-            font-size: 0.0729166667rem;
-            text-align: left; }
-            .bg-container .bg-wrap .bg-icon .container > div .remember > span {
-              display: inline-block;
-              width: 0.09375rem;
-              height: 0.09375rem;
-              text-align: center;
-              border-radius: 50%;
-              background: #07c144;
-              color: #fff;
-              margin-right: 0.0416666667rem;
-              font: 0.0000180845 "黑体";
-              vertical-align: middle;
-              margin-top: -0.0052083333rem; }
-          .bg-container .bg-wrap .bg-icon .container > div a {
-            display: block;
-            width: 1.640625rem;
-            height: 0.234375rem;
-            line-height: 0.234375rem;
-            font-size: 0.09375rem;
-            color: white;
-            background: #2478ce;
-            border-radius: 0.03125rem;
-            font-weight: normal;
-            margin-top: 0.140625rem;
-            text-decoration: none; }
+	width: 100%;
+	min-width: 1920px;
+	height: 1080px;
+	background: linear-gradient(to bottom, #0f63c1, #2091e4);
+}
+
+.bg-container .bg-wrap {
+	width: 100%;
+	height: 100%;
+	background: url(../img/index/bg.png) no-repeat;
+	background-position: center 0;
+}
+
+.bg-container .bg-wrap .bg-icon {
+	width: 100%;
+	height: 100%;
+	background: url(../img/index/bg2.png) no-repeat;
+	background-position: center 45%;
+	padding-top: .1px;
+}
+
+.bg-container .bg-wrap .bg-icon .container {
+	width: 370px;
+	margin: 180px auto 0;
+	text-align: center;
+}
+
+.bg-container .bg-wrap .bg-icon .container img {
+	margin-bottom: 64px;
+}
+
+.bg-container .bg-wrap .bg-icon .container>div {
+	width: 370px;
+	background: #fff;
+	border-radius: 6px;
+	padding: 37px 28px;
+	box-sizing: border-box;
+}
+
+.bg-container .bg-wrap .bg-icon .container>div p {
+	margin-bottom: 27px;
+	color: #2478ce;
+	font-size: 24px;
+}
+
+.bg-container .bg-wrap .bg-icon .container>div input {
+	width: 315px;
+	height: 45px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	padding: 15px;
+	outline: none;
+}
+
+.bg-container .bg-wrap .bg-icon .container>div div {
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	text-align: left;
+}
+
+.bg-container .bg-wrap .bg-icon .container>div div span {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	text-align: center;
+	border-radius: 50%;
+	background: #07c144;
+	color: #fff;
+	margin-right: 8px;
+	font: 12px/18px "黑体";
+	vertical-align: middle;
+	margin-top: -1px;
+}
+
+.bg-container .bg-wrap .bg-icon .container>div a {
+	display: block;
+	width: 315px;
+	height: 45px;
+	line-height: 45px;
+	font-size: 18px;
+	color: white;
+	background: #2478ce;
+	border-radius: 6px;
+	font-weight: normal;
+	margin-top: 27px;
+	text-decoration: none;
+}
 
 /*# sourceMappingURL=index.css.map */
