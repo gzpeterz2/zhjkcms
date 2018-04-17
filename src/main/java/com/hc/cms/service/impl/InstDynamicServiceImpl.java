@@ -2,6 +2,7 @@ package com.hc.cms.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,6 +30,12 @@ public class InstDynamicServiceImpl implements InstDynamicService {
 	public int updateDynamic(InstDynamic instDynamic) {
 		instDynamicMapper.updateByPrimaryKey(instDynamic);
 		return 0;
+	}
+
+	@Override
+	public List<InstDynamic> findByPage() {
+		
+		return instDynamicMapper.findByPage();
 	}
 
 }

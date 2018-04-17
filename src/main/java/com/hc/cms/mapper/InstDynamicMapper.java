@@ -1,5 +1,7 @@
 package com.hc.cms.mapper;
 
+import java.util.List;
+
 import com.hc.cms.po.InstDynamic;
 
 public interface InstDynamicMapper {
@@ -16,4 +18,6 @@ public interface InstDynamicMapper {
     int updateByPrimaryKeyWithBLOBs(InstDynamic record);
 
     int updateByPrimaryKey(InstDynamic record);
+    
+	List<InstDynamic> findByPage();
 }

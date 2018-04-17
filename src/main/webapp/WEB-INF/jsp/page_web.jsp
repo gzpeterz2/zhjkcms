@@ -455,7 +455,7 @@
 											<th>发布时间</th>
 											<th>操作</th>
 										</tr>
-										<tr>
+										<!-- <tr>
 											<td>快速提升UI能力</td>
 											<td>2018-03-07</td>
 											<td>
@@ -478,7 +478,7 @@
 												<span class="table_edit">编辑</span>
 												<span class="table_delete">删除</span>
 											</td>
-										</tr>
+										</tr> -->
 									</table>
 								</div>
 							</li>

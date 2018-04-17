@@ -24,6 +24,9 @@
     from inst_dynamic
     where art_id = #{artId,jdbcType=INTEGER}
   </select>
+  <select id="findByPage" resultMap="BaseResultMap">
+  	select * from inst_dynamic
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from inst_dynamic
     where art_id = #{artId,jdbcType=INTEGER}

@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hc.cms.po.Banner;
@@ -31,6 +33,11 @@ public class InstDynamicController {
 			return "test";		
 		}
 		return "error";
+	}
+	@RequestMapping("/findByPage.action")
+	public @ResponseBody List<InstDynamic> getDynamic() throws Exception {
+		List<InstDynamic> list = instDynamicService.findByPage();
+		return list;
 	}
 	@RequestMapping("/fileupload")
 	public String fileUpload(Model model, MultipartFile pictureFile) throws Exception{
