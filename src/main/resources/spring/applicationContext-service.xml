@@ -14,13 +14,12 @@
      http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
      http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
      
-     <context:component-scan base-package="com.hc.cms.service"/>
      <bean id="homeService" class="com.hc.cms.service.impl.HomeServiceImpl">
      </bean>
      
      <bean id="jsonService" class="com.hc.cms.service.impl.JsonServiceImpl"></bean>
-	
-	<bean id="videoService" class="com.hc.cms.service.impl.VideoServiceImpl"></bean>
+	 <bean id="instDynamicService" class="com.hc.cms.service.impl.InstDynamicServiceImpl"></bean>
+	 <bean id="videoService" class="com.hc.cms.service.impl.VideoServiceImpl"></bean>
 
     
 </beans>

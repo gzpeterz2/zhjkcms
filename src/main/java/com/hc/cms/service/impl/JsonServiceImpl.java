@@ -6,22 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hc.cms.mapper.BannerMapper;
 import com.hc.cms.mapper.SuccstudentMapper;
+import com.hc.cms.mapper.InstDynamicMapper;
 import com.hc.cms.mapper.VideoMapper;
+
 import com.hc.cms.po.Banner;
 import com.hc.cms.po.Succstudent;
+import com.hc.cms.po.InstDynamic;
 import com.hc.cms.po.Video;
+
 import com.hc.cms.service.JsonService;
 
 public class JsonServiceImpl implements JsonService {
 	@Autowired
 	private SuccstudentMapper succstudentMapper;
-
+	
 	@Autowired
 	private BannerMapper bannerMapper;
 	
 	@Autowired
+	private InstDynamicMapper instDynamicMapper;
+	
+	@Autowired
 	private VideoMapper videoMapper;
-
+	
 	@Override
 	public List<Succstudent> getSuccList() throws Exception {
 		return succstudentMapper.selectAll();
@@ -33,8 +40,15 @@ public class JsonServiceImpl implements JsonService {
 	}
 
 	@Override
+	public List<InstDynamic> getInstDynamic() throws Exception {
+		
+		return instDynamicMapper.findByPage();
+	}
+	
+	@Override
 	public List<Video> getVideo() throws Exception {
 		return videoMapper.selectAll();
 	}
 
 }
+

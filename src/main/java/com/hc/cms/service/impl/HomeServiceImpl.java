@@ -33,4 +33,11 @@ public class HomeServiceImpl implements HomeService {
 			bannerMapper.insert(banner);
 		}
 	}
+
+	@Override
+	public int deleteById(Integer imgid) throws Exception{
+		
+		return bannerMapper.deleteById(imgid);
+	}
 }
+

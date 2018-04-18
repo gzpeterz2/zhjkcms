@@ -6,4 +6,6 @@ import com.hc.cms.po.HomePage;
 public interface HomeService {
 	public HomePage getHomePage() throws Exception;
 	public void addHomeBanner(Banner banner) throws Exception;
+	public int deleteById(Integer imgid)throws Exception;
 }
+
