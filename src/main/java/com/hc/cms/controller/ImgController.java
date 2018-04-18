@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.hc.cms.utils.UploadUtils;
+import com.hc.cms.util.UploadUtils;
 
 @Controller
 @RequestMapping("/img")

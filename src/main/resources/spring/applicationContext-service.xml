@@ -16,9 +16,10 @@
      
      <bean id="homeService" class="com.hc.cms.service.impl.HomeServiceImpl">
      </bean>
-     
+     <bean id="userService" class="com.hc.cms.service.impl.UserServiceImpl"></bean>
      <bean id="jsonService" class="com.hc.cms.service.impl.JsonServiceImpl"></bean>
 	 <bean id="instDynamicService" class="com.hc.cms.service.impl.InstDynamicServiceImpl"></bean>
+	 
 	 <bean id="videoService" class="com.hc.cms.service.impl.VideoServiceImpl"></bean>
 
     

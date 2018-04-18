@@ -26,6 +26,8 @@
 		<script type="text/javascript" src="js/pageWeb.js"></script>
 		<script type="text/javascript" src="js/picload.js"></script>
 		<script type="text/javascript" src="js/description.js" ></script>
+		<script type="text/javascript" src="js/wangEditor.js"></script>
+		
 	</head>
 	<body>
 		<!--<div id="header">
@@ -489,18 +491,55 @@
 							</li>
 							<li class="hidden">
 								<div class="picload">
-									<h2>轮播标题：</h2>
-									<input type="text" placeholder="请输入标题"/>
-									<h2>配图：</h2>
-									<div>
-										<!--修改上传input样式 图片只读jpg、png、gif-->
-										<input type="file" />
-										<input type="button" value="选择文件"/>
-										<span>未选择任何文件</span>
-										<div></div>
-									</div>
-									<button class="submit">提交</button>
-									<button class="cancel">取消</button>
+									<form action="${pageContext.request.contextPath }/instDynamic/addDynamic.action" method="post">
+										<h2>资讯标题：</h2>
+										<input name="title" type="text" placeholder="请输入标题"/>
+										<h2>资讯内容：</h2>
+										<!-- <div>
+											修改上传input样式 图片只读jpg、png、gif
+											<input type="file" />
+											<input type="button" value="选择文件"/>
+											<span>未选择任何文件</span>
+											<div></div>
+										</div> -->
+										<input id="text1" name="content" type="hidden" 
+											style="width: 200px; height: 200px;"/>
+										<div id="editor">
+											<!-- <b>wangEditor</b> -->
+										</div>
+										<button class="submit">提交</button>
+										<button class="cancel">取消</button>
+									</form>
+									<script type="text/javascript">
+		
+										var E = window.wangEditor;
+										var editor = new E('#editor');
+										editor.customConfig.uploadImgServer = 'http://localhost:8080/zhjkcms/img/upload.action'; //上传URL
+										//editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
+										//editor.customConfig.uploadImgMaxLength = 5;
+										editor.customConfig.uploadFileName = 'myFileName';
+										editor.customConfig.uploadImgHooks = {
+											customInsert : function(insertImg, result, editor) {
+												// 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+												// insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+												// 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+												var url = result.data;
+												insertImg(url);	
+												// result 必须是一个 JSON 格式字符串！！！否则报错
+											}
+										}
+								
+										var $text1 = $('#text1')
+										editor.customConfig.onchange = function(html) {
+											// 监控变化，同步更新到 text
+											$text1.val(html)
+										}
+										editor.customConfig.showLinkImg = false
+										editor.create()
+										
+										//初始化 textarea 的值
+										$text1.val(editor.txt.text())
+									</script>
 								</div>
 								<img class="return_show" src="img/index/return_pic.jpg" alt="" />
 							</li>
