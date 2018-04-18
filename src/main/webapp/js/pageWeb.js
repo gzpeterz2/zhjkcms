@@ -8,7 +8,21 @@ $(function(){
 	}
 	
 	picload(".banner");
+
 	description(".banner",50);
+	
+//video
+	var url = "json/video.action";
+	$.post(url,function(data){
+		$(data).each(function(i,n){
+			/*var tr_bg=i%2?"#f2f2fa":"#e6ebf6";*/
+			$(".video .main-content .show div table").append("<tr><td>"+n.v_title+"</td><td>"+n.v_type+"</td><td>"+n.v_teacher+"</td><td>"+n.v_link+"</td><td>"+n.v_date+"</td><td><span class='table_edit'>编辑</span><a href='deleteVideo.action?v_id="+n.v_id+"'><span class='table_delete'>删除</span></a></td></tr>")
+		});
+		
+	},"json");
+	
+	picload(".video");
+	description(".video",50);
 })
 
 

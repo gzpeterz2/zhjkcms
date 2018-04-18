@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hc.cms.po.Banner;
 import com.hc.cms.po.Succstudent;
+import com.hc.cms.po.Video;
 import com.hc.cms.service.JsonService;
 
 @Controller
@@ -27,6 +29,12 @@ public class JsonController {
 	@RequestMapping("/homeBanner.action")
 	public @ResponseBody List<Banner> getHomeBanner() throws Exception {
 		List<Banner> list = jsonService.getHomeBanner();
+		return list;
+	}
+	
+	@RequestMapping("/video.action")
+	public @ResponseBody List<Video> getVideo()throws Exception {
+		List<Video> list=jsonService.getVideo();
 		return list;
 	}
 }
