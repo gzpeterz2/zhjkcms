@@ -38,4 +38,10 @@ public class InstDynamicServiceImpl implements InstDynamicService {
 		return instDynamicMapper.findByPage();
 	}
 
+	@Override
+	public int deleteById(Integer instid) {
+		
+		return instDynamicMapper.deleteByPrimaryKey(instid);
+	}
+
 }

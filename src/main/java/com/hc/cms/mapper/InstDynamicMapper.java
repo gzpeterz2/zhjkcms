@@ -20,4 +20,5 @@ public interface InstDynamicMapper {
     int updateByPrimaryKey(InstDynamic record);
     
 	List<InstDynamic> findByPage();
+	
 }

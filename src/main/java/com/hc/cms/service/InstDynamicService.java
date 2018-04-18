@@ -11,5 +11,7 @@ public interface InstDynamicService {
 	int updateDynamic(InstDynamic instDynamic);
 	//分页查询
 	List<InstDynamic> findByPage();
+	//按id删除
+	int deleteById(Integer instid);
 
 }

@@ -37,7 +37,16 @@ public class InstDynamicController {
 		}
 		return "error";
 	}
-	
+	@RequestMapping("/deleteDynamic.action")
+	public String deleteDynamic(Model model,@RequestParam("instid") Integer instid){
+		System.out.println(instid);
+		int code = instDynamicService.deleteById(instid);
+		if(code == 1){
+			
+			return "redirect:/pageweb.action";		
+		}
+		return "error";
+	}
 	@RequestMapping("/fileupload.action")
 	public @ResponseBody String uploads(HttpServletRequest request, @RequestParam("myFileName") MultipartFile file){
         String url = null;
