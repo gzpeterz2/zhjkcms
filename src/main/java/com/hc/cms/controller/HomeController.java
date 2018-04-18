@@ -40,7 +40,7 @@ public class HomeController {
 					uploadPic.mkdirs();
 				}
 				pictureFile.transferTo(uploadPic);
-				banner.setSrc("pic/" + newFileName);
+				banner.setSrc("/pic/" + newFileName);
 				homeService.addHomeBanner(banner);
 				return "redirect:/pageweb.action";
 			}

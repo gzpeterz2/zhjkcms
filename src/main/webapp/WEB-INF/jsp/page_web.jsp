@@ -514,7 +514,7 @@
 		
 										var E = window.wangEditor;
 										var editor = new E('#editor');
-										editor.customConfig.uploadImgServer = 'http://localhost:8080/zhjkcms/img/upload.action'; //上传URL
+										editor.customConfig.uploadImgServer = 'img/upload.action'; //上传URL
 										//editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
 										//editor.customConfig.uploadImgMaxLength = 5;
 										editor.customConfig.uploadFileName = 'myFileName';

@@ -78,7 +78,7 @@ public class ImgController {
 //		}
 		
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("data", "http://localhost:8080/zhjkcms/img/" + url);// 这里应该是项目路径
+		map.put("data", "img/" + url);// 这里应该是项目路径
 //		map.put("data", "d:/develop/upload/" + url);// 这里应该是项目路径
 		return map;// 将图片地址返回
 	}
