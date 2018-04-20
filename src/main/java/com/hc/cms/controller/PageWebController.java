@@ -8,11 +8,20 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageWebController {
 
-	@RequestMapping("/pageweb.action")
+	@RequestMapping("/home.action")
 	public ModelAndView homePage() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		// mv.addObject("homePage", homePage);
-		mv.setViewName("page_web");
+		mv.setViewName("web");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/banner.action")
+	public ModelAndView banner() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		// mv.addObject("homePage", homePage);
+		mv.setViewName("banner");
 		
 		return mv;
 	}
