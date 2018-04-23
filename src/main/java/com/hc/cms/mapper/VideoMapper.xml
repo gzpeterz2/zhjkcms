@@ -5,17 +5,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.hc.cms.mapper.VideoMapper">
 	
-	<select id="selectAll"  resultType="video">
-		select * from video  order by v_id;
+	<!-- 查询总记录 -->
+	<select id="selectCount" resultType="long">
+		select count(*) from video; 
+	</select>
+	
+	<!-- 分页查询视频信息 -->
+	<select id="findByPage" parameterType="com.hc.cms.vo.QueryVo" resultType="video">
+		select * from video limit #{page},#{rows}
+	</select>
+	
+	<!-- 通过id查询单个视频信息 -->
+	<select id="findById" parameterType="Integer" resultType="com.hc.cms.po.Video">
+		select * from video where v_id=#{v_id}
 	</select>
 	
 	<insert id="insert" parameterType="video">
 		insert into video values(null, #{v_title}, #{v_type} , #{v_teacher}, #{v_link},#{v_date},#{v_update},#{v_isrecommend},#{v_catelog},#{v_cover},#{v_describe},#{v_desc});
 	</insert>
 	
-	<insert id="delete" parameterType="video">
-		delete from video where v_id=#{v_id};
-	</insert>
+	<!-- 批量查询学员照片 -->
+	<select id="findCoverByIdArr" parameterType="Integer[]" resultType="string">
+		select v_cover from video where v_id in
+		<foreach collection="array" item="id" open=" (" close=")" separator=",">
+			#{id}
+		</foreach>
+	</select>
+	
+	<!-- 批量删除学员就业信息 -->
+	<delete id="deleteByIdArr" parameterType="Integer[]">
+		delete from video where v_id in
+		<foreach collection="array" item="id" open=" (" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
 	
 	<insert id="update" parameterType="video">
 		update video set v_title=#{v_title},v_type=#{v_type},v_teacher=#{v_teacher}, v_link=#{v_link},v_isrecommend=#{v_isrecommend},v_catelog=#{v_catelog},v_cover=#{v_cover},v_describe=#{v_describe},v_desc=#{v_desc} where v_id=#{v_id};
