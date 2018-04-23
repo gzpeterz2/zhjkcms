@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>知海匠库后台管理系统</title>
 
 <script type="text/javascript" src="./jquery-easyui-1.3.3/jquery.min.js"></script>
 <script type="text/javascript"
@@ -20,9 +20,9 @@
 	href="./jquery-easyui-1.3.3/themes/icon.css">
 </head>
 <script type="text/javascript">
-	function openAdministratorModifyDialog() {
+	/* function openAdministratorModifyDialog() {
 		$("#dlg").dialog("open").dialog("setTitle", "编辑个人信息");
-	}
+	} */
 
 	function saveAdministrator() {
 		$("#fm").form("submit", {
@@ -83,9 +83,17 @@
 
 		var treeData3 = [ {
 			text : "就业行情",
-			attributes : {
-				url : "banner.jsp"
-			}
+			children : [ {
+				text : "学员信息管理",
+				attributes : {
+					url : "employment.action"
+				}
+			}, {
+				text : "聊天截图",
+				attributes : {
+					url : "chatPrintscreen.action"
+				}
+			} ]
 		} ];
 		$("#tree3").tree({
 			data : treeData3,
@@ -131,7 +139,7 @@
 		var treeData6 = [ {
 			text : "学员故事",
 			attributes : {
-				url : "banner.jsp"
+				url : "studentstory.action"
 			}
 		} ];
 		$("#tree6").tree({
@@ -238,9 +246,9 @@
 		<img src="img/index/logo2.png" />
 		<div style="padding-top: 1px;" class="zhu">
 			<br> <a
-				href="${pageContext.request.contextPath}/home/homePage.html">注销</a>
+				href="${pageContext.request.contextPath}/user/exit.action">注销</a>
 			<br>欢迎您<a href="javascript:openAdministratorModifyDialog()"
-				class="easyui-linkbutton" iconCls="icon-edit" plain="true">管理员</a>
+				class="easyui-linkbutton" iconCls="icon-edit" plain="true">${existUser.name }</a>
 		</div>
 	</div>
 

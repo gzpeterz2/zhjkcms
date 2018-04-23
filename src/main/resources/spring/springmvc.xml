@@ -20,6 +20,7 @@
      http://www.springframework.org/schema/tx/spring-tx.xsd
      http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
      
+     <context:property-placeholder location="classpath:path.properties" />
       
       <mvc:resources location="/js/" mapping="/js/**"/>
       <mvc:resources location="/pic/" mapping="/pic/**"/>

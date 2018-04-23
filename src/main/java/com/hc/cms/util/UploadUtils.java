@@ -1,5 +1,6 @@
 package com.hc.cms.util;
 
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -21,7 +22,19 @@ public class UploadUtils {
 		String uuid = UUID.randomUUID().toString().replace("-", "");
 		return uuid+lastName;
 	}
+	
+	public static String getRandomName(String filename){
+		//取扩展名
+		String expanded_name = filename.substring(filename.lastIndexOf("."), filename.length());
+		long millis=System.currentTimeMillis();
+		Random random=new Random();
+		int end=random.nextInt(999);
+		//不足三位数前面补0
+		String str=millis+String.format("%03d", end)+expanded_name;
+		return str;
+	}
+	
 	public static void main(String[] args) {
-		System.out.println(getUUIDName("girl.jsp"));
+		System.out.println(getRandomName("girl.jsp"));
 	}
 }

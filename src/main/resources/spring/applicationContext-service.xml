@@ -14,8 +14,9 @@
      http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
      http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
      
-     <bean id="homeService" class="com.hc.cms.service.impl.HomeServiceImpl">
-     </bean>
+     <context:component-scan base-package="com.hc.cms.service"/>
+     
+     <bean id="homeService" class="com.hc.cms.service.impl.HomeServiceImpl"></bean>
      <bean id="userService" class="com.hc.cms.service.impl.UserServiceImpl"></bean>
      <bean id="jsonService" class="com.hc.cms.service.impl.JsonServiceImpl"></bean>
 	 <bean id="instDynamicService" class="com.hc.cms.service.impl.InstDynamicServiceImpl"></bean>

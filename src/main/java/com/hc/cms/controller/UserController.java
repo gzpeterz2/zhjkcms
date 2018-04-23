@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hc.cms.po.User;
 import com.hc.cms.service.UserService;
 
+/**
+ * 用户模块
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -20,15 +25,13 @@ public class UserController {
 	@RequestMapping("/login")
 	public String toLogin(User user,HttpSession session) throws Exception{
 		User existUser=userService.selectOne(user);
-		System.out.println(existUser);
 		if(existUser == null){
 			session.setAttribute("msg", "用户名或密码错误");
 			return "redirect:/index.action";
 		}else{
 			session.removeAttribute("msg");
 			session.setAttribute("existUser", existUser);
-//			return "redirect:/pageweb.action";
-			return "redirect:/pagefirst.action";
+			return "redirect:/home.action";
 		}
 	}
 	
