@@ -4,22 +4,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hc.cms.mapper.BannerMapper">
-	
+
 	<select id="selectByLocation" parameterType="String" resultType="banner">
-		select * from banner  where location = #{location} order by name
+		select * from banner where location = #{location} order by name
+	</select>
+
+	<insert id="insert" parameterType="banner">
+		insert into banner
+		values(null, #{name}, #{src} , #{location}, #{url} )
+	</insert>
+
+	<update id="update" parameterType="banner">
+		update banner set name =
+		#{name} , src = ${src}, location = #{location},
+		url = #{url} where id =
+		#{id}
+	</update>
+
+	<select id="selectList" parameterType="java.util.List"
+		resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_user
+		WHERE id IN
+		<foreach collection="array" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
 	</select>
 	
-	<insert id="insert" parameterType="banner">
-		insert into banner values(null, #{name}, #{src} , #{location}, #{url} )
-	</insert>
-	
-	<update id="update" parameterType="banner">
-		update banner set name = #{name} , src = ${src}, location = #{location},
-			url = #{url} where id = #{id} 
-	</update>
-	<delete id="deleteById" parameterType="java.lang.Integer">
+	<delete id="deleteByIds" parameterType="java.util.List">
 		delete from banner
-   		 where id = #{imgid,jdbcType=INTEGER}
+		where
+		id in
+		<foreach collection="array" index="delIds" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
 	</delete>
+
+<!-- 	<delete id="deleteByIds" parameterType="String"> -->
+<!-- 		delete from banner -->
+<!-- 		where -->
+<!-- 		id in (#{delIds}) -->
+<!-- 	</delete> -->
 
 </mapper>

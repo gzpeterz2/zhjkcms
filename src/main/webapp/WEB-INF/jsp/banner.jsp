@@ -31,44 +31,45 @@
 			return;
 		}
 		var row = selectedRows[0];
-		$("#dlg1").dialog("open").dialog("setTitle", "编辑商品信息");
+		$("#dlg1").dialog("open").dialog("setTitle", "编辑轮播图信息");
 		$("#Gname2").val(row.Gname);
 		$("#Gprovider2").val(row.Gprovider);
 		url = "goods!save?Gid=" + row.Gid;
 	}
 
-	function deleteGoods() {
-		var selectedRows = $("#dg").datagrid('getSelections');
-		if (selectedRows.length == 0) {
-			$.messager.alert("系统提示", "请选择要删除的数据！");
-			return;
-		}
-		var strIds = [];
-		for (var i = 0; i < selectedRows.length; i++) {
-			strIds.push(selectedRows[i].Gid);
-		}
-		var ids = strIds.join("','");
-		$.messager.confirm("系统提示", "您确认要删掉这<font color=red>"
-				+ selectedRows.length + "</font>条数据吗？", function(r) {
-			if (r) {
-				$.post("${pageContext.request.contextPath}/goods!delete", {
-					delIds : ids
-				}, function(result) {
-					if (result.success) {
-						$.messager.alert("系统提示", "您已成功删除<font color=red>"
-								+ result.delNums + "</font>条数据！");
-						$("#dg").datagrid("reload");
-					} else {
-						$.messager.alert('系统提示', '<font color=red>'
-								+ selectedRows[result.errorIndex].goodsName
-								+ '</font>' + result.errorMsg);
-					}
-				}, "json");
-			}
-		});
-	}
 
-	/* 商品展示 */
+		function deleteGoods() {
+			var selectedRows = $("#dg").datagrid('getSelections');
+			if (selectedRows.length == 0) {
+				$.messager.alert("系统提示", "请选择要删除的数据！");
+				return;
+			}
+			var strIds = [];
+			for (var i = 0; i < selectedRows.length; i++) {
+				strIds.push(selectedRows[i].id);
+			}
+			var ids = strIds.join(",");
+			$.messager.confirm("系统提示", "您确认要删掉这<font color=red>"
+					+ selectedRows.length + "</font>条数据吗？", function(r) {
+				if (r) {
+					$.post("home/deleteBanner.action", {
+						delIds : strIds
+					}, function(result) {
+						if (result.success) {
+							$.messager.alert("系统提示", "您已成功删除<font color=red>"
+									+ result.delNums + "</font>条数据！");
+							$("#dg").datagrid("reload");
+						} else {
+							$.messager.alert('系统提示', '<font color=red>'
+									+ selectedRows[result.errorIndex].goodsName
+									+ '</font>' + result.errorMsg);
+						}
+					}, "json");
+				}
+			});
+		}
+
+	/* 轮播图展示 */
 
 	function showimages() {
 		var selectedRows = $("#dg").datagrid('getSelections');
@@ -77,7 +78,7 @@
 			return;
 		}
 		var row = selectedRows[0];
-		$("#dlg4").dialog('open').dialog('setTitle', '商品图片展示');
+		$("#dlg4").dialog('open').dialog('setTitle', '轮播图展示');
 		document.getElementById('imgInit').src = row.src;
 	}
 
@@ -174,7 +175,6 @@
 			<tr>
 				<th field="cb" checkbox="true"></th>
 				<th field="name" width="15">轮播标题</th>
-				<th field="src" width="25">轮播图</th>
 				<th field="url" width="33">轮播图链接</th>
 			</tr>
 		</thead>
@@ -250,11 +250,11 @@
 	<div id="dlg4" class="easyui-dialog"
 		style="width: 1000px; height: 450px; padding: 15px 10px" closed="true"
 		buttons="#dlg-buttons4">
-<!-- 		<form id="uploadImg" method="post" action="goods!uploadPhoto" -->
-<!-- 			enctype="multipart/form-data"> -->
-<!-- 			<span style="white-space: pre"> </span>上传图片1：<input type="file" -->
-<!-- 				name="upload"><br /> <br /> -->
-<!-- 		</form> -->
+		<!-- 		<form id="uploadImg" method="post" action="goods!uploadPhoto" -->
+		<!-- 			enctype="multipart/form-data"> -->
+		<!-- 			<span style="white-space: pre"> </span>上传图片1：<input type="file" -->
+		<!-- 				name="upload"><br /> <br /> -->
+		<!-- 		</form> -->
 		<div>
 			<img src="?" id="imgInit" alt="未上传图片" width="650" height="420" />
 		</div>
