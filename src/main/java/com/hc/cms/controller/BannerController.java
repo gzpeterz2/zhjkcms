@@ -51,7 +51,7 @@ public class BannerController {
 		}
 		Map<String,String> map=new HashMap<>();
 		if(banner.getId()==null){
-			map.put("errorMsg", "添加学员失败!");
+			map.put("errorMsg", "添加轮播图失败!");
 		}
 		return map;
 	}

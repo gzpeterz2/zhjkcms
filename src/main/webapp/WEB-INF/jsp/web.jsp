@@ -124,7 +124,7 @@
 		var treeData5 = [ {
 			text : "资讯动态列表",
 			attributes : {
-				url : "banner.jsp"
+				url : "dynamic.action"
 			}
 		} ];
 		$("#tree5").tree({
