@@ -37,7 +37,7 @@ public class JsonController {
 		return list;
 	}
 	
-	@RequestMapping("/video.action")
+	@RequestMapping("/findvideo.action")
 	public @ResponseBody List<Video> getVideo()throws Exception {
 		List<Video> list=jsonService.getVideo();
 		return list;

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+import org.omg.PortableInterceptor.SUCCESSFUL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import com.hc.cms.po.Video;
 import com.hc.cms.service.VideoService;
 
 @Controller
+@RequestMapping("/video")
 public class VideoController {
 	@Autowired
 	private VideoService videoService;
@@ -35,7 +37,7 @@ public class VideoController {
 			videopictrue.transferTo(uploadPic);
 			video.setV_cover("pic/" + newFileName);
 			videoService.addVideo(video);
-			return "redirect:/pageweb.action";
+			return "success";
 		}
 		
 		return "error";
@@ -48,5 +50,31 @@ public class VideoController {
 		}
 		return "error";
 		
+	}
+	
+	@RequestMapping("/findById")
+	public String findById(Video video){
+		System.out.println("进来了");
+		return null;
+		
+	}
+	
+	@RequestMapping("/update")
+	public String update(Video video ,MultipartFile videopictrue) throws Exception{
+		String fileName = videopictrue.getOriginalFilename();
+		if (fileName!=null &&!fileName.equals("")) {
+			String newFileName=UUID.randomUUID().toString()+fileName.substring(fileName.lastIndexOf("."));
+			newFileName = newFileName.substring(0, 3) + "/" + newFileName;
+			System.out.println(newFileName);
+			File uploadPic = new File("d:/develop/upload/" + newFileName);
+			if (!uploadPic.exists()) {
+				uploadPic.mkdirs();
+			}
+			videopictrue.transferTo(uploadPic);
+			video.setV_cover("pic/" + newFileName);
+			videoService.update(video);
+			return "success";
+		}
+		return "error";
 	}
 }

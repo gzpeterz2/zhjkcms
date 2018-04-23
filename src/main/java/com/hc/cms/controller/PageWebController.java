@@ -25,4 +25,13 @@ public class PageWebController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/video.action")
+	public ModelAndView video() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		// mv.addObject("homePage", homePage);
+		mv.setViewName("video");
+		
+		return mv;
+	}
 }

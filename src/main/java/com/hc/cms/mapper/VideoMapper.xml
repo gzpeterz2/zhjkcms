@@ -10,11 +10,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert" parameterType="video">
-		insert into video values(null, #{v_title}, #{v_type} , #{v_teacher}, #{v_link},#{v_date},#{v_update},#{v_isrecommend},#{v_catelog},#{v_cover},#{v_describe} );
+		insert into video values(null, #{v_title}, #{v_type} , #{v_teacher}, #{v_link},#{v_date},#{v_update},#{v_isrecommend},#{v_catelog},#{v_cover},#{v_describe},#{v_desc});
 	</insert>
 	
 	<insert id="delete" parameterType="video">
 		delete from video where v_id=#{v_id};
+	</insert>
+	
+	<insert id="update" parameterType="video">
+		update video set v_title=#{v_title},v_type=#{v_type},v_teacher=#{v_teacher}, v_link=#{v_link},v_isrecommend=#{v_isrecommend},v_catelog=#{v_catelog},v_cover=#{v_cover},v_describe=#{v_describe},v_desc=#{v_desc} where v_id=#{v_id};
 	</insert>
 	
 </mapper>

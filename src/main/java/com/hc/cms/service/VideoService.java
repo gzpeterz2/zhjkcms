@@ -8,4 +8,6 @@ public interface VideoService {
 
 	void deleteVideo(Video video);
 
+	void update(Video video);
+
 }

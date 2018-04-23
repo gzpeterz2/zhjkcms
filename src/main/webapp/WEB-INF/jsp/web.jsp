@@ -68,7 +68,7 @@
 		var treeData2 = [ {
 			text : "教学视频列表",
 			attributes : {
-				url : "banner.jsp"
+				url : "video.action"
 			}
 		} ];
 		$("#tree2").tree({

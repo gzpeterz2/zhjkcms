@@ -12,4 +12,6 @@ public interface VideoMapper {
 
 	void delete(Video video);
 
+	void update(Video video);
+
 }

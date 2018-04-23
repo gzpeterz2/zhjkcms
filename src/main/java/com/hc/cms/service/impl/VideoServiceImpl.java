@@ -20,5 +20,10 @@ public class VideoServiceImpl implements VideoService {
 	public void deleteVideo(Video video) {
 		videoMapper.delete(video);
 	}
+	@Override
+	public void update(Video video) {
+		System.out.println("Service  video:"+video);
+		videoMapper.update(video);
+	}
 
 }
