@@ -1,5 +1,6 @@
 package com.hc.cms.service.impl;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -11,11 +12,10 @@ import com.hc.cms.po.Banner;
 import com.hc.cms.po.HomePage;
 import com.hc.cms.service.HomeService;
 
-
 @Service
 @Transactional
 public class HomeServiceImpl implements HomeService {
-	
+
 	@Autowired
 	private BannerMapper bannerMapper;
 
@@ -31,7 +31,7 @@ public class HomeServiceImpl implements HomeService {
 
 	@Override
 	public void addHomeBanner(Banner banner) throws Exception {
-		if(banner != null) {
+		if (banner != null) {
 			banner.setLocation("HomePage");
 			System.out.println(banner);
 			bannerMapper.insert(banner);
@@ -39,8 +39,22 @@ public class HomeServiceImpl implements HomeService {
 	}
 
 	@Override
-	public int deleteByIds(String[] delIds) throws Exception{
-		return bannerMapper.deleteByIds(delIds);
+	public void deleteByIds(Integer[] delIds, String path) throws Exception {
+		List<String> list = bannerMapper.selectByArr(delIds);
+		for (String str : list) {
+			if (str != null) {
+				String filepath = path + str.substring(5);
+				File file = new File(filepath);
+				if (file.exists()) {
+					file.delete();
+				}
+			}
+		}
+		bannerMapper.deleteByIds(delIds);
+	}
+
+	@Override
+	public void update(Banner banner) throws Exception {
+		bannerMapper.update(banner);
 	}
 }
-

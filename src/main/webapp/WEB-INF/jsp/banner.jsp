@@ -21,7 +21,7 @@
 
 	function openGoodsAddDialog() {
 		$("#dlg").dialog("open").dialog("setTitle", "添加商品信息");
-		url = "goods!save";
+		url = "home/addBanner.action";
 	}
 
 	function openGoodsModifyDialog() {
@@ -32,42 +32,44 @@
 		}
 		var row = selectedRows[0];
 		$("#dlg1").dialog("open").dialog("setTitle", "编辑轮播图信息");
-		$("#Gname2").val(row.Gname);
-		$("#Gprovider2").val(row.Gprovider);
-		url = "goods!save?Gid=" + row.Gid;
+		$("#url2").val(row.url);
+		$("#id2").val(row.id);
+		$("#name2").val(row.name);
+		$("#location2").val(row.location);
+		$("#src2").val(row.src);
+		url = "home/updateBanner.action";
 	}
 
-
-		function deleteGoods() {
-			var selectedRows = $("#dg").datagrid('getSelections');
-			if (selectedRows.length == 0) {
-				$.messager.alert("系统提示", "请选择要删除的数据！");
-				return;
-			}
-			var strIds = [];
-			for (var i = 0; i < selectedRows.length; i++) {
-				strIds.push(selectedRows[i].id);
-			}
-			var ids = strIds.join(",");
-			$.messager.confirm("系统提示", "您确认要删掉这<font color=red>"
-					+ selectedRows.length + "</font>条数据吗？", function(r) {
-				if (r) {
-					$.post("home/deleteBanner.action", {
-						delIds : strIds
-					}, function(result) {
-						if (result.success) {
-							$.messager.alert("系统提示", "您已成功删除<font color=red>"
-									+ result.delNums + "</font>条数据！");
-							$("#dg").datagrid("reload");
-						} else {
-							$.messager.alert('系统提示', '<font color=red>'
-									+ selectedRows[result.errorIndex].goodsName
-									+ '</font>' + result.errorMsg);
-						}
-					}, "json");
-				}
-			});
+	function deleteGoods() {
+		var selectedRows = $("#dg").datagrid('getSelections');
+		if (selectedRows.length == 0) {
+			$.messager.alert("系统提示", "请选择要删除的数据！");
+			return;
 		}
+		var strIds = [];
+		for (var i = 0; i < selectedRows.length; i++) {
+			strIds.push(selectedRows[i].id);
+		}
+		var ids = strIds.join(",");
+		$.messager.confirm("系统提示", "您确认要删掉这<font color=red>"
+				+ selectedRows.length + "</font>条数据吗？", function(r) {
+			if (r) {
+				$.post("home/deleteBanner.action", {
+					delIds : ids
+				}, function(result) {
+					if (result.success) {
+						$.messager.alert("系统提示", "您已成功删除<font color=red>"
+								+ result.delNums + "</font>条数据！");
+						$("#dg").datagrid("reload");
+					} else {
+						$.messager.alert('系统提示', '<font color=red>'
+								+ selectedRows[result.errorIndex].goodsName
+								+ '</font>' + result.errorMsg);
+					}
+				}, "json");
+			}
+		});
+	}
 
 	/* 轮播图展示 */
 
@@ -183,7 +185,7 @@
 	<div id="dlg" class="easyui-dialog"
 		style="width: 580px; height: 350px; padding: 10px 20px" closed="true"
 		buttons="#dlg-buttons">
-		<form id="fm" method="post">
+		<form id="fm" method="post" enctype="multipart/form-data">
 			<table cellspacing="5px;">
 				<tr>
 					<td height="15px"></td>
@@ -194,12 +196,20 @@
 						class="easyui-validatebox" required="true" /></td>
 				</tr>
 				<tr>
-					<td>轮播图：</td>
-					<td><input type="text" name="src" id="src"
+					<td>显示位置：</td>
+					<td><input type="text" name="location" id="location"
 						class="easyui-validatebox" required="true" /></td>
+				</tr>
+				<tr>
 					<td>轮播图链接：</td>
 					<td><input type="text" name="url" id="url"
 						class="easyui-validatebox" required="true" /></td>
+				</tr>
+				<tr>
+					<td>轮播图：</td>
+					<td><input type="file" name="srcName" id="srcName"
+						class="easyui-validatebox" required="true" /> <input
+						type="hidden" name="src" id="src" /></td>
 				</tr>
 			</table>
 		</form>
@@ -208,26 +218,33 @@
 	<div id="dlg1" class="easyui-dialog"
 		style="width: 580px; height: 350px; padding: 10px 20px" closed="true"
 		buttons="#dlg-buttons1">
-		<form id="fm1" method="post">
+		<form id="fm1" method="post" enctype="multipart/form-data">
 			<table cellspacing="5px;">
 				<tr>
 					<td height="15px"></td>
+					<td><input type="hidden" name="id" id="id2" /></td>
 				</tr>
 				<tr>
-					<td>商品名称：</td>
-					<td><input type="text" name="goods.Gname" id="Gname2"
+					<td>轮播标题：</td>
+					<td><input type="text" name="name" id="name2"
 						class="easyui-validatebox" required="true" /></td>
-					<td>商品规格：</td>
-					<td><input type="text" name="goods.gspecifications"
-						id="Gspecifications2" class="easyui-validatebox" required="true" /></td>
 				</tr>
 				<tr>
-					<td>商品产地：</td>
-					<td><input type="text" name="goods.glocation" id="Glocation2"
+					<td>显示位置：</td>
+					<td><input type="text" name="location" id="location2"
 						class="easyui-validatebox" required="true" /></td>
-					<td>商品材质：</td>
-					<td><input type="text" name="goods.gmaterial" id="Gmaterial2"
+				</tr>
+				<tr>
+					<td>轮播图链接：</td>
+					<td><input type="text" name="url" id="url2"
 						class="easyui-validatebox" required="true" /></td>
+				</tr>
+				<tr>
+					<td>轮播图：</td>
+					<td><input type="file" name="srcName" id="srcName2" /></td>
+				</tr>
+				<tr>
+					<td><input type="hidden" name="src" id="src2" /></td>
 				</tr>
 			</table>
 		</form>

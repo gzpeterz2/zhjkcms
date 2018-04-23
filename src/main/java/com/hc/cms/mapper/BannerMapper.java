@@ -12,5 +12,7 @@ public interface BannerMapper {
 
 	public void update(Banner banner) throws SQLException;
 
-	public int deleteByIds(String[] delIds);
+	public void deleteByIds(Integer[] delIds);
+
+	public List<String> selectByArr(Integer[] delIds);
 }

@@ -9,14 +9,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from banner where location = #{location} order by name
 	</select>
 
+	<!-- 批量查询照片 -->
+	<select id="selectByArr" parameterType="Integer[]" resultType="string">
+		select src from banner where id in
+		<foreach collection="array" item="id" open=" (" close=")"
+			separator=",">
+			#{id}
+		</foreach>
+	</select>
+
 	<insert id="insert" parameterType="banner">
+		<selectKey keyProperty="id" order="AFTER" resultType="int">
+			select
+			LAST_INSERT_ID()
+		</selectKey>
 		insert into banner
 		values(null, #{name}, #{src} , #{location}, #{url} )
 	</insert>
 
 	<update id="update" parameterType="banner">
 		update banner set name =
-		#{name} , src = ${src}, location = #{location},
+		#{name} , src = #{src}, location = #{location},
 		url = #{url} where id =
 		#{id}
 	</update>
@@ -30,21 +43,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{item}
 		</foreach>
 	</select>
-	
-	<delete id="deleteByIds" parameterType="java.util.List">
-		delete from banner
-		where
-		id in
-		<foreach collection="array" index="delIds" item="item" open="("
-			separator="," close=")">
-			#{item}
+
+	<!-- 批量删除 -->
+	<delete id="deleteByIds" parameterType="Integer[]">
+		delete from banner where id in
+		<foreach collection="array" item="id" open=" (" close=")"
+			separator=",">
+			#{id}
 		</foreach>
 	</delete>
 
-<!-- 	<delete id="deleteByIds" parameterType="String"> -->
-<!-- 		delete from banner -->
-<!-- 		where -->
-<!-- 		id in (#{delIds}) -->
-<!-- 	</delete> -->
+
+
 
 </mapper>
