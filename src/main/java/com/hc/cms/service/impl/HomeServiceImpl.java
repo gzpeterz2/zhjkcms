@@ -5,13 +5,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.hc.cms.mapper.BannerMapper;
 import com.hc.cms.po.Banner;
 import com.hc.cms.po.HomePage;
 import com.hc.cms.service.HomeService;
 
+
 @Service
+@Transactional
 public class HomeServiceImpl implements HomeService {
 	
 	@Autowired
@@ -37,9 +39,8 @@ public class HomeServiceImpl implements HomeService {
 	}
 
 	@Override
-	public int deleteById(Integer imgid) throws Exception{
-		
-		return bannerMapper.deleteById(imgid);
+	public int deleteByIds(String[] delIds) throws Exception{
+		return bannerMapper.deleteByIds(delIds);
 	}
 }
 

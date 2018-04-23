@@ -1,6 +1,7 @@
 package com.hc.cms.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,11 @@ import com.hc.cms.service.HomeService;
 
 @Controller
 @RequestMapping("/home")
-public class HomeController {
-	
+public class BannerController {
+
 	@Autowired
 	private HomeService homeService;
-	
+
 	@RequestMapping("/addBanner")
 	public String addBanner(Model model, Banner banner, MultipartFile pictureFile) throws Exception {
 		System.out.println(banner);
@@ -30,9 +31,7 @@ public class HomeController {
 		String fileName = pictureFile.getOriginalFilename();
 		if (fileName != null) {
 			if (!fileName.equals("")) {
-				String newFileName =
-					UUID.randomUUID().toString() + fileName.
-					substring(fileName.lastIndexOf("."));
+				String newFileName = UUID.randomUUID().toString() + fileName.substring(fileName.lastIndexOf("."));
 				newFileName = newFileName.substring(0, 3) + "/" + newFileName;
 				System.out.println(newFileName);
 				File uploadPic = new File("d:/develop/upload/" + newFileName);
@@ -47,16 +46,15 @@ public class HomeController {
 		}
 		return "error";
 	}
-	
+
 	@RequestMapping("/deleteBanner.action")
-	public String deleteDynamic(Model model,@RequestParam("imgid") Integer imgid) throws Exception{
-		System.out.println(imgid);
-		int code = homeService.deleteById(imgid);
-		if(code == 1){
-			
-			return "redirect:/pageweb.action";		
-		}
-		return "error";
+	public String deleteDynamic(Model model, @RequestParam("delIds") String delIds) throws Exception {
+		String[] str=delIds.split(",");
+		int code = homeService.deleteByIds(str);
+		System.out.println(code);
+		// if(code > 0){
+		// return "redirect:/pageweb.action";
+		// }
+		return null;
 	}
 }
-
