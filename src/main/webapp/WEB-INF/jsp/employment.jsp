@@ -345,6 +345,7 @@
 		</div>
 	</div>
 	
+	<!-- 关闭查看图片弹框之后清除复选框 -->
 	<script type="text/javascript">
 		$("#dlg4").dialog({
 			onClose:function(){

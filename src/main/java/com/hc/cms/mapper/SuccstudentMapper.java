@@ -20,5 +20,7 @@ public interface SuccstudentMapper {
 	public long selectCount();
 	//批量查询学员照片路径photos_src
 	public List<String> selectByArr(Integer[] ids);
+	//通过id查询单条学员信息
+	public Succstudent selectById(Integer id);
 	
 }

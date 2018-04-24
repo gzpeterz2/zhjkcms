@@ -40,7 +40,16 @@ public class SuccstudentServiceImpl implements SuccstudentService{
 
 	//更新学员就业信息
 	@Override
-	public void update(Succstudent st) {
+	public void update(Succstudent st,String path) {
+		Succstudent ss=succstudentMapper.selectById(st.getId());
+		String photos_src = ss.getPhotos_src();
+		if(photos_src!=null){
+			String filepath=path+photos_src.substring(5);
+			File file = new File(filepath);
+			if(file.exists()){
+				file.delete();
+			}
+		}
 		succstudentMapper.update(st);
 	}
 

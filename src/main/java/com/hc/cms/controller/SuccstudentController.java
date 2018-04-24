@@ -84,7 +84,7 @@ public class SuccstudentController {
 				st.setPhotos_src("/pic/" + newFileName);
 			}
 		}
-		succstudentService.update(st);
+		succstudentService.update(st,STUDENT_PHOTOS_UPLOAD_PATH);
 		Map<String,String> map=new HashMap<>();
 		return map;
 	}

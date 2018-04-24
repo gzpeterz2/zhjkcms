@@ -16,30 +16,29 @@
 	src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/wangEditor.js"></script>
 <script type="text/javascript">
 
 	var url;
 
-	function openGoodsAddDialog() {
-		$("#dlg").dialog("open").dialog("setTitle", "添加商品信息");
-		url = "goods!save";
+	function openChatPrintscreenAddDialog() {
+		$("#dlg").dialog("open").dialog("setTitle", "添加图片");
+		url = "chatPrintscreen/save.action";
 	}
 
-	function openGoodsModifyDialog() {
+	function openChatPrintscreenModifyDialog() {
 		var selectedRows = $("#dg").datagrid('getSelections');
 		if (selectedRows.length != 1) {
 			$.messager.alert("系统提示", "请选择一条要编辑的数据！");
 			return;
 		}
 		var row = selectedRows[0];
-		$("#dlg1").dialog("open").dialog("setTitle", "编辑商品信息");
-		$("#Gname2").val(row.Gname);
-		$("#Gprovider2").val(row.Gprovider);
-		url = "goods!save?Gid=" + row.Gid;
+		$("#dlg1").dialog("open").dialog("setTitle", "更换图片");
+		$("#c_id2").val(row.c_id);
+		$("#c_src2").val(row.c_src);
+		url = "chatPrintscreen/update.action";
 	}
 
-	function deleteGoods() {
+	function deleteChatPrintscreen() {
 		var selectedRows = $("#dg").datagrid('getSelections');
 		if (selectedRows.length == 0) {
 			$.messager.alert("系统提示", "请选择要删除的数据！");
@@ -47,13 +46,13 @@
 		}
 		var strIds = [];
 		for (var i = 0; i < selectedRows.length; i++) {
-			strIds.push(selectedRows[i].Gid);
+			strIds.push(selectedRows[i].c_id);
 		}
-		var ids = strIds.join("','");
+		var ids = strIds.join(",");
 		$.messager.confirm("系统提示", "您确认要删掉这<font color=red>"
 				+ selectedRows.length + "</font>条数据吗？", function(r) {
 			if (r) {
-				$.post("${pageContext.request.contextPath}/goods!delete", {
+				$.post("${pageContext.request.contextPath}/chatPrintscreen/delete.action", {
 					delIds : ids
 				}, function(result) {
 					if (result.success) {
@@ -62,7 +61,7 @@
 						$("#dg").datagrid("reload");
 					} else {
 						$.messager.alert('系统提示', '<font color=red>'
-								+ selectedRows[result.errorIndex].goodsName
+								+ selectedRows[result.errorIndex].c_src
 								+ '</font>' + result.errorMsg);
 					}
 				}, "json");
@@ -75,15 +74,15 @@
 	function showimages() {
 		var selectedRows = $("#dg").datagrid('getSelections');
 		if (selectedRows.length != 1) {
-			$.messager.alert("系统提示", "请选择一条要展示图片的商品！");
+			$.messager.alert("系统提示", "请选择一条要展示图片的记录！");
 			return;
 		}
 		var row = selectedRows[0];
 		$("#dlg4").dialog('open').dialog('setTitle', '商品图片展示');
-		document.getElementById('imgInit').src = row.src;
+		document.getElementById('imgInit').src = row.c_src;
 	}
 
-	function saveGoods() {
+	function saveChatPrintscreen() {
 		$("#fm").form("submit", {
 			url : url,
 			onSubmit : function() {
@@ -96,7 +95,7 @@
 					return error;
 				} else {
 					$.messager.alert("系统提示", "保存成功");
-					resetValue();
+					/* resetValue(); */
 					$("#dlg").dialog("close");
 					$("#dg").datagrid("reload");
 				}
@@ -104,7 +103,7 @@
 		});
 	}
 
-	function saveGoods1() {
+	function saveChatPrintscreen1() {
 		$("#fm1").form("submit", {
 			url : url,
 			onSubmit : function() {
@@ -116,7 +115,7 @@
 					return error;
 				} else {
 					$.messager.alert("系统提示", "保存成功");
-					resetValue();
+					/* resetValue(); */
 					$("#dlg1").dialog("close");
 					$("#dg").datagrid("reload");
 				}
@@ -124,12 +123,12 @@
 		});
 	}
 
-	function closeGoodsDialog() {
+	function closeChatPrintscreenDialog() {
 		$("#dlg").dialog("close");
 		resetValue();
 	}
 
-	function closeGoodsDialog1() {
+	function closeChatPrintscreenDialog1() {
 		$("#dlg1").dialog("close");
 		resetValue();
 	}
@@ -157,11 +156,11 @@
 	<!-- 管理员操作栏-->
 	<div id="tb">
 		<div>
-			<a href="javascript:openGoodsAddDialog()" class="easyui-linkbutton"
+			<a href="javascript:openChatPrintscreenAddDialog()" class="easyui-linkbutton"
 				iconCls="icon-add" plain="true">添加</a> <a
-				href="javascript:openGoodsModifyDialog()" class="easyui-linkbutton"
+				href="javascript:openChatPrintscreenModifyDialog()" class="easyui-linkbutton"
 				iconCls="icon-edit" plain="true">修改</a> <a
-				href="javascript:deleteGoods()" class="easyui-linkbutton"
+				href="javascript:deleteChatPrintscreen()" class="easyui-linkbutton"
 				iconCls="icon-remove" plain="true">删除</a> <a
 				href="javascript:showimages()" class="easyui-linkbutton"
 				iconCls="icon-search" plain="true">图片展示</a>
@@ -184,7 +183,7 @@
 	<div id="dlg" class="easyui-dialog"
 		style="width: 580px; height: 350px; padding: 10px 20px" closed="true"
 		buttons="#dlg-buttons" resizable=true>
-		<form id="fm" method="post">
+		<form id="fm" method="post" enctype="multipart/form-data">
 			<table cellspacing="5px;">
 				<tr>
 					<td height="15px"></td>
@@ -192,86 +191,44 @@
 				<tr>
 					<td>聊天截图：</td>
 					<td>
-						<div id="editor">
-							<!-- <b>wangEditor</b> -->
-						</div>
 						<input type="file" name="chatPic" id="chatPic" class="easyui-validatebox" required="true" />
-						<input type="hidden" name="c_src" id="c_src"/>
+						<input type="hidden" name="c_src"/>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
 	
-	<script type="text/javascript">
-		var E = window.wangEditor;
-		var editor = new E('#editor');
-		editor.customConfig.uploadImgServer = 'img/upload.action'; //上传URL
-		//editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
-		//editor.customConfig.uploadImgMaxLength = 5;
-		editor.customConfig.uploadFileName = 'myFileName';
-		editor.customConfig.uploadImgHooks = {
-			customInsert : function(insertImg, result, editor) {
-				// 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
-				// insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
-				// 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
-				var url = result.data;
-				insertImg(url);	
-				// result 必须是一个 JSON 格式字符串！！！否则报错
-			}
-		}
-
-		var $text1 = $('#text1')
-		editor.customConfig.onchange = function(html) {
-			// 监控变化，同步更新到 text
-			$text1.val(html)
-		}
-		editor.customConfig.showLinkImg = false
-		editor.create()
-		
-		//初始化 textarea 的值
-		$text1.val(editor.txt.text())
-	</script>
-	
-	
 	<!-- 修改窗口 -->
 	<div id="dlg1" class="easyui-dialog"
 		style="width: 580px; height: 350px; padding: 10px 20px" closed="true"
 		buttons="#dlg-buttons1">
-		<form id="fm1" method="post">
+		<form id="fm1" method="post" enctype="multipart/form-data">
 			<table cellspacing="5px;">
 				<tr>
 					<td height="15px"></td>
 				</tr>
 				<tr>
 					<td>商品名称：</td>
-					<td><input type="text" name="goods.Gname" id="Gname2"
-						class="easyui-validatebox" required="true" /></td>
-					<td>商品规格：</td>
-					<td><input type="text" name="goods.gspecifications"
-						id="Gspecifications2" class="easyui-validatebox" required="true" /></td>
-				</tr>
-				<tr>
-					<td>商品产地：</td>
-					<td><input type="text" name="goods.glocation" id="Glocation2"
-						class="easyui-validatebox" required="true" /></td>
-					<td>商品材质：</td>
-					<td><input type="text" name="goods.gmaterial" id="Gmaterial2"
-						class="easyui-validatebox" required="true" /></td>
+					<td>
+						<input type="hidden" name="c_id" id="c_id2"/>
+						<input type="file" name="chatPic" id="chatPic" class="easyui-validatebox" required="true" />
+						<input type="hidden" name="c_src" id="c_src2"/>
+					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
 
 	<div id="dlg-buttons">
-		<a href="javascript:saveGoods()" class="easyui-linkbutton"
-			iconCls="icon-ok">保存</a> <a href="javascript:closeGoodsDialog()"
+		<a href="javascript:saveChatPrintscreen()" class="easyui-linkbutton"
+			iconCls="icon-ok">保存</a> <a href="javascript:closeChatPrintscreenDialog()"
 			class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 	</div>
 
 	<div id="dlg-buttons1">
-		<a href="javascript:saveGoods1()" class="easyui-linkbutton"
-			iconCls="icon-ok">保存</a> <a href="javascript:closeGoodsDialog1()"
+		<a href="javascript:saveChatPrintscreen1()" class="easyui-linkbutton"
+			iconCls="icon-ok">保存</a> <a href="javascript:closeChatPrintscreenDialog1()"
 			class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 	</div>
 
@@ -279,8 +236,8 @@
 	<!-- 图片展示	 -->
 	<div id="dlg4" class="easyui-dialog"
 		style="width: 1000px; height: 450px; padding: 15px 10px" closed="true"
-		buttons="#dlg-buttons4">
-<!-- 		<form id="uploadImg" method="post" action="goods!uploadPhoto" -->
+		buttons="#dlg-buttons4" resizable=true>
+<!-- 		<form id="uploadImg" method="post" action="ChatPrintscreen!uploadPhoto" -->
 <!-- 			enctype="multipart/form-data"> -->
 <!-- 			<span style="white-space: pre"> </span>上传图片1：<input type="file" -->
 <!-- 				name="upload"><br /> <br /> -->
@@ -289,7 +246,15 @@
 			<img src="?" id="imgInit" alt="未上传图片" width="650" height="420" />
 		</div>
 	</div>
-
+	<!-- 关闭查看图片弹框之后清除复选框 -->
+	<script type="text/javascript">
+		$("#dlg4").dialog({
+			onClose:function(){
+				$("#dg").datagrid("clearSelections");
+				resetValue();
+			}
+		})
+	</script>
 
 </body>
 </html>

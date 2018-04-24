@@ -8,6 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from succstudent order by id desc
 	</select>
 	
+	<!-- 通过Id查询学员就业信息 -->
+	<select id="selectById" parameterType="int" resultType="succstudent">
+		select * from succstudent where id=#{id}
+	</select>
 	<!-- 查询总记录 -->
 	<select id="selectCount" resultType="long">
 		select count(*) from succstudent 
