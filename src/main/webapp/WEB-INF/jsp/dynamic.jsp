@@ -5,13 +5,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>轮播图列表</title>
+<title>资讯列表</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/icon.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.min.js"></script>
+<script type="text/javascript" src="js/wangEditor.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
 <script type="text/javascript"
@@ -21,7 +22,7 @@
 
 	function openGoodsAddDialog() {
 		$("#dlg").dialog("open").dialog("setTitle", "添加商品信息");
-		url = "home/addBanner.action";
+		url = "instDynamic/addDynamic.action";
 	}
 
 	function openGoodsModifyDialog() {
@@ -84,6 +85,11 @@
 		document.getElementById('imgInit').src = row.src;
 	}
 
+	function resetValue() {
+		$("#editor").val("");
+		$("#title").val("");
+	}
+	
 	function saveGoods() {
 		$("#fm").form("submit", {
 			url : url,
@@ -97,9 +103,9 @@
 					return error;
 				} else {
 					$.messager.alert("系统提示", "保存成功");
-					resetValue();
 					$("#dlg").dialog("close");
 					$("#dg").datagrid("reload");
+					resetValue();
 				}
 			}
 		});
@@ -117,9 +123,9 @@
 					return error;
 				} else {
 					$.messager.alert("系统提示", "保存成功");
-					resetValue();
 					$("#dlg1").dialog("close");
 					$("#dg").datagrid("reload");
+					resetValue();
 				}
 			}
 		});
@@ -171,49 +177,70 @@
 	<!-- 属性栏  -->
 	<table id="dg" title="轮播图管理" class="easyui-datagrid" fitColumns="true"
 		height="800px" pagination="true" rownumbers="true" fit="true"
-		url="json/homeBanner.action" toolbar="#tb">
+		url="json/instDynamic.action" toolbar="#tb">
 		<!--  fitColumns="true" th自适应宽度； pagination：翻页；rownumbers：添加行号；url：必须返回json形式 -->
 		<thead>
 			<tr>
 				<th field="cb" checkbox="true"></th>
-				<th field="name" width="15">轮播标题</th>
-				<th field="url" width="33">轮播图链接</th>
+				<th field="title" width="10">资讯标题</th>
+				<th field="post_time" width="10">发表时间</th>
+				<th field="views" width="10">游览次数</th>
+				<th field="content" width="50">文章内容</th>
 			</tr>
 		</thead>
 	</table>
 	<!-- 添加窗口 -->
 	<div id="dlg" class="easyui-dialog"
-		style="width: 580px; height: 350px; padding: 10px 20px" closed="true"
+		style="width: 850px; height: 550px; padding: 10px 20px" closed="true"
 		buttons="#dlg-buttons"  resizable=true>
-		<form id="fm" method="post" enctype="multipart/form-data" >
+		<form id="fm" method="post" enctype="multipart/form-data">
 			<table cellspacing="5px;">
 				<tr>
 					<td height="15px"></td>
 				</tr>
 				<tr>
-					<td>轮播标题：</td>
-					<td><input type="text" name="name" id="name"
+					<td>资讯标题：</td>
+					<td><input type="text" name="title" id="title"
 						class="easyui-validatebox" required="true" /></td>
 				</tr>
 				<tr>
-					<td>显示位置：</td>
-					<td><input type="text" name="location" id="location"
-						class="easyui-validatebox" required="true" /></td>
-				</tr>
-				<tr>
-					<td>轮播图链接：</td>
-					<td><input type="text" name="url" id="url"
-						class="easyui-validatebox" required="true" /></td>
-				</tr>
-				<tr>
-					<td>轮播图：</td>
-					<td><input type="file" name="srcName" id="srcName"
-						class="easyui-validatebox" required="true" /> <input
-						type="hidden" name="src" id="src" /></td>
+					<td>文章内容：</td>
+					<td><input id="text1" name="content" type="hidden"
+						class="easyui-validatebox" required="true" />
+						<div id="editor"></div></td>
 				</tr>
 			</table>
 		</form>
 	</div>
+		<script type="text/javascript">
+			var E = window.wangEditor;
+			var editor = new E('#editor');
+			editor.customConfig.uploadImgServer = 'img/upload.action'; //上传URL
+			//editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
+			//editor.customConfig.uploadImgMaxLength = 5;
+			editor.customConfig.uploadFileName = 'myFileName';
+			editor.customConfig.uploadImgHooks = {
+				customInsert : function(insertImg, result, editor) {
+					// 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+					// insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+					// 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+					var url = result.data;
+					insertImg(url);
+					// result 必须是一个 JSON 格式字符串！！！否则报错
+				}
+			}
+
+			var $text1 = $('#text1')
+			editor.customConfig.onchange = function(html) {
+				// 监控变化，同步更新到 text
+				$text1.val(html)
+			}
+			editor.customConfig.showLinkImg = false
+			editor.create()
+
+			//初始化 textarea 的值
+			$text1.val(editor.txt.text())
+		</script>
 	<!-- 修改窗口 -->
 	<div id="dlg1" class="easyui-dialog"
 		style="width: 580px; height: 350px; padding: 10px 20px" closed="true"

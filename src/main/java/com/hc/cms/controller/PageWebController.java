@@ -29,6 +29,12 @@ public class PageWebController {
 	public String banner() throws Exception {
 		return "banner";
 	}
+	
+	//进入资讯管理页面
+	@RequestMapping("/dynamic.action")
+	public String dynamic() throws Exception {
+		return "dynamic";
+	}
 	//进入学员就业信息管理页面
 	@RequestMapping("/employment.action")
 	public String toEmployment() throws Exception {
