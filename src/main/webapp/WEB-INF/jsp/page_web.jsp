@@ -247,7 +247,7 @@
 							<li class="hidden">
 								
 									<div>
-										<form action="${pageContext.request.contextPath }/addVideo.action" method="post" method="post" enctype="multipart/form-data">
+										<form action="${pageContext.request.contextPath }/addVideo.action"  method="post" enctype="multipart/form-data">
 											<ul class="content-list">
 												<li>
 													<h2>视频标题：</h2>

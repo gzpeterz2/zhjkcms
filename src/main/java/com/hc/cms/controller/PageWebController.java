@@ -50,4 +50,13 @@ public class PageWebController {
 	public String toStudentstory() throws Exception {
 		return "studentstory";
 	}
+	
+	@RequestMapping("/video.action")
+	public ModelAndView video() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		// mv.addObject("homePage", homePage);
+		mv.setViewName("video");
+		
+		return mv;
+	}
 }
