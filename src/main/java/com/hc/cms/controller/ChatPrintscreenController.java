@@ -70,8 +70,8 @@ public class ChatPrintscreenController {
 	//更新图片
 	@RequestMapping("/update")
 	@ResponseBody
-	public Map<String,String> update(ChatPrintscreen cp,MultipartFile photos) throws Exception{
-		String filename = photos.getOriginalFilename();
+	public Map<String,String> update(ChatPrintscreen cp,MultipartFile chatPic) throws Exception{
+		String filename = chatPic.getOriginalFilename();
 		if (filename != null) {
 			if (!filename.equals("")) {
 				String newFileName = "chatPrintscreen/" + UploadUtils.getRandomName(filename);
@@ -80,7 +80,7 @@ public class ChatPrintscreenController {
 				if (!uploadPic.exists()) {
 					uploadPic.mkdirs();
 				}
-				photos.transferTo(uploadPic);
+				chatPic.transferTo(uploadPic);
 				cp.setC_src("/pic/" + newFileName);
 			}
 		}

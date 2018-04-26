@@ -334,7 +334,7 @@
 	<!-- 图片展示	 -->
 	<div id="dlg4" class="easyui-dialog"
 		style="width: 600px; height: 500px; padding: 15px 10px" closed="true"
-		buttons="#dlg-buttons4">
+		buttons="#dlg-buttons4" resizable=true>
 <!-- 		<form id="uploadImg" method="post" action="Students!uploadPhoto" -->
 <!-- 			enctype="multipart/form-data"> -->
 <!-- 			<span style="white-space: pre"> </span>上传图片1：<input type="file" -->

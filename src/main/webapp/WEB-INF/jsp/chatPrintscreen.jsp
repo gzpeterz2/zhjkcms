@@ -243,7 +243,7 @@
 <!-- 				name="upload"><br /> <br /> -->
 <!-- 		</form> -->
 		<div>
-			<img src="?" id="imgInit" alt="未上传图片" width="650" height="420" />
+			<img src="?" id="imgInit" alt="未上传图片" width="100%" height="100%" />
 		</div>
 	</div>
 	<!-- 关闭查看图片弹框之后清除复选框 -->

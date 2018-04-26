@@ -3,6 +3,8 @@ package com.hc.cms.mapper;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.annotations.SelectProvider;
+
 import com.hc.cms.po.Banner;
 
 public interface BannerMapper {

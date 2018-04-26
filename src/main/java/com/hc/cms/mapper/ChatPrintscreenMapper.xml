@@ -34,7 +34,7 @@
 	
 	<!-- 更新图片 -->
 	<update id="update" parameterType="chatPrintscreen">
-		update chat_printscreen set c_src = #{c_src} where c_id =　#{c_id}
+		update chat_printscreen set c_src = #{c_src} where c_id=#{c_id}
 	</update>
 	
 	<!-- 批量删除图片 -->
