@@ -11,6 +11,7 @@ public class Video {
 	private Integer v_isrecommend;
 	private String v_catelog;
 	private String v_cover;
+	private String v_desc;
 	private String v_describe;
 
 	public Video() {
@@ -104,12 +105,20 @@ public class Video {
 		this.v_describe = v_describe;
 	}
 
+	public String getV_desc() {
+		return v_desc;
+	}
+
+	public void setV_desc(String v_desc) {
+		this.v_desc = v_desc;
+	}
+
 	@Override
 	public String toString() {
 		return "Video [v_id=" + v_id + ", v_title=" + v_title + ", v_type=" + v_type + ", v_teacher=" + v_teacher
 				+ ", v_link=" + v_link + ", v_date=" + v_date + ", v_update=" + v_update + ", v_isrecommend="
-				+ v_isrecommend + ", v_catelog=" + v_catelog + ", v_cover=" + v_cover + ", v_describe=" + v_describe
-				+ "]";
+				+ v_isrecommend + ", v_catelog=" + v_catelog + ", v_cover=" + v_cover + ", v_desc=" + v_desc
+				+ ", v_describe=" + v_describe + "]";
 	}
 
 }
