@@ -45,10 +45,5 @@ public class JsonServiceImpl implements JsonService {
 		return instDynamicMapper.selectAll();
 	}
 	
-	@Override
-	public List<Video> getVideo() throws Exception {
-		return videoMapper.selectAll();
-	}
-
 }
 
