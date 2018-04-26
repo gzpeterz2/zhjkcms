@@ -17,19 +17,28 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hc.cms.po.Banner;
+import com.hc.cms.po.InstDynamic;
 import com.hc.cms.po.Succstudent;
 import com.hc.cms.service.HomeService;
 import com.hc.cms.util.UploadUtils;
+import com.hc.cms.vo.QueryVo;
+import com.hc.cms.vo.Result;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/banner")
 public class BannerController {
 
 	@Autowired
 	private HomeService homeService;
 	@Value("${STUDENT_PHOTOS_UPLOAD_PATH}")
 	private String STUDENT_PHOTOS_UPLOAD_PATH;
-
+	//分页查询
+	@RequestMapping("/selectByPage")
+	@ResponseBody
+	public Result selectByPage(QueryVo vo) throws Exception{
+		Result<Banner> result = homeService.selectByPage(vo);
+		return result;
+	}
 	@RequestMapping("/addBanner.action")
 	@ResponseBody
 	public Map<String,String> addBanner(Banner banner,MultipartFile srcName) throws Exception{

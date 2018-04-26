@@ -21,7 +21,7 @@
 
 	function openGoodsAddDialog() {
 		$("#dlg").dialog("open").dialog("setTitle", "添加商品信息");
-		url = "home/addBanner.action";
+		url = "banner/addBanner.action";
 	}
 
 	function openGoodsModifyDialog() {
@@ -37,7 +37,7 @@
 		$("#name2").val(row.name);
 		$("#location2").val(row.location);
 		$("#src2").val(row.src);
-		url = "home/updateBanner.action";
+		url = "banner/updateBanner.action";
 	}
 
 	function deleteGoods() {
@@ -54,7 +54,7 @@
 		$.messager.confirm("系统提示", "您确认要删掉这<font color=red>"
 				+ selectedRows.length + "</font>条数据吗？", function(r) {
 			if (r) {
-				$.post("home/deleteBanner.action", {
+				$.post("banner/deleteBanner.action", {
 					delIds : ids
 				}, function(result) {
 					if (result.success) {
@@ -83,7 +83,14 @@
 		$("#dlg4").dialog('open').dialog('setTitle', '轮播图展示');
 		document.getElementById('imgInit').src = row.src;
 	}
-
+	
+	function resetValue() {
+		$("#name").val("");
+		$("#location").val("");
+		$("#url").val("");
+		$("#srcName").val("");
+	}
+	
 	function saveGoods() {
 		$("#fm").form("submit", {
 			url : url,
@@ -97,9 +104,9 @@
 					return error;
 				} else {
 					$.messager.alert("系统提示", "保存成功");
-					resetValue();
 					$("#dlg").dialog("close");
 					$("#dg").datagrid("reload");
+					resetValue();
 				}
 			}
 		});
@@ -117,9 +124,9 @@
 					return error;
 				} else {
 					$.messager.alert("系统提示", "保存成功");
-					resetValue();
 					$("#dlg1").dialog("close");
 					$("#dg").datagrid("reload");
+					resetValue();
 				}
 			}
 		});
@@ -171,13 +178,15 @@
 	<!-- 属性栏  -->
 	<table id="dg" title="轮播图管理" class="easyui-datagrid" fitColumns="true"
 		height="800px" pagination="true" rownumbers="true" fit="true"
-		url="json/homeBanner.action" toolbar="#tb">
+		url="banner/selectByPage.action" toolbar="#tb">
 		<!--  fitColumns="true" th自适应宽度； pagination：翻页；rownumbers：添加行号；url：必须返回json形式 -->
 		<thead>
 			<tr>
 				<th field="cb" checkbox="true"></th>
 				<th field="name" width="15">轮播标题</th>
+				<th field="location" width="15">轮播图显示位置</th>
 				<th field="url" width="33">轮播图链接</th>
+				
 			</tr>
 		</thead>
 	</table>

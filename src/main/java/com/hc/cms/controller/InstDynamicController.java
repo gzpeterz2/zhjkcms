@@ -20,24 +20,46 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hc.cms.po.Banner;
 import com.hc.cms.po.InstDynamic;
+import com.hc.cms.po.Succstudent;
 import com.hc.cms.service.InstDynamicService;
 import com.hc.cms.util.UploadUtils;
+import com.hc.cms.vo.QueryVo;
+import com.hc.cms.vo.Result;
 
 @Controller
 @RequestMapping("/instDynamic")
 public class InstDynamicController {
 	@Autowired
 	private InstDynamicService instDynamicService;
-
+	//分页查询
+	@RequestMapping("/selectByPage")
+	@ResponseBody
+	public Result selectByPage(QueryVo vo) throws Exception{
+		Result<InstDynamic> result = instDynamicService.selectByPage(vo);
+		return result;
+	}
 	@RequestMapping("/addDynamic.action")
 	@ResponseBody
 	public Map<String,String> addDynamic(InstDynamic instDynamic) throws Exception{
 		instDynamicService.addDynamic(instDynamic);
 		Map<String,String> map=new HashMap<>();
-		if(instDynamic.getArtId()==null){
+		if(instDynamic.getArt_id()==null){
 			map.put("errorMsg", "添加资讯失败!");
 		}
 		return map;
+	}
+	
+	@RequestMapping("/updateDynamic.action")
+	public String updateDynamic(Model model, InstDynamic instDynamic) {
+		
+		System.out.println(instDynamic);
+		int code = instDynamicService.updateDynamic(instDynamic);
+		if (code == 1) {
+			
+			return "redirect:/pageweb.action";
+		}
+		return "error";
+		
 	}
 	
 	@RequestMapping("/deleteDynamic.action")
@@ -51,46 +73,5 @@ public class InstDynamicController {
 		return "error";
 	}
 
-	@RequestMapping("/fileupload.action")
-	public @ResponseBody String uploads(HttpServletRequest request, @RequestParam("myFileName") MultipartFile file) {
-		String url = null;
-		try {
-			// url = 只要能上传文件，并且返回文件在服务器上的相对路径即可。
-			System.out.println(file);
-			System.out.println(file.getOriginalFilename());
-			String filename = file.getOriginalFilename();
-			if (filename != null) {
-				if (!filename.equals("")) {
-					// 获取唯一文件名
-					String uuidName = UploadUtils.getUUIDName(filename);
-					String path = "d:/develop/upload/" + uuidName;
-					File uploadPic = new File(path);
-					if (!uploadPic.exists()) {
-						uploadPic.mkdirs();
-					}
-					file.transferTo(uploadPic);
-
-					url = path;
-				}
-
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return request.getContextPath() + url;
-	}
-
-	@RequestMapping("/updateDynamic.action")
-	public String updateDynamic(Model model, InstDynamic instDynamic) {
-
-		System.out.println(instDynamic);
-		int code = instDynamicService.updateDynamic(instDynamic);
-		if (code == 1) {
-
-			return "redirect:/pageweb.action";
-		}
-		return "error";
-
-	}
 
 }

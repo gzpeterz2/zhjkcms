@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.hc.cms.po.Banner;
+import com.hc.cms.vo.QueryVo;
 
 public interface BannerMapper {
 	public List<Banner> selectByLocation(String location) throws SQLException;
@@ -15,4 +16,8 @@ public interface BannerMapper {
 	public void deleteByIds(Integer[] delIds);
 
 	public List<String> selectByArr(Integer[] delIds);
+
+	public List<Banner> selectByPage(QueryVo vo);
+
+	public long selectCount();
 }
