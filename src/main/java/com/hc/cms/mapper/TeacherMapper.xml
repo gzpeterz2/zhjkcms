@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 批量查询老师照片 -->
 	<select id="selectByArr" parameterType="Integer[]" resultType="string">
-		select t_photos from teacher where id in
+		select t_photos from teacher where t_id in
 		<foreach collection="array" item="id" open=" (" close=")" separator=",">
 			#{id}
 		</foreach>
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 新增老师信息 -->
 	<insert id="save" parameterType="teacher">
-		<selectKey keyProperty="id" order="AFTER" resultType="int">
+		<selectKey keyProperty="t_id" order="AFTER" resultType="int">
 			select LAST_INSERT_ID()
 		</selectKey>
 		insert into teacher (t_name,t_course,t_introduction,t_photos)
@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 批量删除老师信息 -->
 	<delete id="deleteByArr" parameterType="Integer[]">
-		delete from teacher where id in
+		delete from teacher where t_id in
 		<foreach collection="array" item="id" open=" (" close=")" separator=",">
 			#{id}
 		</foreach>

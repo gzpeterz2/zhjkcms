@@ -50,7 +50,7 @@
 		}
 		var strIds = [];
 		for (var i = 0; i < selectedRows.length; i++) {
-			strIds.push(selectedRows[i].id);
+			strIds.push(selectedRows[i].t_id);
 		}
 		var ids = strIds.join(",");
 		$.messager.confirm("系统提示", "您确认要删掉这<font color=red>"
@@ -213,7 +213,7 @@
 				</tr>
 				<tr>
 					<td>老师照片：</td>
-					<td><input type="text" name="t_photos" id="t_photos"
+					<td><input type="file" name="photos" id="t_photos"
 						class="easyui-validatebox" required="true" /></td>
 				</tr>
 			</table>
