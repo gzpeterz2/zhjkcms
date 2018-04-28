@@ -173,7 +173,7 @@
 	<!-- 属性栏  -->
 	<table id="dg" title="师资力量管理" class="easyui-datagrid" fitColumns="true"
 		height="800px" pagination="true" rownumbers="true" fit="true"
-		url="teacher/selectByPage.action" toolbar="#tb">
+		url="teacher/selectByPage.action" toolbar="#tb" striped=true>
 		<!--  fitColumns="true" th自适应宽度； pagination：翻页；rownumbers：添加行号；url：必须返回json形式 -->
 		<thead>
 			<tr>

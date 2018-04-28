@@ -17,6 +17,15 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="js/wangEditor.js"></script>
+<style type="text/css">
+        .toolbar {
+            border: 1px solid #ccc;
+        }
+        .text {
+            border: 1px solid #ccc;
+            height: 600px;
+        }
+    </style>
 <script type="text/javascript">
 	var url;
 
@@ -78,12 +87,12 @@
 	function showimages() {
 		var selectedRows = $("#dg").datagrid('getSelections');
 		if (selectedRows.length != 1) {
-			$.messager.alert("系统提示", "请选择一条要展示图片的商品！");
+			$.messager.alert("系统提示", "请选择一条数据！");
 			return;
 		}
 		var row = selectedRows[0];
-		$("#dlg4").dialog('open').dialog('setTitle', '商品图片展示');
-		document.getElementById('imgInit').src = row.src;
+		$("#dlg4").dialog('open').dialog('setTitle', '故事内容');
+		$("#show_content").html(row.content);
 	}
 
 	function saveStudentStory() {
@@ -163,14 +172,14 @@
 			<!-- <a href="javascript:openStudentStoryAddDialog()" class="easyui-linkbutton"
 				iconCls="icon-add" plain="true">添加</a> -->
 			<a id="toUpdate" href="javascript:openStudentStoryModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">添加/修改</a> 
-			<a href="javascript:deleteStudentStory()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a> 
-			<!-- <a href="javascript:showimages()" class="easyui-linkbutton" iconCls="icon-search" plain="true">图片展示</a> -->
+			<!-- <a href="javascript:deleteStudentStory()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>  -->
+			<a href="javascript:showimages()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看内容</a>
 		</div>
 	</div>
 	<!-- 属性栏  -->
 	<table id="dg" title="学员故事管理" class="easyui-datagrid" fitColumns="true"
 		height="800px" pagination="true" rownumbers="true" fit="true"
-		url="story/selectByPage.action" toolbar="#tb">
+		url="story/selectByPage.action" toolbar="#tb" autoRowHeight=false  singleSelect=true striped=true>
 		<!--  fitColumns="true" th自适应宽度； pagination：翻页；rownumbers：添加行号；url：必须返回json形式 -->
 		<thead>
 			<tr>
@@ -214,7 +223,7 @@
 	<!-- 修改窗口 -->
 	<div id="dlg1" class="easyui-dialog"
 		style="width: 710px; height: 540px; padding: 10px 20px" closed="true"
-		buttons="#dlg-buttons1" resizable=true>
+		buttons="#dlg-buttons1" resizable=true maximizable=true>
 		<form id="fm1" method="post" enctype="multipart/form-data">
 			<table cellspacing="5px;">
 				<tr>
@@ -231,11 +240,14 @@
 					<td>学员故事：</td>
 				</tr>
 				<tr>
-					<td id="editor" colspan="4"></td>
+					<td colspan="4"><!-- id="editor"  -->
+					<div id="editor_div1" class="toolbar"></div>
+					<div id="editor_div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度--></div>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="4">
-						<textarea id="text1" name="content" style="width:100%; height:200px;"></textarea><!-- display: none; -->
+						<textarea id="text1" name="content" style="width:100%; height:200px;display: none;"></textarea><!-- display: none; -->
 					</td>
 				</tr>
 			</table>
@@ -258,20 +270,13 @@
 	<!-- 图片展示	 -->
 	<div id="dlg4" class="easyui-dialog"
 		style="width: 1000px; height: 450px; padding: 15px 10px" closed="true"
-		buttons="#dlg-buttons4">
-<!-- 		<form id="uploadImg" method="post" action="StudentStory!uploadPhoto" -->
-<!-- 			enctype="multipart/form-data"> -->
-<!-- 			<span style="white-space: pre"> </span>上传图片1：<input type="file" -->
-<!-- 				name="upload"><br /> <br /> -->
-<!-- 		</form> -->
-		<div>
-			<img src="?" id="imgInit" alt="未上传图片" width="650" height="420" />
-		</div>
+		buttons="#dlg-buttons4" maximizable=true>
+		<div id="show_content"></div>
 	</div>
 
 	<script type="text/javascript">
 		var E = window.wangEditor;
-		var editor = new E('#editor');
+		var editor = new E('#editor_div1','#editor_div2');
 		//配置上传图片
 		//配置服务器端地址
 		editor.customConfig.uploadImgServer = 'img/upload.action';
