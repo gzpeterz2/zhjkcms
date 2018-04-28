@@ -11,54 +11,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.hc.cms.po.Succstudent;
-import com.hc.cms.service.SuccstudentService;
+import com.hc.cms.po.Teacher;
+import com.hc.cms.service.TeacherService;
 import com.hc.cms.util.UploadUtils;
 import com.hc.cms.vo.QueryVo;
 import com.hc.cms.vo.Result;
 
-/**
- * 学员信息管理Controller
- * @author Administrator
- *
- */
 @Controller
-@RequestMapping("/succstudent")
-public class SuccstudentController {
+@RequestMapping("/teacher")
+public class TeacherController {
 
 	@Autowired
-	private SuccstudentService succstudentService;
-	@Value("${STUDENT_PHOTOS_UPLOAD_PATH}")
-	private String STUDENT_PHOTOS_UPLOAD_PATH;
+	private TeacherService teacherService;
+	
+	@Value("${TEACHER_PHOTOS_UPLOAD_PATH}")
+	private String TEACHER_PHOTOS_UPLOAD_PATH;
 	
 	//分页查询
 	@RequestMapping("/selectByPage")
 	@ResponseBody
-	public Result<Succstudent> selectByPage(QueryVo vo) throws Exception{
-		Result<Succstudent> result = succstudentService.selectByPage(vo);
+	public Result<Teacher> selectByPage(QueryVo vo) throws Exception{
+		Result<Teacher> result = teacherService.selectByPage(vo);
 		return result;
 	}
 	
 	//添加新学员记录
 	@RequestMapping("/save")
 	@ResponseBody
-	public Map<String,String> save(Succstudent st,MultipartFile photos) throws Exception{
+	public Map<String,String> save(Teacher teacher,MultipartFile photos) throws Exception{
 		//获取上传的文件名
 		String filename = photos.getOriginalFilename();
 		if (filename != null) {
 			if (!filename.equals("")) {
 				String newFileName = "photos/" + UploadUtils.getRandomName(filename);
-				File uploadPic = new File(STUDENT_PHOTOS_UPLOAD_PATH + newFileName);
+				System.out.println(newFileName);
+				System.out.println(TEACHER_PHOTOS_UPLOAD_PATH);
+				File uploadPic = new File(TEACHER_PHOTOS_UPLOAD_PATH + newFileName);
 				if (!uploadPic.exists()) {
 					uploadPic.mkdirs();
 				}
 				photos.transferTo(uploadPic);
-				st.setPhotos_src("/pic/" + newFileName);
-				succstudentService.save(st);
+				teacher.setT_photos("/pic/" + newFileName);
+				teacherService.save(teacher);
 			}
 		}
 		Map<String,String> map=new HashMap<>();
-		if(st.getId()==null){
+		if(teacher.getT_id()==null){
 			map.put("errorMsg", "添加学员失败!");
 		}
 		return map;
@@ -67,20 +65,21 @@ public class SuccstudentController {
 	//更新学员信息
 	@RequestMapping("/update")
 	@ResponseBody
-	public Map<String,String> update(Succstudent st,MultipartFile photos) throws Exception{
+	public Map<String,String> update(Teacher teacher,MultipartFile photos) throws Exception{
 		String filename = photos.getOriginalFilename();
 		if (filename != null) {
 			if (!filename.equals("")) {
 				String newFileName = "photos/" + UploadUtils.getRandomName(filename);
-				File uploadPic = new File(STUDENT_PHOTOS_UPLOAD_PATH + newFileName);
+				System.out.println(newFileName);
+				File uploadPic = new File(TEACHER_PHOTOS_UPLOAD_PATH + newFileName);
 				if (!uploadPic.exists()) {
 					uploadPic.mkdirs();
 				}
 				photos.transferTo(uploadPic);
-				st.setPhotos_src("/pic/" + newFileName);
+				teacher.setT_photos("/pic/" + newFileName);
 			}
 		}
-		succstudentService.update(st,STUDENT_PHOTOS_UPLOAD_PATH);
+		teacherService.update(teacher,TEACHER_PHOTOS_UPLOAD_PATH);
 		Map<String,String> map=new HashMap<>();
 		return map;
 	}
@@ -94,10 +93,12 @@ public class SuccstudentController {
 		for (int i = 0; i < split.length; i++) {
 			ids[i]=Integer.parseInt(split[i]);
 		}
-		succstudentService.delete(ids,STUDENT_PHOTOS_UPLOAD_PATH);
+		teacherService.delete(ids,TEACHER_PHOTOS_UPLOAD_PATH);
 		Map<String,String> map=new HashMap<>();
 		map.put("success", "true");
 		map.put("delNums", ids.length+"");
 		return map;
 	}
+	
+	
 }

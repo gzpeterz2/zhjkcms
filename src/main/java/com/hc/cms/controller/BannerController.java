@@ -2,22 +2,16 @@ package com.hc.cms.controller;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.hc.cms.po.Banner;
-import com.hc.cms.po.Succstudent;
 import com.hc.cms.service.HomeService;
 import com.hc.cms.util.UploadUtils;
 

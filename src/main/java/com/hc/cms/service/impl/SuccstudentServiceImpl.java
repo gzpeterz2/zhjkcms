@@ -43,7 +43,8 @@ public class SuccstudentServiceImpl implements SuccstudentService{
 	public void update(Succstudent st,String path) {
 		Succstudent ss=succstudentMapper.selectById(st.getId());
 		String photos_src = ss.getPhotos_src();
-		if(photos_src!=null){
+		String photos_src2 = st.getPhotos_src();
+		if(photos_src!=null && !photos_src2.equals(photos_src)){
 			String filepath=path+photos_src.substring(5);
 			File file = new File(filepath);
 			if(file.exists()){
