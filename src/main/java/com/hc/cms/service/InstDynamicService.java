@@ -20,6 +20,6 @@ public interface InstDynamicService {
 	
 	Result<InstDynamic> selectByPage(QueryVo vo);
 	
-	void deleteByIds(String delIds);
+	void deleteByIds(Integer[] delIds);
 
 }

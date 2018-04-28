@@ -23,6 +23,6 @@ public interface InstDynamicMapper {
 	
 	List<InstDynamic> selectAll();
 	
-	void deleteByIds(String delIds);
+	void deleteByIds(Integer[] delIds);
 	
 }
