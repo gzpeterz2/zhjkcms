@@ -50,6 +50,11 @@ public class PageWebController {
 	public String toStudentstory() throws Exception {
 		return "studentstory";
 	}
+	//进入师资力量管理页面
+	@RequestMapping("/teachers.action")
+	public String toTeachers() throws Exception {
+		return "teachers";
+	}
 	
 	@RequestMapping("/video.action")
 	public ModelAndView video() throws Exception {

@@ -3,7 +3,6 @@ package com.hc.cms.controller;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +34,7 @@ public class SuccstudentController {
 	//分页查询
 	@RequestMapping("/selectByPage")
 	@ResponseBody
-	public Result selectByPage(QueryVo vo) throws Exception{
+	public Result<Succstudent> selectByPage(QueryVo vo) throws Exception{
 		Result<Succstudent> result = succstudentService.selectByPage(vo);
 		return result;
 	}
@@ -49,8 +48,6 @@ public class SuccstudentController {
 		if (filename != null) {
 			if (!filename.equals("")) {
 				String newFileName = "photos/" + UploadUtils.getRandomName(filename);
-				System.out.println(newFileName);
-				System.out.println(STUDENT_PHOTOS_UPLOAD_PATH);
 				File uploadPic = new File(STUDENT_PHOTOS_UPLOAD_PATH + newFileName);
 				if (!uploadPic.exists()) {
 					uploadPic.mkdirs();
@@ -75,7 +72,6 @@ public class SuccstudentController {
 		if (filename != null) {
 			if (!filename.equals("")) {
 				String newFileName = "photos/" + UploadUtils.getRandomName(filename);
-				System.out.println(newFileName);
 				File uploadPic = new File(STUDENT_PHOTOS_UPLOAD_PATH + newFileName);
 				if (!uploadPic.exists()) {
 					uploadPic.mkdirs();
@@ -84,7 +80,7 @@ public class SuccstudentController {
 				st.setPhotos_src("/pic/" + newFileName);
 			}
 		}
-		succstudentService.update(st);
+		succstudentService.update(st,STUDENT_PHOTOS_UPLOAD_PATH);
 		Map<String,String> map=new HashMap<>();
 		return map;
 	}

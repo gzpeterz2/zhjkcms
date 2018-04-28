@@ -16,28 +16,42 @@
 	src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/wangEditor.js"></script>
+<style type="text/css">
+        .toolbar {
+            border: 1px solid #ccc;
+        }
+        .text {
+            border: 1px solid #ccc;
+            height: 600px;
+        }
+    </style>
 <script type="text/javascript">
 	var url;
 
-	function openGoodsAddDialog() {
-		$("#dlg").dialog("open").dialog("setTitle", "添加商品信息");
-		url = "goods!save";
+	function openStudentStoryAddDialog() {
+		$("#dlg").dialog("open").dialog("setTitle", "添加学员故事");
+		url = "StudentStory!save";
 	}
 
-	function openGoodsModifyDialog() {
+	function openStudentStoryModifyDialog() {
 		var selectedRows = $("#dg").datagrid('getSelections');
 		if (selectedRows.length != 1) {
 			$.messager.alert("系统提示", "请选择一条要编辑的数据！");
 			return;
 		}
 		var row = selectedRows[0];
-		$("#dlg1").dialog("open").dialog("setTitle", "编辑商品信息");
-		$("#Gname2").val(row.Gname);
-		$("#Gprovider2").val(row.Gprovider);
-		url = "goods!save?Gid=" + row.Gid;
+		$("#dlg1").dialog("open").dialog("setTitle", "编辑学员故事信息");
+		$("#id2").val(row.id);
+		$("#name2").val(row.name);
+		if(row.content==null){
+			editor.txt.html("");
+		}
+		editor.txt.html(row.content);
+		url = "story/update.action";
 	}
 
-	function deleteGoods() {
+	function deleteStudentStory() {
 		var selectedRows = $("#dg").datagrid('getSelections');
 		if (selectedRows.length == 0) {
 			$.messager.alert("系统提示", "请选择要删除的数据！");
@@ -51,7 +65,7 @@
 		$.messager.confirm("系统提示", "您确认要删掉这<font color=red>"
 				+ selectedRows.length + "</font>条数据吗？", function(r) {
 			if (r) {
-				$.post("${pageContext.request.contextPath}/goods!delete", {
+				$.post("${pageContext.request.contextPath}/StudentStory!delete", {
 					delIds : ids
 				}, function(result) {
 					if (result.success) {
@@ -60,7 +74,7 @@
 						$("#dg").datagrid("reload");
 					} else {
 						$.messager.alert('系统提示', '<font color=red>'
-								+ selectedRows[result.errorIndex].goodsName
+								+ selectedRows[result.errorIndex].name
 								+ '</font>' + result.errorMsg);
 					}
 				}, "json");
@@ -73,15 +87,15 @@
 	function showimages() {
 		var selectedRows = $("#dg").datagrid('getSelections');
 		if (selectedRows.length != 1) {
-			$.messager.alert("系统提示", "请选择一条要展示图片的商品！");
+			$.messager.alert("系统提示", "请选择一条数据！");
 			return;
 		}
 		var row = selectedRows[0];
-		$("#dlg4").dialog('open').dialog('setTitle', '商品图片展示');
-		document.getElementById('imgInit').src = row.src;
+		$("#dlg4").dialog('open').dialog('setTitle', '故事内容');
+		$("#show_content").html(row.content);
 	}
 
-	function saveGoods() {
+	function saveStudentStory() {
 		$("#fm").form("submit", {
 			url : url,
 			onSubmit : function() {
@@ -94,7 +108,7 @@
 					return error;
 				} else {
 					$.messager.alert("系统提示", "保存成功");
-					resetValue();
+					/* resetValue(); */
 					$("#dlg").dialog("close");
 					$("#dg").datagrid("reload");
 				}
@@ -102,7 +116,7 @@
 		});
 	}
 
-	function saveGoods1() {
+	function saveStudentStory1() {
 		$("#fm1").form("submit", {
 			url : url,
 			onSubmit : function() {
@@ -114,7 +128,7 @@
 					return error;
 				} else {
 					$.messager.alert("系统提示", "保存成功");
-					resetValue();
+					/* resetValue(); */
 					$("#dlg1").dialog("close");
 					$("#dg").datagrid("reload");
 				}
@@ -122,12 +136,12 @@
 		});
 	}
 
-	function closeGoodsDialog() {
+	function closeStudentStoryDialog() {
 		$("#dlg").dialog("close");
 		resetValue();
 	}
 
-	function closeGoodsDialog1() {
+	function closeStudentStoryDialog1() {
 		$("#dlg1").dialog("close");
 		resetValue();
 	}
@@ -155,93 +169,100 @@
 	<!-- 管理员操作栏-->
 	<div id="tb">
 		<div>
-			<a href="javascript:openGoodsAddDialog()" class="easyui-linkbutton"
-				iconCls="icon-add" plain="true">添加</a> <a
-				href="javascript:openGoodsModifyDialog()" class="easyui-linkbutton"
-				iconCls="icon-edit" plain="true">修改</a> <a
-				href="javascript:deleteGoods()" class="easyui-linkbutton"
-				iconCls="icon-remove" plain="true">删除</a> <a
-				href="javascript:showimages()" class="easyui-linkbutton"
-				iconCls="icon-search" plain="true">图片展示</a>
+			<!-- <a href="javascript:openStudentStoryAddDialog()" class="easyui-linkbutton"
+				iconCls="icon-add" plain="true">添加</a> -->
+			<a id="toUpdate" href="javascript:openStudentStoryModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">添加/修改</a> 
+			<!-- <a href="javascript:deleteStudentStory()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>  -->
+			<a href="javascript:showimages()" class="easyui-linkbutton" iconCls="icon-search" plain="true">查看内容</a>
 		</div>
 	</div>
 	<!-- 属性栏  -->
-	<table id="dg" title="轮播图管理" class="easyui-datagrid" fitColumns="true"
+	<table id="dg" title="学员故事管理" class="easyui-datagrid" fitColumns="true"
 		height="800px" pagination="true" rownumbers="true" fit="true"
-		url="json/homeBanner.action" toolbar="#tb">
+		url="story/selectByPage.action" toolbar="#tb" autoRowHeight=false  singleSelect=true striped=true>
 		<!--  fitColumns="true" th自适应宽度； pagination：翻页；rownumbers：添加行号；url：必须返回json形式 -->
 		<thead>
 			<tr>
 				<th field="cb" checkbox="true"></th>
-				<th field="name" width="15">轮播标题</th>
-				<th field="src" width="25">轮播图</th>
-				<th field="url" width="33">轮播图链接</th>
+				<th field="id" width="10" hidden=true>学员id</th>
+				<th field="name" width="15">学员姓名</th>
+				<th field="content" width="25">学员故事</th>
 			</tr>
 		</thead>
 	</table>
 	<!-- 添加窗口 -->
 	<div id="dlg" class="easyui-dialog"
-		style="width: 580px; height: 350px; padding: 10px 20px" closed="true"
-		buttons="#dlg-buttons">
+		style="width: 710px; height: 540px; padding: 10px 20px" closed="true"
+		buttons="#dlg-buttons" resizable=true>
 		<form id="fm" method="post">
 			<table cellspacing="5px;">
 				<tr>
 					<td height="15px"></td>
 				</tr>
 				<tr>
-					<td>轮播标题：</td>
+					<td>学员姓名：</td>
 					<td><input type="text" name="name" id="name"
-						class="easyui-validatebox" required="true" /></td>
+						class="easyui-validatebox" required="true" />
+					</td>
 				</tr>
 				<tr>
-					<td>轮播图：</td>
-					<td><input type="text" name="src" id="src"
-						class="easyui-validatebox" required="true" /></td>
-					<td>轮播图链接：</td>
-					<td><input type="text" name="url" id="url"
-						class="easyui-validatebox" required="true" /></td>
+					<td>学员故事：</td>
 				</tr>
+			<!-- 	<tr>
+					<td id="editor" colspan="4"></td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<textarea id="text1" style="width:100%; height:200px;display: none;"></textarea>
+					</td>
+				</tr> -->
+				
 			</table>
 		</form>
 	</div>
 	<!-- 修改窗口 -->
 	<div id="dlg1" class="easyui-dialog"
-		style="width: 580px; height: 350px; padding: 10px 20px" closed="true"
-		buttons="#dlg-buttons1">
-		<form id="fm1" method="post">
+		style="width: 710px; height: 540px; padding: 10px 20px" closed="true"
+		buttons="#dlg-buttons1" resizable=true maximizable=true>
+		<form id="fm1" method="post" enctype="multipart/form-data">
 			<table cellspacing="5px;">
 				<tr>
 					<td height="15px"></td>
+					<td><input type="hidden" name="id" id="id2"></td>
 				</tr>
 				<tr>
-					<td>商品名称：</td>
-					<td><input type="text" name="goods.Gname" id="Gname2"
-						class="easyui-validatebox" required="true" /></td>
-					<td>商品规格：</td>
-					<td><input type="text" name="goods.gspecifications"
-						id="Gspecifications2" class="easyui-validatebox" required="true" /></td>
+					<td>学员姓名：</td>
+					<td>
+						<input type="text" name="name" id="name2" class="easyui-validatebox" disabled="disabled"/>
+					</td>
 				</tr>
 				<tr>
-					<td>商品产地：</td>
-					<td><input type="text" name="goods.glocation" id="Glocation2"
-						class="easyui-validatebox" required="true" /></td>
-					<td>商品材质：</td>
-					<td><input type="text" name="goods.gmaterial" id="Gmaterial2"
-						class="easyui-validatebox" required="true" /></td>
+					<td>学员故事：</td>
+				</tr>
+				<tr>
+					<td colspan="4"><!-- id="editor"  -->
+					<div id="editor_div1" class="toolbar"></div>
+					<div id="editor_div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度--></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<textarea id="text1" name="content" style="width:100%; height:200px;display: none;"></textarea><!-- display: none; -->
+					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
 
 	<div id="dlg-buttons">
-		<a href="javascript:saveGoods()" class="easyui-linkbutton"
-			iconCls="icon-ok">保存</a> <a href="javascript:closeGoodsDialog()"
+		<a href="javascript:saveStudentStory()" class="easyui-linkbutton"
+			iconCls="icon-ok">保存</a> <a href="javascript:closeStudentStoryDialog()"
 			class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 	</div>
 
 	<div id="dlg-buttons1">
-		<a href="javascript:saveGoods1()" class="easyui-linkbutton"
-			iconCls="icon-ok">保存</a> <a href="javascript:closeGoodsDialog1()"
+		<a href="javascript:saveStudentStory1()" class="easyui-linkbutton"
+			iconCls="icon-ok">保存</a> <a href="javascript:closeStudentStoryDialog1()"
 			class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 	</div>
 
@@ -249,17 +270,48 @@
 	<!-- 图片展示	 -->
 	<div id="dlg4" class="easyui-dialog"
 		style="width: 1000px; height: 450px; padding: 15px 10px" closed="true"
-		buttons="#dlg-buttons4">
-<!-- 		<form id="uploadImg" method="post" action="goods!uploadPhoto" -->
-<!-- 			enctype="multipart/form-data"> -->
-<!-- 			<span style="white-space: pre"> </span>上传图片1：<input type="file" -->
-<!-- 				name="upload"><br /> <br /> -->
-<!-- 		</form> -->
-		<div>
-			<img src="?" id="imgInit" alt="未上传图片" width="650" height="420" />
-		</div>
+		buttons="#dlg-buttons4" maximizable=true>
+		<div id="show_content"></div>
 	</div>
 
+	<script type="text/javascript">
+		var E = window.wangEditor;
+		var editor = new E('#editor_div1','#editor_div2');
+		//配置上传图片
+		//配置服务器端地址
+		editor.customConfig.uploadImgServer = 'img/upload.action';
+		//隐藏"网络图片"tab
+		editor.customConfig.showLinkImg = false;
+		//限制上传图片大小（ 3M）
+		//editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
+		//限制一次最多上传 5 张图片
+		//editor.customConfig.uploadImgMaxLength = 5;
+		editor.customConfig.uploadFileName = 'myFileName';
+		editor.customConfig.uploadImgHooks = {
+			customInsert : function(insertImg, result, editor) {
+				// 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+				// insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+				// 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+				var url = result.data;
+				insertImg(url);	
+				// result 必须是一个 JSON 格式字符串！！！否则报错
+			}
+		}
+		//关闭粘贴文本样式过滤
+		editor.customConfig.pasteFilterStyle = false;
+		
+		//通过onchange来实现 textarea 中提交富文本内容
+		var $text1 = $('#text1');
+		editor.customConfig.onchange = function (html) {
+            // 监控变化，同步更新到 textarea
+            $text1.val(html);
+        }
+		editor.create();
+		//初始化 textarea 的值
+		$text1.val(editor.txt.html());
+		
+		document.getElementById('toUpdate').addEventListener('click', openStudentStoryModifyDialog(editor), false)
+	</script>
 
 </body>
 </html>

@@ -8,4 +8,10 @@ public interface ChatPrintscreenService {
 
 	Result<ChatPrintscreen> selectByPage(QueryVo vo);
 
+	void save(ChatPrintscreen cp);
+
+	void update(ChatPrintscreen cp, String path);
+
+	void delete(Integer[] ids, String path);
+
 }

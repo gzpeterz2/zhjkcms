@@ -14,7 +14,7 @@ public interface SuccstudentService {
 	public void save(Succstudent st);
 	
 	//更新学员就业信息
-	public void update(Succstudent st);
+	public void update(Succstudent st, String path);
 	
 	//批量删除学员
 	public void delete(Integer[] ids, String path);

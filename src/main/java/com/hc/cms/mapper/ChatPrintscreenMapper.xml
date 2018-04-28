@@ -7,7 +7,43 @@
 	</select>
 	
 	<!-- 查询总记录数 -->
-	<select id="selectCount" resultType="int">
+	<select id="selectCount" resultType="long">
 		select count(*) from chat_printscreen
 	</select>
+	
+	<!-- 通过id查询图片 -->
+	<select id="selectById" parameterType="int" resultType="chatPrintscreen">
+		select * from chat_printscreen where c_id = #{c_id}
+	</select>
+	
+	<!-- 批量查询图片 -->
+	<select id="selectByArr" parameterType="Integer[]" resultType="string">
+		select c_src from chat_printscreen where c_id in
+		<foreach collection="array" item="c_id" open=" (" close=")" separator=",">
+			#{c_id}
+		</foreach>
+	</select>
+	
+	<!-- 添加图片 -->
+	<insert id="save" parameterType="chatPrintscreen">
+		<selectKey keyProperty="c_id" order="AFTER" resultType="int">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into chat_printscreen (c_src) values (#{c_src})
+	</insert>
+	
+	<!-- 更新图片 -->
+	<update id="update" parameterType="chatPrintscreen">
+		update chat_printscreen set c_src = #{c_src} where c_id=#{c_id}
+	</update>
+	
+	<!-- 批量删除图片 -->
+	<delete id="deleteByArr" parameterType="Integer[]">
+		delete from chat_printscreen where c_id in
+		<foreach collection="array" item="c_id" open=" (" close=")" separator=",">
+			#{c_id}
+		</foreach>
+	</delete>	
+	
+	
 </mapper>

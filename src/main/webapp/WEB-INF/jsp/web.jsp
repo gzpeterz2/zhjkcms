@@ -108,7 +108,7 @@
 		var treeData4 = [ {
 			text : "师资力量",
 			attributes : {
-				url : "banner.jsp"
+				url : "teachers.action"
 			}
 		} ];
 		$("#tree4").tree({

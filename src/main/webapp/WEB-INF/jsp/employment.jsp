@@ -178,7 +178,7 @@
 	<!-- 属性栏  -->
 	<table id="dg" title="学员信息管理" class="easyui-datagrid" fitColumns="true"
 		height="800px" pagination="true" rownumbers="true" fit="true"
-		url="succstudent/selectByPage.action" toolbar="#tb">
+		url="succstudent/selectByPage.action" toolbar="#tb"  striped=true>
 		<!--  fitColumns="true" th自适应宽度； pagination：翻页；rownumbers：添加行号；url：必须返回json形式 -->
 		<thead>
 			<tr>
@@ -334,7 +334,7 @@
 	<!-- 图片展示	 -->
 	<div id="dlg4" class="easyui-dialog"
 		style="width: 600px; height: 500px; padding: 15px 10px" closed="true"
-		buttons="#dlg-buttons4">
+		buttons="#dlg-buttons4" resizable=true>
 <!-- 		<form id="uploadImg" method="post" action="Students!uploadPhoto" -->
 <!-- 			enctype="multipart/form-data"> -->
 <!-- 			<span style="white-space: pre"> </span>上传图片1：<input type="file" -->
@@ -345,13 +345,14 @@
 		</div>
 	</div>
 	
-	<script type="text/javascript">
+	<!-- 关闭查看图片弹框之后清除复选框 -->
+<!-- 	<script type="text/javascript">
 		$("#dlg4").dialog({
 			onClose:function(){
 				$("#dg").datagrid("clearSelections");
 				resetValue();
 			}
 		})
-	</script>
+	</script> -->
 </body>
 </html>
