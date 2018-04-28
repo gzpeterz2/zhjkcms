@@ -48,30 +48,33 @@ public class InstDynamicController {
 		}
 		return map;
 	}
-	
+
 	@RequestMapping("/updateDynamic.action")
-	public String updateDynamic(Model model, InstDynamic instDynamic) {
+	@ResponseBody
+	public Map<String,String> updateDynamic(InstDynamic instDynamic) throws Exception {
 		
 		System.out.println(instDynamic);
-		int code = instDynamicService.updateDynamic(instDynamic);
-		if (code == 1) {
-			
-			return "redirect:/pageweb.action";
-		}
-		return "error";
+		instDynamicService.updateDynamic(instDynamic);
+	
+		Map<String,String> map=new HashMap<>();
 		
+		return map;		
 	}
 	
 	@RequestMapping("/deleteDynamic.action")
-	public String deleteDynamic(Model model, @RequestParam("instid") Integer instid) {
-		System.out.println(instid);
-		int code = instDynamicService.deleteById(instid);
-		if (code == 1) {
-
-			return "redirect:/pageweb.action";
+	@ResponseBody
+	public Map<String,String> deleteDynamic(String delIds) throws Exception{
+		String[] split = delIds.split(",");
+		Integer[] ids=new Integer[split.length];
+		for (int i = 0; i < split.length; i++) {
+			ids[i]=Integer.parseInt(split[i]);
 		}
-		return "error";
+		instDynamicService.deleteByIds(delIds);
+		Map<String,String> map=new HashMap<>();
+		map.put("success", "true");
+		map.put("delNums", ids.length+"");
+		return map;
 	}
-
+	
 
 }
