@@ -42,7 +42,7 @@ public class JsonServiceImpl implements JsonService {
 	@Override
 	public List<InstDynamic> getInstDynamic() throws Exception {
 		
-		return instDynamicMapper.findByPage();
+		return instDynamicMapper.selectAll();
 	}
 	
 }

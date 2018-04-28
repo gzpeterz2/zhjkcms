@@ -8,7 +8,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectByLocation" parameterType="String" resultType="banner">
 		select * from banner where location = #{location} order by name
 	</select>
-
+	<!-- 分页查询资讯信息 -->
+	<select id="selectByPage" parameterType="com.hc.cms.vo.QueryVo" resultType="banner">
+		select * from banner limit #{page},#{rows}
+	</select>
+	<!-- 查询总记录 -->
+	<select id="selectCount" resultType="long">
+		select count(*) from banner 
+	</select>
 	<!-- 批量查询照片 -->
 	<select id="selectByArr" parameterType="Integer[]" resultType="string">
 		select src from banner where id in

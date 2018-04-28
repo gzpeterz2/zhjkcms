@@ -3,10 +3,11 @@ package com.hc.cms.mapper;
 import java.util.List;
 
 import com.hc.cms.po.InstDynamic;
+import com.hc.cms.vo.QueryVo;
 
 public interface InstDynamicMapper {
     int deleteByPrimaryKey(Integer artId);
-  //添加学院动态资讯
+    //添加学院动态资讯
     int insert(InstDynamic record);
 
     int insertSelective(InstDynamic record);
@@ -18,7 +19,11 @@ public interface InstDynamicMapper {
     int updateByPrimaryKeyWithBLOBs(InstDynamic record);
 
     int updateByPrimaryKey(InstDynamic record);
-    
-	List<InstDynamic> findByPage();
+	
+	List<InstDynamic> selectByPage(QueryVo vo);
+	
+	long selectCount();
+	
+	List<InstDynamic> selectAll();
 	
 }

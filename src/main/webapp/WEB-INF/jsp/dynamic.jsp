@@ -19,12 +19,12 @@
 	src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
 	var url;
-
+	//添加动态资讯
 	function openGoodsAddDialog() {
-		$("#dlg").dialog("open").dialog("setTitle", "添加商品信息");
+		$("#dlg").dialog("open").dialog("setTitle", "添加资讯信息");
 		url = "instDynamic/addDynamic.action";
 	}
-
+	//修改动态资讯
 	function openGoodsModifyDialog() {
 		var selectedRows = $("#dg").datagrid('getSelections');
 		if (selectedRows.length != 1) {
@@ -38,9 +38,9 @@
 		$("#name2").val(row.name);
 		$("#location2").val(row.location);
 		$("#src2").val(row.src);
-		url = "home/updateBanner.action";
+		url = "instDynamic/updateDynamic.action";
 	}
-
+	//删除动态资讯
 	function deleteGoods() {
 		var selectedRows = $("#dg").datagrid('getSelections');
 		if (selectedRows.length == 0) {
@@ -72,7 +72,7 @@
 		});
 	}
 
-	/* 轮播图展示 */
+	/* 资讯列表 */
 
 	function showimages() {
 		var selectedRows = $("#dg").datagrid('getSelections');
@@ -175,9 +175,9 @@
 		</div>
 	</div>
 	<!-- 属性栏  -->
-	<table id="dg" title="轮播图管理" class="easyui-datagrid" fitColumns="true"
+	<table id="dg" title="学院资讯动态管理" class="easyui-datagrid" fitColumns="true"
 		height="800px" pagination="true" rownumbers="true" fit="true"
-		url="json/instDynamic.action" toolbar="#tb">
+		url="instDynamic/selectByPage.action" toolbar="#tb">
 		<!--  fitColumns="true" th自适应宽度； pagination：翻页；rownumbers：添加行号；url：必须返回json形式 -->
 		<thead>
 			<tr>

@@ -10,7 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hc.cms.mapper.BannerMapper;
 import com.hc.cms.po.Banner;
 import com.hc.cms.po.HomePage;
+import com.hc.cms.po.InstDynamic;
 import com.hc.cms.service.HomeService;
+import com.hc.cms.vo.QueryVo;
+import com.hc.cms.vo.Result;
 
 @Service
 @Transactional
@@ -56,5 +59,20 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public void update(Banner banner) throws Exception {
 		bannerMapper.update(banner);
+	}
+	//分页查询轮播图
+	@Override
+	public Result<Banner> selectByPage(QueryVo vo) {
+		Result<Banner> result = new Result<Banner>();
+		int page = vo.getPage();
+		page=(page-1)*vo.getRows();
+		vo.setPage(page);
+		List<Banner> list = bannerMapper.selectByPage(vo);
+
+		long count = bannerMapper.selectCount();
+		result.setRows(list);
+		result.setTotal(count);
+		return result;
+
 	}
 }

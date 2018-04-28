@@ -7,8 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hc.cms.service.InstDynamicService;
+import com.hc.cms.vo.QueryVo;
+import com.hc.cms.vo.Result;
 import com.hc.cms.mapper.InstDynamicMapper;
 import com.hc.cms.po.InstDynamic;
+import com.hc.cms.po.Succstudent;
 
 public class InstDynamicServiceImpl implements InstDynamicService {
 	@Autowired
@@ -21,7 +24,7 @@ public class InstDynamicServiceImpl implements InstDynamicService {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String dateform = sdf.format(d);
 		
-		instDynamic.setPostTime(dateform);
+		instDynamic.setPost_time(dateform);
 		instDynamic.setViews(0);
 		return instDynamicMapper.insert(instDynamic);
 	}
@@ -32,16 +35,30 @@ public class InstDynamicServiceImpl implements InstDynamicService {
 		return 0;
 	}
 
-	@Override
+	/*@Override
 	public List<InstDynamic> findByPage() {
 		
 		return instDynamicMapper.findByPage();
-	}
+	}*/
 
 	@Override
 	public int deleteById(Integer instid) {
 		
 		return instDynamicMapper.deleteByPrimaryKey(instid);
 	}
-
+	//分页查询资讯
+	@Override
+	public Result<InstDynamic> selectByPage(QueryVo vo) {
+		Result<InstDynamic> result = new Result<InstDynamic>();
+		int page = vo.getPage();
+		page=(page-1)*vo.getRows();
+		vo.setPage(page);
+		List<InstDynamic> list = instDynamicMapper.selectByPage(vo);
+		System.out.println(list.get(0));
+		long count = instDynamicMapper.selectCount();
+		result.setRows(list);
+		result.setTotal(count);
+		return result;
+	}
+	
 }
