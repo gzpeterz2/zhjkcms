@@ -20,19 +20,27 @@ public class InstDynamicServiceImpl implements InstDynamicService {
 	//添加学院动态资讯
 	@Override
 	public int addDynamic(InstDynamic instDynamic) {
+		//获取系统当前时间
 		Date d = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String dateform = sdf.format(d);
-		
+		//设置发布时间
 		instDynamic.setPost_time(dateform);
+		//设置浏览数
 		instDynamic.setViews(0);
 		return instDynamicMapper.insert(instDynamic);
 	}
 
 	@Override
 	public int updateDynamic(InstDynamic instDynamic) {
-		instDynamicMapper.updateByPrimaryKey(instDynamic);
-		return 0;
+		//获取系统当前时间
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dateform = sdf.format(d);
+		//设置发布时间
+		instDynamic.setPost_time(dateform);
+		
+		return instDynamicMapper.updateByPrimaryKey(instDynamic);
 	}
 
 	/*@Override
@@ -41,11 +49,6 @@ public class InstDynamicServiceImpl implements InstDynamicService {
 		return instDynamicMapper.findByPage();
 	}*/
 
-	@Override
-	public int deleteById(Integer instid) {
-		
-		return instDynamicMapper.deleteByPrimaryKey(instid);
-	}
 	//分页查询资讯
 	@Override
 	public Result<InstDynamic> selectByPage(QueryVo vo) {
@@ -59,6 +62,19 @@ public class InstDynamicServiceImpl implements InstDynamicService {
 		result.setRows(list);
 		result.setTotal(count);
 		return result;
+	}
+
+	@Override
+	public int deleteById(Integer instid) {
+		
+		return 0;
+	}
+
+	@Override
+	public void deleteByIds(String delIds) {
+		
+		instDynamicMapper.deleteByIds(delIds);
+		
 	}
 	
 }

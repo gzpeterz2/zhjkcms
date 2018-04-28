@@ -14,9 +14,6 @@ public interface InstDynamicMapper {
 
     InstDynamic selectByPrimaryKey(Integer artId);
 
-    int updateByPrimaryKeySelective(InstDynamic record);
-
-    int updateByPrimaryKeyWithBLOBs(InstDynamic record);
 
     int updateByPrimaryKey(InstDynamic record);
 	
@@ -25,5 +22,7 @@ public interface InstDynamicMapper {
 	long selectCount();
 	
 	List<InstDynamic> selectAll();
+	
+	void deleteByIds(String delIds);
 	
 }

@@ -19,5 +19,7 @@ public interface InstDynamicService {
 	int deleteById(Integer instid);
 	
 	Result<InstDynamic> selectByPage(QueryVo vo);
+	
+	void deleteByIds(String delIds);
 
 }
