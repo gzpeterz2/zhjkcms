@@ -64,12 +64,13 @@ public class InstDynamicController {
 	@RequestMapping("/deleteDynamic.action")
 	@ResponseBody
 	public Map<String,String> deleteDynamic(String delIds) throws Exception{
+		//System.out.println(delIds);
 		String[] split = delIds.split(",");
 		Integer[] ids=new Integer[split.length];
 		for (int i = 0; i < split.length; i++) {
 			ids[i]=Integer.parseInt(split[i]);
 		}
-		instDynamicService.deleteByIds(delIds);
+		instDynamicService.deleteByIds(ids);
 		Map<String,String> map=new HashMap<>();
 		map.put("success", "true");
 		map.put("delNums", ids.length+"");

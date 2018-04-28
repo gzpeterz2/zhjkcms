@@ -71,7 +71,7 @@ public class InstDynamicServiceImpl implements InstDynamicService {
 	}
 
 	@Override
-	public void deleteByIds(String delIds) {
+	public void deleteByIds(Integer[] delIds) {
 		
 		instDynamicMapper.deleteByIds(delIds);
 		

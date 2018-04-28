@@ -33,11 +33,15 @@
 			$.messager.alert("系统提示", "请选择要删除的数据！");
 			return;
 		}
+		
 		var strIds = [];
 		for (var i = 0; i < selectedRows.length; i++) {
-			strIds.push(selectedRows[i].id);
+			strIds.push(selectedRows[i].art_id);
+			
+			
 		}
 		var ids = strIds.join(",");
+		alert(strIds);
 		$.messager.confirm("系统提示", "您确认要删掉这<font color=red>"
 				+ selectedRows.length + "</font>条数据吗？", function(r) {
 			if (r) {
