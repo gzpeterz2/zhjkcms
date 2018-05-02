@@ -63,7 +63,7 @@
 		$.messager.confirm("系统提示", "您确认要删掉这<font color=red>"
 				+ selectedRows.length + "</font>条数据吗？", function(r) {
 			if (r) {
-				$.post("${pageContext.request.contextPath}/succstudent/delete.action", {
+				$.post("${pageContext.request.contextPath}/forum/delete.action", {
 					delIds : ids
 				}, function(result) {
 					if (result.success) {
@@ -72,7 +72,7 @@
 						$("#dg").datagrid("reload");
 					} else {
 						$.messager.alert('系统提示', '<font color=red>'
-								+ selectedRows[result.errorIndex].StudentsName
+								+ selectedRows[result.errorIndex].title
 								+ '</font>' + result.errorMsg);
 					}
 				}, "json");
@@ -167,34 +167,41 @@
 	<!-- 管理员操作栏-->
 	<div id="tb">
 		<div>
-			<a href="javascript:openStudentsAddDialog()" class="easyui-linkbutton"
-				iconCls="icon-add" plain="true">添加</a>
+			<!-- <a href="javascript:openStudentsAddDialog()" class="easyui-linkbutton"
+				iconCls="icon-add" plain="true">添加
+			</a>
 			<a href="javascript:openStudentsModifyDialog()" class="easyui-linkbutton"
-				iconCls="icon-edit" plain="true">修改</a>
+				iconCls="icon-edit" plain="true">修改
+			</a> -->
 			<a href="javascript:deleteStudent()" class="easyui-linkbutton"
-				iconCls="icon-remove" plain="true">删除</a>
-			<a href="javascript:showimages()" class="easyui-linkbutton"
-				iconCls="icon-search" plain="true">图片展示</a>
+				iconCls="icon-remove" plain="true">删除
+			</a>
+			<!-- <a href="javascript:showimages()" class="easyui-linkbutton"
+				iconCls="icon-search" plain="true">图片展示</a> -->
 		</div>
 	</div>
 	<!-- 属性栏  -->
-	<table id="dg" title="学员信息管理" class="easyui-datagrid" fitColumns="true"
+	<table id="dg" title="论坛管理" class="easyui-datagrid" fitColumns="true"
 		height="800px" pagination="true" rownumbers="true" fit="true"
-		url="succstudent/selectByPage.action" toolbar="#tb"  striped=true>
+		url="forum/selectByPage.action" toolbar="#tb"  striped=true>
 		<!--  fitColumns="true" th自适应宽度； pagination：翻页；rownumbers：添加行号；url：必须返回json形式 -->
 		<thead>
 			<tr>
 				<th field="cb" checkbox="true"></th>
-				<th field="id" width="10" hidden=true>学员id</th>
-				<th field="name" width="15">学员姓名</th>
-				<th field="degree" width="15">学员学历</th>
-				<th field="graduateschool" width="20">毕业院校</th>
-				<th field="enterprize" width="33">入职公司</th>
-				<th field="salary" width="10">薪资</th>
-				<th field="career" width="25">专业</th>
-				<th field="hiredate" width="15">就职信息</th>
-				<th field="sendword" width="49">学员寄语</th>
-				<th field="photos_src" width="50">学员照片</th>
+				<th field="id" width="10" hidden=true>文章id</th>
+				<th field="title" width="15">标题</th>
+				<th field="author" width="15">作者</th>
+				<th field="post_time" width="30">发表时间</th>
+				<th field="views" width="20">查看次数</th>
+				<th field="comments" width="20">评论次数</th>
+				<th field="thumbups" width="20">点赞次数</th>
+				<th field="editor" width="25">编辑者</th>
+				<th field="edit_time" width="30">编辑时间</th>
+				<th field="content" width="49">正文内容</th>
+				<th field="type" width="50">分类</th>
+				<th field="cover" width="50">封面</th>
+				<th field="top" width="20">是否置顶</th>
+				<th field="original" width="20">是否原创</th>
 			</tr>
 		</thead>
 	</table>
@@ -259,6 +266,7 @@
 			</table>
 		</form>
 	</div>
+
 	<!-- 修改窗口 -->
 	<div id="dlg1" class="easyui-dialog"
 		style="width: 580px; height: 500px; padding: 10px 20px" closed="true"
@@ -270,27 +278,27 @@
 					<td><input type="hidden" name="id" id="id2"/></td>
 				</tr>
 				<tr>
-					<td>学员姓名：</td>
+					<td>标题：</td>
 					<td><input type="text" name="name" id="name2"
 						class="easyui-validatebox" required="true" /></td>
 				</tr>
 				<tr>
-					<td>学员学历：</td>
+					<td>封面：</td>
 					<td><input type="text" name="degree" id="degree2"
 						class="easyui-validatebox" required="true" /></td>
 				</tr>
 				<tr>
-					<td>毕业院校：</td>
+					<td>分类：</td>
 					<td><input type="text" name="graduateschool" id="graduateschool2"
 						class="easyui-validatebox" required="true" /></td>
 				</tr>
 				<tr>
-					<td>入职公司：</td>
+					<td>是否置顶：</td>
 					<td><input type="text" name="enterprize" id="enterprize2"
 						class="easyui-validatebox" required="true" /></td>
 				</tr>
 				<tr>
-					<td>薪资：</td>
+					<td>是否原创：</td>
 					<td><input type="text" name="salary" id="salary2"
 						class="easyui-validatebox" required="true" /></td>
 				</tr>

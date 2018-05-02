@@ -55,6 +55,11 @@ public class PageWebController {
 	public String toTeachers() throws Exception {
 		return "teachers";
 	}
+	//进入论坛设置页面
+	@RequestMapping("/forum.action")
+	public String toForum() throws Exception {
+		return "forum";
+	}
 	
 	@RequestMapping("/video.action")
 	public ModelAndView video() throws Exception {

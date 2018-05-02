@@ -211,7 +211,7 @@
 		var treeData10 = [ {
 			text : "论坛设置",
 			attributes : {
-				url : "banner.jsp"
+				url : "forum.action"
 			}
 		} ];
 		$("#tree10").tree({
