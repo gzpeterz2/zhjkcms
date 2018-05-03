@@ -25,7 +25,7 @@
             border: 1px solid #ccc;
             height: 600px;
         }
-    </style>
+</style>
 <script type="text/javascript">
 	var url;
 

@@ -9,5 +9,7 @@ public interface ForumService {
 	Result<Forum> selectByPage(QueryVo vo);
 	//批量删除论文
 	void delete(Integer[] ids, String path);
+	//更新论坛文章信息
+	void update(Forum forum, String path);
 
 }

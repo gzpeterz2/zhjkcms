@@ -1,5 +1,6 @@
 package com.hc.cms.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,9 +9,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hc.cms.po.Forum;
+import com.hc.cms.po.StudentStory;
 import com.hc.cms.service.ForumService;
+import com.hc.cms.util.UploadUtils;
 import com.hc.cms.vo.QueryVo;
 import com.hc.cms.vo.Result;
 /**
@@ -35,7 +39,7 @@ public class ForumController {
 		return result;
 	}
 	
-	//删除学员信息
+	//删除论坛文章
 	@RequestMapping("/delete")
 	@ResponseBody
 	public Map<String,String> delete(String delIds) throws Exception{
@@ -50,5 +54,31 @@ public class ForumController {
 		map.put("delNums", ids.length+"");
 		return map;
 	}
-	
+	//编辑论坛文章信息
+	@RequestMapping("/update")
+	@ResponseBody
+	public Map<String,String> update(Forum forum,MultipartFile coverpic){
+		String filename = coverpic.getOriginalFilename();
+		Map<String,String> map=new HashMap<>();
+		try {
+			if (filename != null) {
+				if (!filename.equals("")) {
+					String newFileName = "photos/" + UploadUtils.getRandomName(filename);
+					File uploadPic = new File(FORUM_PHOTOS_UPLOAD_PATH + newFileName);
+					if (!uploadPic.exists()) {
+						uploadPic.mkdirs();
+					}
+					coverpic.transferTo(uploadPic);
+					forum.setCover("/pic/" + newFileName);
+				}
+			}
+			forumService.update(forum,FORUM_PHOTOS_UPLOAD_PATH);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("success", "1");
+			return map;
+		}
+		map.put("success", null);
+		return map;
+	}
 }

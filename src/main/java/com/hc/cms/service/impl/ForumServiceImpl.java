@@ -1,6 +1,8 @@
 package com.hc.cms.service.impl;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.hc.cms.mapper.ForumMapper;
 import com.hc.cms.po.Forum;
+import com.hc.cms.po.StudentStory;
+import com.hc.cms.po.Succstudent;
 import com.hc.cms.service.ForumService;
 import com.hc.cms.vo.QueryVo;
 import com.hc.cms.vo.Result;
@@ -46,6 +50,33 @@ public class ForumServiceImpl implements ForumService {
 			}
 		}
 		forumMapper.deleteByArr(ids);
+	}
+
+	//更新论坛文章信息
+	@Override
+	public void update(Forum forum,String path) {
+		Forum existforum=forumMapper.selectById(forum.getId());
+		//新添加封面
+		String cover = forum.getCover();
+		//原封面
+		String coverDb = existforum.getCover();
+		//如果原封面为空，并且原封面与新添加封面不一样
+		if(coverDb != null && !coverDb.equals(cover)){
+			//获取原封面图片路径
+			String filepath=path+coverDb.substring(5);
+			File file = new File(filepath);
+			if(file.exists()){
+				//如果原封面图片存在，则删除
+				file.delete();
+			}
+		}
+		//设置日期时间格式
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String date = format.format(new Date());
+		//每次重新设置编辑时间
+		forum.setEdit_time(date);
+		//更新学员故事
+		forumMapper.update(forum);
 	}
 	
 }

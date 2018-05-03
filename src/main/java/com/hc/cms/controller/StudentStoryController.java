@@ -12,7 +12,11 @@ import com.hc.cms.po.StudentStory;
 import com.hc.cms.service.StudentStoryService;
 import com.hc.cms.vo.QueryVo;
 import com.hc.cms.vo.Result;
-
+/**
+ * 学员故事管理模块
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping("/story")
 public class StudentStoryController {

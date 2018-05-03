@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>轮播图列表</title>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/black/easyui.css">
+	href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/icon.css">
 <script type="text/javascript"
@@ -16,40 +16,69 @@
 	src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
-
-
+<script type="text/javascript" src="js/wangEditor.js"></script>
+<style type="text/css">
+        .toolbar {
+            border: 1px solid #ccc;
+        }
+        .text {
+            border: 1px solid #ccc;
+            height: 600px;
+        }
+</style>
 <script type="text/javascript">
 	var url;
 
 	//打开添加学员就业信息框
-	function openStudentsAddDialog() {
+	function openForumsAddDialog() {
 		$("#dlg").dialog("open").dialog("setTitle", "添加学员信息");
-		url = "succstudent/save.action";
+		url = "forum/save.action";
 	}
 	//打开修改学员就业信息框
-	function openStudentsModifyDialog() {
+	function openForumsModifyDialog() {
 		var selectedRows = $("#dg").datagrid('getSelections');
 		if (selectedRows.length != 1) {
 			$.messager.alert("系统提示", "请选择一条要编辑的数据！");
 			return;
 		}
 		var row = selectedRows[0];
-		$("#dlg1").dialog("open").dialog("setTitle", "编辑学员信息");
+		$("#dlg1").dialog("open").dialog("setTitle", "编辑论文信息");
 		$("#id2").val(row.id);
-		$("#name2").val(row.name);
-		$("#degree2").val(row.degree);
-		$("#enterprize2").val(row.enterprize);
-		$("#salary2").val(row.salary);
-		$("#career2").val(row.career);
-		$("#hiredate2").val(row.hiredate);
-		$("#graduateschool2").val(row.graduateschool);
-		$("#sendword2").val(row.sendword);
-		$("#photos_src2").val(row.photos_src);
-		$("#photos2").val("");
-		url = "succstudent/update.action";
+		$("#title2").val(row.title);
+		$("#author2").val(row.author);
+		$("#post_time2").val(row.post_time);
+		$("#views2").val(row.views);
+		$("#comments2").val(row.comments);
+		$("#thumbups2").val(row.thumbups);
+		if(row.editor==null){
+			$("#editor2").val("111");
+			row.editor="${existUser.name }";
+			$("#editor2").val(row.editor);
+		}
+		$("#editor2").val(row.editor);
+		$("#edit_time2").val(row.edit_time);
+		$('#type2').combobox('setValue', row.type);
+		if(row.top==1){
+			$("#top1").attr("checked","checked");
+		}else{
+			$("#top0").attr("checked","checked");
+		}
+		if(row.original==1){
+			$("#original1").attr("checked","checked");
+		}else{
+			$("#original0").attr("checked","checked");
+		}
+		$("#thumbuper2").val(row.thumbuper);
+		$("#cover2").val(row.cover);
+		$("#file_cover2").val("");
+		if(row.content==null){
+			editor.txt.html("");
+		}
+		editor.txt.html(row.content);
+		url = "forum/update.action";
 	}
 
-	function deleteStudent() {
+	function deleteForum() {
 		var selectedRows = $("#dg").datagrid('getSelections');
 		if (selectedRows.length == 0) {
 			$.messager.alert("系统提示", "请选择要删除的数据！");
@@ -90,10 +119,10 @@
 		}
 		var row = selectedRows[0];
 		$("#dlg4").dialog('open').dialog('setTitle', '学员照片展示');
-		document.getElementById('imgInit').src = row.photos_src;
+		document.getElementById('imgInit').src = row.cover;
 	}
 
-	function saveStudent() {
+	function saveForum() {
 		$("#fm").form("submit", {
 			url : url,
 			onSubmit : function() {
@@ -114,7 +143,7 @@
 		});
 	}
 
-	function saveStudent1() {
+	function saveForum1() {
 		$("#fm1").form("submit", {
 			url : url,
 			onSubmit : function() {
@@ -134,12 +163,12 @@
 		});
 	}
 
-	function closeStudentsDialog() {
+	function closeForumsDialog() {
 		$("#dlg").dialog("close");
 		resetValue();
 	}
 
-	function closeStudentsDialog1() {
+	function closeForumsDialog1() {
 		$("#dlg1").dialog("close");
 		resetValue();
 	}
@@ -167,23 +196,23 @@
 	<!-- 管理员操作栏-->
 	<div id="tb">
 		<div>
-			<!-- <a href="javascript:openStudentsAddDialog()" class="easyui-linkbutton"
+			<!-- <a href="javascript:openForumsAddDialog()" class="easyui-linkbutton"
 				iconCls="icon-add" plain="true">添加
-			</a>
-			<a href="javascript:openStudentsModifyDialog()" class="easyui-linkbutton"
-				iconCls="icon-edit" plain="true">修改
 			</a> -->
-			<a href="javascript:deleteStudent()" class="easyui-linkbutton"
+			<a id="toUpdate" href="javascript:openForumsModifyDialog()" class="easyui-linkbutton"
+				iconCls="icon-edit" plain="true">修改
+			</a>
+			<a href="javascript:deleteForum()" class="easyui-linkbutton"
 				iconCls="icon-remove" plain="true">删除
 			</a>
-			<!-- <a href="javascript:showimages()" class="easyui-linkbutton"
-				iconCls="icon-search" plain="true">图片展示</a> -->
+			<a href="javascript:showimages()" class="easyui-linkbutton"
+				iconCls="icon-search" plain="true">图片展示</a>
 		</div>
 	</div>
 	<!-- 属性栏  -->
 	<table id="dg" title="论坛管理" class="easyui-datagrid" fitColumns="true"
 		height="800px" pagination="true" rownumbers="true" fit="true"
-		url="forum/selectByPage.action" toolbar="#tb"  striped=true>
+		url="forum/selectByPage.action" toolbar="#tb"  striped=true autoRowHeight=false>
 		<!--  fitColumns="true" th自适应宽度； pagination：翻页；rownumbers：添加行号；url：必须返回json形式 -->
 		<thead>
 			<tr>
@@ -202,6 +231,7 @@
 				<th field="cover" width="50">封面</th>
 				<th field="top" width="20">是否置顶</th>
 				<th field="original" width="20">是否原创</th>
+				<th field="thumbuper" width="20">点赞者id记录</th>
 			</tr>
 		</thead>
 	</table>
@@ -266,78 +296,112 @@
 			</table>
 		</form>
 	</div>
-
+	
 	<!-- 修改窗口 -->
 	<div id="dlg1" class="easyui-dialog"
 		style="width: 580px; height: 500px; padding: 10px 20px" closed="true"
-		buttons="#dlg-buttons1"  modal=true>
+		buttons="#dlg-buttons1"  modal=true resizable=true maximizable=true>
 		<form id="fm1" method="post" enctype="multipart/form-data">
 			<table cellspacing="5px;">
 				<tr>
 					<td height="15px"></td>
+					<!-- 文章id -->
 					<td><input type="hidden" name="id" id="id2"/></td>
+					<!-- 发表时间 -->
+					<td><input type="hidden" name="post_time" id="post_time2" /></td>
+					<!-- 编辑时间 -->
+					<td><input type="hidden" name="edit_time" id="edit_time2" /></td>
+					<!-- 点赞者id记录 -->
+					<td><input type="hidden" name="thumbuper" id="thumbuper2" /></td>
 				</tr>
 				<tr>
 					<td>标题：</td>
-					<td><input type="text" name="name" id="name2"
+					<td><input type="text" name="title" id="title2"
 						class="easyui-validatebox" required="true" /></td>
 				</tr>
 				<tr>
-					<td>封面：</td>
-					<td><input type="text" name="degree" id="degree2"
+					<td>作者：</td>
+					<td><input type="text" name="author" id="author2"
+						class="easyui-validatebox" required="true" /></td>
+				</tr>
+				<tr>
+					<td>查看次数：</td>
+					<td><input type="text" name="views" id="views2"
+						class="easyui-validatebox" required="true" /></td>
+				</tr>
+				<tr>
+					<td>评论次数：</td>
+					<td><input type="text" name="comments" id="comments2"
+						class="easyui-validatebox" required="true" /></td>
+				</tr>
+				<tr>
+					<td>点赞次数：</td>
+					<td><input type="text" name="thumbups" id="thumbups2"
+						class="easyui-validatebox" required="true" /></td>
+				</tr>
+				<tr>
+					<td>编辑者：</td>
+					<td><input type="text" name="editor" id="editor2"
 						class="easyui-validatebox" required="true" /></td>
 				</tr>
 				<tr>
 					<td>分类：</td>
-					<td><input type="text" name="graduateschool" id="graduateschool2"
-						class="easyui-validatebox" required="true" /></td>
-				</tr>
-				<tr>
-					<td>是否置顶：</td>
-					<td><input type="text" name="enterprize" id="enterprize2"
-						class="easyui-validatebox" required="true" /></td>
-				</tr>
-				<tr>
-					<td>是否原创：</td>
-					<td><input type="text" name="salary" id="salary2"
-						class="easyui-validatebox" required="true" /></td>
-				</tr>
-				<tr>
-					<td>职业：</td>
-					<td><input type="text" name="career" id="career2"
-						class="easyui-validatebox" required="true" /></td>
-				</tr>
-				<tr>
-					<td>就职信息：</td>
-					<td><input type="text" name="hiredate" id="hiredate2"
-						class="easyui-datebox" required="true" /></td>
-				</tr>
-				<tr>
-					<td>学员寄语：</td>
-					<td><input type="text" name="sendword" id="sendword2"
-						class="easyui-validatebox" required="true" /></td>
-				</tr>
-				<tr>
-					<td>学员照片：</td>
-					<td><input type="file" name="photos" id="photos2"/>
+					<td>
+					<select id="type2" class="easyui-combobox" name="type" editable=false style="width: 173px">   
+					    <option value="resource">资源分享</option>   
+					    <option value="technology">技术交流</option>   
+					    <option value="new">最新活动</option>   
+					</select>
+					<!-- <input type="" name="type" id="type2"
+						class="easyui-datebox" required="true" /> -->
 					</td>
 				</tr>
 				<tr>
-					<td><input type="hidden" name="photos_src" id="photos_src2"/></td>
+					<td>封面：</td>
+					<td><input type="file" name="coverpic" id="file_cover"/></td>
+					<td><input type="hidden" name="cover" id="cover2"/></td>
+				</tr>
+				<tr>
+					<td>是否置顶：</td>
+					<td>
+						<input id="top1" type="radio" name="top" value="1"/>是
+						<input id="top0" type="radio" name="top" value="0"/>否
+					</td>
+				</tr>
+				<tr>
+					<td>是否原创：</td>
+					<td>
+						<input id="original1" type="radio" name="original" value="1"/>是
+						<input id="original0" type="radio" name="original" value="0"/>否
+					</td>
+				</tr>
+				<tr>
+					<td>正文内容：</td>
+				</tr>
+				<tr>
+					<td colspan="4"><!-- id="editor"  -->
+					<div id="editor_div1" class="toolbar"></div>
+					<div id="editor_div2" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度--></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<textarea id="text1" name="content" style="width:100%; height:200px;"></textarea><!-- display: none; -->
+					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
 
 	<div id="dlg-buttons">
-		<a href="javascript:saveStudent()" class="easyui-linkbutton"
-			iconCls="icon-ok">保存</a> <a href="javascript:closeStudentsDialog()"
+		<a href="javascript:saveForum()" class="easyui-linkbutton"
+			iconCls="icon-ok">保存</a> <a href="javascript:closeForumsDialog()"
 			class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 	</div>
 
 	<div id="dlg-buttons1">
-		<a href="javascript:saveStudent1()" class="easyui-linkbutton"
-			iconCls="icon-ok">保存</a> <a href="javascript:closeStudentsDialog1()"
+		<a href="javascript:saveForum1()" class="easyui-linkbutton"
+			iconCls="icon-ok">保存</a> <a href="javascript:closeForumsDialog1()"
 			class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 	</div>
 
@@ -346,7 +410,7 @@
 	<div id="dlg4" class="easyui-dialog"
 		style="width: 600px; height: 500px; padding: 15px 10px" closed="true"
 		buttons="#dlg-buttons4" resizable=true>
-<!-- 		<form id="uploadImg" method="post" action="Students!uploadPhoto" -->
+<!-- 		<form id="uploadImg" method="post" action="Forums!uploadPhoto" -->
 <!-- 			enctype="multipart/form-data"> -->
 <!-- 			<span style="white-space: pre"> </span>上传图片1：<input type="file" -->
 <!-- 				name="upload"><br /> <br /> -->
@@ -355,6 +419,44 @@
 			<img src="?" id="imgInit" alt="未上传图片" width="100%" height="100%" />
 		</div>
 	</div>
+	<script type="text/javascript">
+		var E = window.wangEditor;
+		var editor = new E('#editor_div1','#editor_div2');
+		//配置上传图片
+		//配置服务器端地址
+		editor.customConfig.uploadImgServer = 'img/upload.action';
+		//隐藏"网络图片"tab
+		editor.customConfig.showLinkImg = false;
+		//限制上传图片大小（ 3M）
+		//editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024;
+		//限制一次最多上传 5 张图片
+		//editor.customConfig.uploadImgMaxLength = 5;
+		editor.customConfig.uploadFileName = 'myFileName';
+		editor.customConfig.uploadImgHooks = {
+			customInsert : function(insertImg, result, editor) {
+				// 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+				// insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+				// 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+				var url = result.data;
+				insertImg(url);	
+				// result 必须是一个 JSON 格式字符串！！！否则报错
+			}
+		}
+		//关闭粘贴文本样式过滤
+		editor.customConfig.pasteFilterStyle = false;
+		
+		//通过onchange来实现 textarea 中提交富文本内容
+		var $text1 = $('#text1');
+		editor.customConfig.onchange = function (html) {
+            // 监控变化，同步更新到 textarea
+            $text1.val(html);
+        }
+		editor.create();
+		//初始化 textarea 的值
+		$text1.val(editor.txt.html());
+		
+		document.getElementById('toUpdate').addEventListener('click', openForumModifyDialog(editor), false)
+	</script>
 	
 	<!-- 关闭查看图片弹框之后清除复选框 -->
 <!-- 	<script type="text/javascript">

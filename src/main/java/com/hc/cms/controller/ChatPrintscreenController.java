@@ -18,7 +18,7 @@ import com.hc.cms.util.UploadUtils;
 import com.hc.cms.vo.QueryVo;
 import com.hc.cms.vo.Result;
 /**
- * 聊天截图管理Controller
+ * 就业行情聊天截图管理Controller
  * @author Administrator
  *
  */

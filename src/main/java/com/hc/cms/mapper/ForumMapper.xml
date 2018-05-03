@@ -6,6 +6,10 @@
 	<select id="selectCount" resultType="long">
 		select count(*) from com_dynamic 
 	</select>
+	<!-- 通过ID查找文章 -->
+	<select id="selectById" parameterType="int" resultType="forum">
+		select * from com_dynamic where id=#{id}
+	</select>
 	
 	<!-- 分页查询论文 -->
 	<select id="selectByPage" parameterType="com.hc.cms.vo.QueryVo" resultType="forum">
@@ -27,4 +31,23 @@
 			#{id}
 		</foreach>
 	</delete>
+	
+	<!-- 更新论坛文章信息 -->
+	<update id="update" parameterType="forum">
+		update com_dynamic set 
+		title=#{title},
+		author=#{author},
+		post_time=#{post_time},
+		views=#{views}, 
+		comments=#{comments},
+		thumbups=#{thumbups},
+		editor=#{editor},
+		edit_time=#{edit_time},
+		content=#{content},
+		type=#{type},
+		cover=#{cover},
+		top=#{top},
+		original=#{original}, 
+		thumbuper=#{thumbuper} where id=#{id}
+	</update>
 </mapper>

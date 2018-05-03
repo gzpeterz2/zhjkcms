@@ -16,7 +16,11 @@ import com.hc.cms.service.TeacherService;
 import com.hc.cms.util.UploadUtils;
 import com.hc.cms.vo.QueryVo;
 import com.hc.cms.vo.Result;
-
+/**
+ * 师资力量控制模块
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping("/teacher")
 public class TeacherController {

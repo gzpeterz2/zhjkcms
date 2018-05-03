@@ -29,6 +29,15 @@ public class Forum {
 	private Integer top;
 	//是否原创
 	private Integer original;
+	//点赞者id记录
+	private String thumbuper;
+	
+	public String getThumbuper() {
+		return thumbuper;
+	}
+	public void setThumbuper(String thumbuper) {
+		this.thumbuper = thumbuper;
+	}
 	public Integer getId() {
 		return id;
 	}
