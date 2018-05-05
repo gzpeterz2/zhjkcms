@@ -35,7 +35,7 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public void addHomeBanner(Banner banner) throws Exception {
 		if (banner != null) {
-			banner.setLocation("HomePage");
+//			banner.setLocation("HomePage");
 			System.out.println(banner);
 			bannerMapper.insert(banner);
 		}
