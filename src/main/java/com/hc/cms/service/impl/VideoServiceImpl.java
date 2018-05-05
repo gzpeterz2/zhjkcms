@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hc.cms.mapper.VideoMapper;
 import com.hc.cms.po.Succstudent;
@@ -11,7 +12,7 @@ import com.hc.cms.po.Video;
 import com.hc.cms.service.VideoService;
 import com.hc.cms.vo.QueryVo;
 import com.hc.cms.vo.Result;
-
+@Service
 public class VideoServiceImpl implements VideoService {
 	@Autowired
 	private VideoMapper videoMapper;

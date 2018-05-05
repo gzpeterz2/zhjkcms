@@ -47,7 +47,7 @@ public class SuccstudentController {
 		String filename = photos.getOriginalFilename();
 		if (filename != null) {
 			if (!filename.equals("")) {
-				String newFileName = "photos/" + UploadUtils.getRandomName(filename);
+				String newFileName = "succstudent/" + UploadUtils.getRandomName(filename);
 				File uploadPic = new File(STUDENT_PHOTOS_UPLOAD_PATH + newFileName);
 				if (!uploadPic.exists()) {
 					uploadPic.mkdirs();
@@ -71,7 +71,7 @@ public class SuccstudentController {
 		String filename = photos.getOriginalFilename();
 		if (filename != null) {
 			if (!filename.equals("")) {
-				String newFileName = "photos/" + UploadUtils.getRandomName(filename);
+				String newFileName = "succstudent/" + UploadUtils.getRandomName(filename);
 				File uploadPic = new File(STUDENT_PHOTOS_UPLOAD_PATH + newFileName);
 				if (!uploadPic.exists()) {
 					uploadPic.mkdirs();

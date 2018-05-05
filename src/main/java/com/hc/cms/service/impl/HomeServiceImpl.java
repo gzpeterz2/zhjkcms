@@ -6,17 +6,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.hc.cms.mapper.BannerMapper;
 import com.hc.cms.po.Banner;
 import com.hc.cms.po.HomePage;
-import com.hc.cms.po.InstDynamic;
 import com.hc.cms.service.HomeService;
 import com.hc.cms.vo.QueryVo;
 import com.hc.cms.vo.Result;
 
 @Service
-@Transactional
 public class HomeServiceImpl implements HomeService {
 
 	@Autowired

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hc.cms.service.InstDynamicService;
 import com.hc.cms.vo.QueryVo;
@@ -13,6 +14,7 @@ import com.hc.cms.mapper.InstDynamicMapper;
 import com.hc.cms.po.InstDynamic;
 import com.hc.cms.po.Succstudent;
 
+@Service
 public class InstDynamicServiceImpl implements InstDynamicService {
 	@Autowired
 	private InstDynamicMapper instDynamicMapper;
