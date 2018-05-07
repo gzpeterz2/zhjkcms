@@ -11,5 +11,6 @@
 </head>
 <body>
 	<h3>error message</h3>
+	${msg }
 </body>
 </html>

@@ -63,7 +63,7 @@ public class ForumController {
 		try {
 			if (filename != null) {
 				if (!filename.equals("")) {
-					String newFileName = "photos/" + UploadUtils.getRandomName(filename);
+					String newFileName = "forum/" + UploadUtils.getRandomName(filename);
 					File uploadPic = new File(FORUM_PHOTOS_UPLOAD_PATH + newFileName);
 					if (!uploadPic.exists()) {
 						uploadPic.mkdirs();
