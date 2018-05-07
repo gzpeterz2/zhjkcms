@@ -153,9 +153,9 @@
 		});
 		var treeData7 = [ {
 			text : "关于我们",
-			attributes : {
-				url : "banner.jsp"
-			},
+			/* attributes : {
+				url : "#"
+			} ,*/
 			children : [ {
 				text : "学院介绍",
 				attributes : {
@@ -164,7 +164,7 @@
 			}, {
 				text : "教学环境",
 				attributes : {
-					url : "banner.jsp"
+					url : "environment.action"
 				}
 			} ]
 		} ];

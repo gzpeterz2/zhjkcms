@@ -69,4 +69,10 @@ public class PageWebController {
 		
 		return mv;
 	}
+	
+	//进入论坛设置页面
+	@RequestMapping("/environment.action")
+	public String toEnvironment() throws Exception {
+		return "environment";
+	}
 }
