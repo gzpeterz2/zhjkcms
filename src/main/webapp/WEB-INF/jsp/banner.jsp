@@ -244,8 +244,7 @@
 				</tr>
 				<tr>
 					<td>轮播图链接：</td>
-					<td><input type="text" name="url" id="url2"
-						class="easyui-validatebox" required="true" /></td>
+					<td><input type="text" name="url" id="url2"/></td>
 				</tr>
 				<tr>
 					<td>轮播图：</td>

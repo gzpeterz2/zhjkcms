@@ -50,8 +50,8 @@
 		</property>
 		<property name="conversionService" ref="conversionService2" />
 	</bean> -->
-
-     
+	<!-- 配置全局异常处理器 -->
+    <bean class="com.hc.cms.exception.GlobalExceptionResolver"></bean>
      <!-- <mvc:annotation-driven /> -->
      <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 	<!--注解适配器 -->
@@ -70,5 +70,12 @@
      	<property name="suffix" value=".jsp"/>
      </bean>
      
+     <!-- 配置拦截器 -->
+     <mvc:interceptors>
+     	<mvc:interceptor>
+     		<mvc:mapping path="/**"/>
+     		<bean class="com.hc.cms.interceptor.LoginInterceptor"></bean>
+     	</mvc:interceptor>
+     </mvc:interceptors>
     
 </beans>
