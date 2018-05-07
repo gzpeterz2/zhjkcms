@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hc.cms.mapper.EnvironmentMapper">
+
+	<select id="getTotalCount" resultType="Integer">
+		select count(*) from
+		environment
+	</select>
+	<select id="selectAll" resultType="com.hc.cms.po.Enviroment">
+		select * from environment
+	</select>
+	<!-- 通过Id查询 -->
+	<select id="selectById" parameterType="int" resultType="com.hc.cms.po.Enviroment">
+		select *
+		from environment where id=#{id}
+	</select>
+	<!-- 分页查询资讯信息 -->
+	<select id="selectByPage" parameterType="com.hc.cms.vo.QueryVo"
+		resultType="com.hc.cms.po.Enviroment">
+		select * from environment limit #{page},#{rows}
+	</select>
+
+	<!-- 批量查询照片 -->
+	<select id="selectByArr" parameterType="Integer[]" resultType="string">
+		select pic from environment where id in
+		<foreach collection="array" item="id" open=" (" close=")"
+			separator=",">
+			#{id}
+		</foreach>
+	</select>
+
+	<insert id="insert" parameterType="com.hc.cms.po.Enviroment">
+		<selectKey keyProperty="id" order="AFTER" resultType="int">
+			select
+			LAST_INSERT_ID()
+		</selectKey>
+		insert into environment
+		values(null, #{campus_name}, #{pic},
+		#{description}, #{location} )
+	</insert>
+
+	<update id="update" parameterType="com.hc.cms.po.Enviroment">
+		update environment set
+		campus_name =
+		#{campus_name} , pic = #{pic}, description =
+		#{description},
+		location = #{location} where id =
+		#{id}
+	</update>
+
+	<!-- 批量删除 -->
+	<delete id="deleteByIds" parameterType="Integer[]">
+		delete from environment where id in
+		<foreach collection="array" item="id" open=" (" close=")"
+			separator=",">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>
