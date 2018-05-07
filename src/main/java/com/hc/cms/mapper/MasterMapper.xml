@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hc.cms.mapper.MasterMapper">
+	<!-- 通过Id查询大咖简介信息-->
+	<select id="selectById" parameterType="int" resultType="master">
+		select * from master where m_id=#{m_id}
+	</select>
+	<!-- 查询总记录 -->
+	<select id="selectCount" resultType="long">
+		select count(*) from master 
+	</select>
+	<!-- 分页查询大咖简介信息 -->
+	<select id="selectByPage" parameterType="com.hc.cms.vo.QueryVo" resultType="master">
+		select * from master limit #{page},#{rows}
+	</select>
+	<!-- 批量查询大咖照片 -->
+	<select id="selectByArr" parameterType="Integer[]" resultType="string">
+		select m_photos from master where m_id in
+		<foreach collection="array" item="id" open=" (" close=")" separator=",">
+			#{id}
+		</foreach>
+	</select>
+	
+	<!-- 新增大咖简介信息 -->
+	<insert id="save" parameterType="master">
+		<selectKey keyProperty="m_id" order="AFTER" resultType="int">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into master (m_name,m_photos,m_intro,status) values (#{m_name},#{m_photos},#{m_intro},#{status})
+	</insert>
+	<!-- 更新大咖简介信息 -->
+	<update id="update" parameterType="master">
+		update master set m_name=#{m_name},m_photos=#{m_photos},m_intro=#{m_intro},status=#{status} where m_id=#{m_id}
+	</update>
+	
+	<!-- 批量删除大咖简介信息 -->
+	<delete id="deleteByArr" parameterType="Integer[]">
+		delete from master where m_id in
+		<foreach collection="array" item="id" open=" (" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>	
+</mapper>

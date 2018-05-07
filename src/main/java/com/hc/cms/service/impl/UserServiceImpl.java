@@ -13,7 +13,6 @@ import com.hc.cms.service.UserService;
  *
  */
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 	
 	@Autowired

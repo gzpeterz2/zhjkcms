@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hc.cms.mapper.CompanyIntroMapper">
+	<!-- 通过Id查询公司简介信息-->
+	<select id="selectById" parameterType="int" resultType="companyIntro">
+		select * from company_intro where c_id=#{c_id}
+	</select>
+	<!-- 查询总记录 -->
+	<select id="selectCount" resultType="long">
+		select count(*) from company_intro 
+	</select>
+	<!-- 分页查询公司简介信息 -->
+	<select id="selectByPage" parameterType="com.hc.cms.vo.QueryVo" resultType="companyIntro">
+		select * from company_intro limit #{page},#{rows}
+	</select>
+	<!-- 批量查询公司简介图片 -->
+	<select id="selectByArr" parameterType="Integer[]" resultType="string">
+		select c_pic from company_intro where c_id in
+		<foreach collection="array" item="id" open=" (" close=")" separator=",">
+			#{id}
+		</foreach>
+	</select>
+	
+	<!-- 新增公司简介信息 -->
+	<insert id="save" parameterType="companyIntro">
+		<selectKey keyProperty="c_id" order="AFTER" resultType="int">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into company_intro (c_pic,c_intro,status) values (#{c_pic},#{c_intro},#{status})
+	</insert>
+	<!-- 更新公司简介信息 -->
+	<update id="update" parameterType="companyIntro">
+		update company_intro set c_pic=#{c_pic},c_intro=#{c_intro},status=#{status} where c_id=#{c_id}
+	</update>
+	
+	<!-- 批量删除公司简介信息 -->
+	<delete id="deleteByArr" parameterType="Integer[]">
+		delete from company_intro where c_id in
+		<foreach collection="array" item="id" open=" (" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>	
+</mapper>

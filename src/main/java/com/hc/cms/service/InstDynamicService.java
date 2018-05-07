@@ -1,9 +1,6 @@
 package com.hc.cms.service;
 
-import java.util.List;
-
 import com.hc.cms.po.InstDynamic;
-import com.hc.cms.po.Succstudent;
 import com.hc.cms.vo.QueryVo;
 import com.hc.cms.vo.Result;
 

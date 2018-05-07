@@ -47,7 +47,7 @@ public class TeacherController {
 		String filename = photos.getOriginalFilename();
 		if (filename != null) {
 			if (!filename.equals("")) {
-				String newFileName = "photos/" + UploadUtils.getRandomName(filename);
+				String newFileName = "teacher/" + UploadUtils.getRandomName(filename);
 				System.out.println(newFileName);
 				System.out.println(TEACHER_PHOTOS_UPLOAD_PATH);
 				File uploadPic = new File(TEACHER_PHOTOS_UPLOAD_PATH + newFileName);
@@ -73,7 +73,7 @@ public class TeacherController {
 		String filename = photos.getOriginalFilename();
 		if (filename != null) {
 			if (!filename.equals("")) {
-				String newFileName = "photos/" + UploadUtils.getRandomName(filename);
+				String newFileName = "teacher/" + UploadUtils.getRandomName(filename);
 				System.out.println(newFileName);
 				File uploadPic = new File(TEACHER_PHOTOS_UPLOAD_PATH + newFileName);
 				if (!uploadPic.exists()) {

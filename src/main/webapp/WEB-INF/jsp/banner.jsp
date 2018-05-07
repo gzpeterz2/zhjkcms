@@ -211,8 +211,7 @@
 				</tr>
 				<tr>
 					<td>轮播图链接：</td>
-					<td><input type="text" name="url" id="url"
-						class="easyui-validatebox" required="true" /></td>
+					<td><input type="text" name="url" id="url"/></td>
 				</tr>
 				<tr>
 					<td>轮播图：</td>

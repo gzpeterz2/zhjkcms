@@ -153,14 +153,24 @@
 		});
 		var treeData7 = [ {
 			text : "关于我们",
-			attributes : {
-				url : "banner.jsp"
-			},
 			children : [ {
 				text : "学院介绍",
-				attributes : {
-					url : "banner.jsp"
-				}
+				children : [{
+					text : "公司介绍",
+					attributes : {
+						url : "company.action"
+					}
+				} ,{
+					text : "合作企业",
+					attributes : {
+						url : "cooperative.action"
+					}
+				},{
+					text : "大咖管理",
+					attributes : {
+						url : "master.action"
+					}
+				}]
 			}, {
 				text : "教学环境",
 				attributes : {
